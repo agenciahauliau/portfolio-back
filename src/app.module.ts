@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UsersModule } from './users/users.module';
 import { ImoveisModule } from './imoveis/imoveis.module';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -12,7 +13,9 @@ import { ImoveisModule } from './imoveis/imoveis.module';
     GraphQLModule.forRoot({
       // Desabilitando o playground
       playground: true,
-      autoSchemaFile: 'schema.gql',
+      sortSchema: true,
+      debug: false,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       //Fazendo o GraphQL disponível na endpoint /v1
       useGlobalPrefix: true,
       //Formatando o erro
