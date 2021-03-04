@@ -1,0 +1,60 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Imovei {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Query {
+  users: [User!]!
+  user(username: String!): User!
+  imoveis: [Imovei!]!
+  imovei(id: Int!): Imovei!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  update(updateUserInput: UpdateUserInput!, username: String!): User!
+  removeUser(delUser: String!): User!
+  createImovei(createImoveiInput: CreateImoveiInput!): Imovei!
+  updateImovei(updateImoveiInput: UpdateImoveiInput!): Imovei!
+  removeImovei(id: Int!): Imovei!
+}
+
+input CreateUserInput {
+  """Nome de usuário"""
+  username: String!
+
+  """Endereço de email"""
+  email: String!
+
+  """Senha (mínimo 8 caracteres)"""
+  senha: String!
+}
+
+input UpdateUserInput {
+  username: String!
+  email: String!
+  senha: String!
+}
+
+input CreateImoveiInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateImoveiInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
