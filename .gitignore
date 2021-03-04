@@ -2,6 +2,9 @@
 /dist
 /node_modules
 
+# Ignoring dotenv file
+.env
+
 # Logs
 logs
 *.log
