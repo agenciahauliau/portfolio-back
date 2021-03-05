@@ -3,12 +3,12 @@ import { InputType, Field, PartialType } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateUserInput extends PartialType(CreateUserInput) {
-  @Field(() => String)
-  username?: string;
+  @Field(() => String, { nullable: true })
+  username: string;
 
-  @Field(() => String)
-  email?: string;
+  @Field(() => String, { nullable: true })
+  email: string;
 
-  @Field(() => String)
-  senha?: string;
+  @Field(() => String, { nullable: true })
+  senha: string;
 }

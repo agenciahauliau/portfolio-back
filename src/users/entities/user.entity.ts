@@ -8,7 +8,7 @@ export type UserDocument = User & Document;
 @Schema({ timestamps: true })
 export class User {
   @Field(() => ID)
-  readonly id?: string;
+  readonly _id: string;
 
   @Prop({ unique: true, trim: true, lowercase: true, query: true })
   @Field()
@@ -23,11 +23,11 @@ export class User {
 
   @Field()
   @Prop()
-  readonly createdAt?: String;
+  readonly createdAt: String;
 
   @Field()
   @Prop()
-  readonly updatedAt?: String;
+  readonly updatedAt: String;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
+import { SearchUserInput } from './dto/search-user.input';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -10,7 +11,7 @@ export class UsersResolver {
 
   @Mutation(() => User)
   createUser(
-    @Args('createUserInput')
+    @Args('userData')
     createUserInput: CreateUserInput,
   ) {
     return this.usersService.create(createUserInput);
@@ -22,11 +23,11 @@ export class UsersResolver {
   }
 
   @Query(() => User, { name: 'user' })
-  findOne(@Args('username', { type: () => String }) username: string) {
-    return this.usersService.findOne(username);
+  findOne(@Args('dados') searchUser: SearchUserInput) {
+    return this.usersService.findOne(searchUser);
   }
 
-  @Mutation(() => User, { name: 'update' })
+  @Mutation(() => User, { name: 'updateUser' })
   async updateUser(
     @Args('username', { type: () => String }) username: string,
     @Args('updateUserInput') updateUserInput: UpdateUserInput,
