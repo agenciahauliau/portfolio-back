@@ -27,7 +27,7 @@ type Mutation {
   createImovei(createImoveiInput: CreateImoveiInput!): Imovei!
   createUser(userData: CreateUserInput!): User!
   removeImovei(id: Int!): Imovei!
-  removeUser(username: String!): User!
+  removeUser(username: String!): Boolean!
   updateImovei(updateImoveiInput: UpdateImoveiInput!): Imovei!
   updateUser(updateUserInput: UpdateUserInput!, username: String!): User!
 }
@@ -36,13 +36,17 @@ type Query {
   imovei(id: Int!): Imovei!
   imoveis: [Imovei!]!
   user(dados: SearchUserInput!): User!
-  users: [User!]!
+  users(quantidade: Float): [User!]!
 }
 
 input SearchUserInput {
   _id: ID
   email: String
   username: String
+}
+
+type Subscription {
+  userAdded: User!
 }
 
 input UpdateImoveiInput {

@@ -8,7 +8,6 @@ import {
   NotContains,
   MaxLength,
 } from 'class-validator';
-import { IsUserAlreadyExist } from '../validator/isUserAlreadyExist.validator';
 
 @InputType()
 export class CreateUserInput {
@@ -17,10 +16,7 @@ export class CreateUserInput {
   @IsString()
   @IsLowercase()
   @NotContains(' ', {
-    message: 'Não pode conter espaços ou caracteres especiais',
-  })
-  @IsUserAlreadyExist({
-    message: 'User $value already exists. Choose another name.',
+    message: 'Nome de usuário não pode conter espaços ou caracteres especiais',
   })
   username: String;
 
@@ -34,11 +30,10 @@ export class CreateUserInput {
   @IsString()
   @IsNotEmpty()
   @MinLength(8, {
-    message: 'Senha muito curta, o mínimo é $constraint1 e você inseriu $value',
+    message: 'Senha muito curta, o mínimo são $constraint1 caracteres',
   })
   @MaxLength(60, {
-    message:
-      'Senha grande demais, o máximo é $constraint1 e você inseriu $value',
+    message: 'Senha grande demais, o máximo são $constraint1 caracteres',
   })
   senha: String;
 }

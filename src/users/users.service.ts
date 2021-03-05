@@ -31,38 +31,38 @@ export class UsersService {
     return await createdUser
       .save()
       .then((res) => {
-        Logger.log(res);
+        Logger.log(`create: ${res}`);
         return res;
       })
       .catch((err) => {
-        Logger.log(err);
+        Logger.log(`create: ${err}`);
         return err;
       });
   }
 
-  async findAll(): Promise<User[]> {
+  async findAll(qtde?: any) {
     return await this.userModel
       .find()
-      .exec()
+      .limit(qtde)
       .then((res) => {
-        Logger.log(res);
+        Logger.log(`findAll: ${res}`);
         return res;
       })
       .catch((err) => {
-        Logger.log(err);
+        Logger.log(`findAll: ${err}`);
         return err;
       });
   }
 
-  async findOne(userParam: SearchUserInput): Promise<User[]> {
+  async findOne(userParam: SearchUserInput): Promise<User> {
     return await this.userModel
       .findOne(userParam)
       .then((res) => {
-        Logger.log(res);
+        Logger.log(`findOne: ${res}`);
         return res;
       })
       .catch((err) => {
-        Logger.log(err);
+        Logger.log(`findOne: ${err}`);
         return err;
       });
   }
@@ -74,24 +74,24 @@ export class UsersService {
         useFindAndModify: true,
       })
       .then((res) => {
-        Logger.log(res);
+        Logger.log(`update: ${res}`);
         return res;
       })
       .catch((err) => {
-        Logger.log(err);
+        Logger.log(`update: ${err}`);
         return err;
       });
   }
 
-  async remove(param: string) {
+  async remove(param: string): Promise<boolean> {
     return await this.userModel
       .findOneAndDelete({ username: param }, { useFindAndModify: true })
       .then((res) => {
-        Logger.log(res);
-        return res;
+        Logger.log(`remove: ${res}`);
+        return res ? true : false;
       })
       .catch((err) => {
-        Logger.log(err);
+        Logger.log(`remove: ${err}`);
         return err;
       });
   }
