@@ -40,6 +40,7 @@ export class UsersService {
       });
   }
 
+  /* Listar mais de um ususário */
   async findAll(qtde?: any) {
     return await this.userModel
       .find()
@@ -54,6 +55,7 @@ export class UsersService {
       });
   }
 
+  /* Função para procurar por um usuário */
   async findOne(userParam: SearchUserInput): Promise<User> {
     return await this.userModel
       .findOne(userParam)
@@ -67,6 +69,7 @@ export class UsersService {
       });
   }
 
+  /* Função para atualizar os dados de um usuário */
   async update(param: string, updateUserInput: UpdateUserInput): Promise<User> {
     return await this.userModel
       .findOneAndUpdate({ username: param }, updateUserInput, {
@@ -83,6 +86,7 @@ export class UsersService {
       });
   }
 
+  /* Função para remover um usuário */
   async remove(param: string): Promise<boolean> {
     return await this.userModel
       .findOneAndDelete({ username: param }, { useFindAndModify: true })
