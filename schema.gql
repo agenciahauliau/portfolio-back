@@ -11,6 +11,9 @@ input CreateUserInput {
   """Endereço de email"""
   email: String!
 
+  """Nível de permissão"""
+  nivel: Int
+
   """Senha (mínimo 8 caracteres)"""
   senha: String!
 
@@ -57,14 +60,27 @@ input UpdateImoveiInput {
 
 input UpdateUserInput {
   email: String
+  nivel: Int
   senha: String
   username: String
 }
 
 type User {
+  """ID, duh ¬¬"""
   _id: ID!
+
+  """Quando foi criado"""
   createdAt: String!
+
+  """Endereço de email"""
   email: String!
+
+  """Nível de permissão"""
+  nivel: Float!
+
+  """Quando foi atualizado"""
   updatedAt: String!
+
+  """Nome de usuário"""
   username: String!
 }

@@ -27,6 +27,7 @@ export class UsersService {
       username: createUserInput.username,
       email: createUserInput.email,
       senha: hash,
+      nivel: createUserInput.nivel,
     });
     return await createdUser
       .save()
@@ -71,6 +72,15 @@ export class UsersService {
 
   /* Função para atualizar os dados de um usuário */
   async update(param: string, updateUserInput: UpdateUserInput): Promise<User> {
+    //Cria o Salt
+    const salt = await bcrypt.genSalt(this.saltOrRounds);
+
+    //Faz o hash da senha
+    const hash = await bcrypt.hash(updateUserInput.senha, salt);
+
+    //Troca a senha criptografada
+    updateUserInput.senha = hash;
+
     return await this.userModel
       .findOneAndUpdate({ username: param }, updateUserInput, {
         new: true,
