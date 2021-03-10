@@ -1,0 +1,244 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  """ID, duh ¬¬"""
+  _id: ID!
+
+  """Nome de usuário"""
+  username: String!
+
+  """Endereço de email"""
+  email: String!
+
+  """Nível de permissão"""
+  nivel: Float!
+
+  """Quando foi criado"""
+  createdAt: String!
+
+  """Quando foi atualizado"""
+  updatedAt: String!
+}
+
+type Imovel {
+  """ID do imóvel"""
+  _id: ID!
+
+  """Categoria do imóvel"""
+  categoriaImovel: String!
+
+  """Descrição do imóvel"""
+  descricaoImovel: String!
+
+  """Tipo de necociação (R) Revenda, (A) Aluguel, (L) Lançamento"""
+  tipoNegociacao: String!
+
+  """Status do imóvel"""
+  statusImovel: String!
+
+  """Aceita permuta?"""
+  aceitaPermuta: Boolean!
+
+  """É mobiliado?"""
+  mobiliado: Boolean!
+
+  """Valor do imóvel. Ex: 324000.56"""
+  valorImovel: String!
+
+  """Valor do IPTU. Ex: 324000.56"""
+  valorIPTU: String!
+
+  """Valor do Condomínio. Ex: 324000.56"""
+  valorCondominio: String!
+
+  """Área total do imóvel."""
+  areaTotal: String!
+
+  """Área construída"""
+  areaConstruida: String!
+  andarImovel: String!
+  qtdeQuarto: String!
+  qtdeBanheiro: String!
+  qtdeSuites: String!
+  qtdeVagas: String!
+  nomeConstrutora: String!
+  bairro: String!
+  logradouro: String!
+  numeroLogradouro: String!
+  complemento: String!
+  cep: String!
+  cidade: String!
+
+  """UF (unidade federativa) ou estado mesmo"""
+  uf: String!
+  comodiadesImovel: String!
+  comodidadesCondominio: String!
+
+  """Quando foi criado"""
+  createdAt: String!
+
+  """Quando foi atualizado"""
+  updatedAt: String!
+}
+
+type Query {
+  users(quantidade: Float): [User!]!
+  user(dados: SearchUserInput!): User!
+  imoveis(filtros: SearchImovelInput, quantidade: Float): [Imovel!]!
+  imovel(dados: SearchImovelInput!): Imovel!
+}
+
+input SearchUserInput {
+  _id: ID
+  username: String
+  email: String
+}
+
+input SearchImovelInput {
+  _id: ID
+  categoriaImovel: String
+  descricaoImovel: String
+  tipoNegociacao: String
+  statusImovel: String
+  aceitaPermuta: Boolean
+  mobiliado: Boolean
+  valorImovel: String
+  valorIPTU: String
+  valorCondominio: String
+  areaTotal: String
+  areaConstruida: String
+  andarImovel: String
+  qtdeQuarto: String
+  qtdeBanheiro: String
+  qtdeSuites: String
+  qtdeVagas: String
+  nomeConstrutora: String
+  bairro: String
+  logradouro: String
+  numeroLogradouro: String
+  complemento: String
+  cep: String
+  cidade: String
+  uf: String
+  comodiadesImovel: String
+  comodidadesCondominio: String
+  createdAt: String
+  updatedAt: String
+}
+
+type Mutation {
+  createUser(userData: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!, username: String!): User!
+  removeUser(username: String!): Boolean!
+  createImovel(imovelInput: CreateImovelInput!): Imovel!
+  updateImovel(updateImovelInput: UpdateImovelInput!, id: String!): Imovel!
+  removeImovel(id: String!): Boolean!
+}
+
+input CreateUserInput {
+  """Nome de usuário"""
+  username: String!
+
+  """Endereço de email"""
+  email: String!
+
+  """Senha (mínimo 8 caracteres)"""
+  senha: String!
+
+  """Nível de permissão"""
+  nivel: Int
+}
+
+input UpdateUserInput {
+  username: String
+  email: String
+  senha: String
+  nivel: Int
+}
+
+input CreateImovelInput {
+  """Categoria do imóvel"""
+  categoriaImovel: String!
+
+  """Descrição do imóvel"""
+  descricaoImovel: String!
+
+  """Tipo de necociação (R) Revenda, (A) Aluguel, (L) Lançamento"""
+  tipoNegociacao: String!
+
+  """Status do imóvel"""
+  statusImovel: String!
+
+  """Aceita permuta?"""
+  aceitaPermuta: Boolean!
+
+  """É mobiliado?"""
+  mobiliado: Boolean!
+
+  """Valor do imóvel. Ex: 324000.56"""
+  valorImovel: String!
+
+  """Valor do IPTU. Ex: 324000.56"""
+  valorIPTU: String!
+
+  """Valor do Condomínio. Ex: 324000.56"""
+  valorCondominio: String!
+
+  """Área total do imóvel."""
+  areaTotal: String!
+
+  """Área construída"""
+  areaConstruida: String!
+  andarImovel: String!
+  qtdeQuarto: String!
+  qtdeBanheiro: String!
+  qtdeSuites: String!
+  qtdeVagas: String!
+  nomeConstrutora: String!
+  bairro: String!
+  logradouro: String!
+  numeroLogradouro: String!
+  complemento: String!
+  cep: String!
+  cidade: String!
+
+  """UF (unidade federativa) ou estado mesmo"""
+  uf: String!
+  comodiadesImovel: String!
+  comodidadesCondominio: String!
+}
+
+input UpdateImovelInput {
+  categoriaImovel: String
+  descricaoImovel: String
+  tipoNegociacao: String
+  statusImovel: String
+  aceitaPermuta: Boolean
+  mobiliado: Boolean
+  valorImovel: String
+  valorIPTU: String
+  valorCondominio: String
+  areaTotal: String
+  areaConstruida: String
+  andarImovel: String
+  qtdeQuarto: String
+  qtdeBanheiro: String
+  qtdeSuites: String
+  qtdeVagas: String
+  nomeConstrutora: String
+  bairro: String
+  logradouro: String
+  numeroLogradouro: String
+  complemento: String
+  cep: String
+  cidade: String
+  uf: String
+  comodiadesImovel: String
+  comodidadesCondominio: String
+}
+
+type Subscription {
+  userAdded: User!
+}

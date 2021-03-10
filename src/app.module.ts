@@ -12,7 +12,7 @@ import { join } from 'path';
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       // Desabilitando o playground
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'schema.gql'),
       playground: true,
       debug: false,
       sortSchema: false,
