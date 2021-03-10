@@ -6,13 +6,15 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { UsersModule } from './users/users.module';
 import { ImoveisModule } from './imoveis/imoveis.module';
 import { join } from 'path';
+import { tmpdir } from 'os';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       // Desabilitando o playground
-      autoSchemaFile: join(process.cwd(), 'schema.gql'),
+      //autoSchemaFile: join(process.cwd(), 'schema.gql'),
+      autoSchemaFile: join(tmpdir(), 'schema.gql'),
       playground: true,
       debug: false,
       sortSchema: false,
