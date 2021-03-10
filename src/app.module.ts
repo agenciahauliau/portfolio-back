@@ -13,6 +13,7 @@ import { ImoveisModule } from './imoveis/imoveis.module';
       // Desabilitando o playground
       //autoSchemaFile: join(process.cwd(), 'schema.gql'),
       autoSchemaFile: '/tmp/schema.gql',
+      introspection: true,
       playground: true,
       debug: false,
       sortSchema: false,
