@@ -1,0 +1,13 @@
+runtime: nodejs14
+
+service: back.portfolio.imb.br
+
+instance_class: F1
+
+handlers:
+  - url: /.*
+    secure: always
+    script: auto
+
+env_variables:
+  MONGO_URL: mongodb+srv://hi4ume:y82n61di4uDokmLz@cluster0.ehwfw.mongodb.net/portfolio?retryWrites=true&w=majority

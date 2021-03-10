@@ -1,0 +1,27 @@
+on:
+  push:
+    branches: main
+
+name: Deploy Google App Engine
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Deploy to App Engine
+        id: Deploy
+        uses: google-github-actions/deploy-appengine@main
+        with:
+          deliverables: ./app.yaml
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          credentials: ${{ secrets.GCP_SA_KEY }}
+          promote: false
+          version: v1
