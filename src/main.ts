@@ -16,7 +16,7 @@ async function bootstrap() {
   //app.use(helmet());
   //URL final terá como inicio o /v1
   app.setGlobalPrefix('v1');
-  // Recebe a porta de onde está sendo hospedado, caso contrário, inicia na porta 3000
-  await app.listen(Number(process.env.PORT) || 3000);
+  // Recebe a porta de onde está sendo hospedado, caso contrário, inicia na porta 8080
+  await app.listen(Number(process.env.PORT) || 8080);
 }
 bootstrap();
