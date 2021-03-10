@@ -15,7 +15,7 @@ export class User {
   readonly username: String;
 
   @Field({ description: 'Endereço de email' })
-  @Prop({ unique: true })
+  @Prop({ unique: true, trim: true, lowercase: true, query: true })
   readonly email: String;
 
   @Prop()

@@ -1,13 +1,17 @@
 import { InputType, Field, ID } from '@nestjs/graphql';
+import { IsOptional } from 'class-validator';
 
 @InputType()
 export class SearchUserInput {
   @Field(() => ID, { nullable: true })
-  _id?: string;
+  @IsOptional()
+  _id: string;
 
   @Field(() => String, { nullable: true })
-  username?: string;
+  @IsOptional()
+  username: string;
 
   @Field(() => String, { nullable: true })
-  email?: string;
+  @IsOptional()
+  email: string;
 }

@@ -5,16 +5,17 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UsersModule } from './users/users.module';
 import { ImoveisModule } from './imoveis/imoveis.module';
+import { join } from 'path';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       // Desabilitando o playground
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: true,
-      sortSchema: true,
       debug: false,
-      autoSchemaFile: 'schema.gql',
+      sortSchema: false,
       //Fazendo o GraphQL disponível na endpoint /v1
       useGlobalPrefix: true,
       //Formatando o erro
