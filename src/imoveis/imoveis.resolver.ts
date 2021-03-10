@@ -1,6 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { ImoveisService } from './Imoveis.service';
+import { ImoveisService } from './imoveis.service';
 import { Imovel } from './entities/imovel.entity';
 import { CreateImovelInput } from './dto/create-imovel.input';
 import { UpdateImovelInput } from './dto/update-imovel.input';
