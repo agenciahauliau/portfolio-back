@@ -1,0 +1,308 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  """ID, duh ¬¬"""
+  _id: ID!
+
+  """Nome de usuário"""
+  username: String!
+
+  """Endereço de email"""
+  email: String!
+
+  """Nível de permissão"""
+  nivel: Float!
+
+  """Quando foi criado"""
+  createdAt: String!
+
+  """Quando foi atualizado"""
+  updatedAt: String!
+}
+
+type Imovel {
+  """ID do imóvel"""
+  _id: ID!
+
+  """Categoria do imóvel"""
+  categoriaImovel: String!
+
+  """É um empreendimento Jardins?"""
+  jardins: Boolean!
+
+  """Descrição do imóvel"""
+  descricaoImovel: String!
+
+  """Tipo de necociação (R) Revenda, (A) Aluguel, (L) Lançamento"""
+  tipoNegociacao: String!
+
+  """Status do imóvel"""
+  statusImovel: String!
+
+  """Aceita permuta?"""
+  aceitaPermuta: Boolean!
+
+  """É mobiliado?"""
+  mobiliado: Boolean!
+
+  """Valor do imóvel. Ex: 324000.56"""
+  valorImovel: Float!
+
+  """Valor do IPTU. Ex: 324000.56"""
+  valorIPTU: Float!
+
+  """Valor do Condomínio. Ex: 324000.56"""
+  valorCondominio: Float!
+
+  """Área total do imóvel. Ex: 224.56"""
+  areaTotal: Float!
+
+  """Área construída. Ex: 300.5"""
+  areaConstruida: Float!
+
+  """Andar do imóvel, se for prédio"""
+  andarImovel: Int!
+
+  """Quantidade de quartos"""
+  qtdeQuarto: Int!
+
+  """Quantidade de banheiros"""
+  qtdeBanheiro: Int!
+
+  """Quantidade de Suítes"""
+  qtdeSuites: Int!
+
+  """Quantidade de Vagas"""
+  qtdeVagas: Int!
+
+  """Nome da Construtora"""
+  nomeConstrutora: String!
+
+  """Bairro do imóvel"""
+  bairro: String!
+
+  """Endereço. Ex. Rua, Avenida"""
+  logradouro: String!
+
+  """Número do endereço"""
+  numeroLogradouro: String!
+
+  """Campo para complemento"""
+  complemento: String!
+
+  """CEP do endereço"""
+  cep: Int!
+
+  """Cidade do imóvel"""
+  cidade: String!
+
+  """UF (unidade federativa) ou estado mesmo"""
+  uf: String!
+
+  """Detalhes do condomínio. Segurança 24hs, Academia,"""
+  comodidadesImovel: [String!]!
+
+  """Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina"""
+  comodidadesCondominio: [String!]!
+
+  """Quando foi criado"""
+  createdAt: String!
+
+  """Quando foi atualizado"""
+  updatedAt: String!
+}
+
+type Query {
+  users(quantidade: Float): [User!]!
+  user(dados: SearchUserInput!): User!
+  imoveis(filtros: SearchImovelInput, quantidade: Float): [Imovel!]!
+  imovel(dados: SearchImovelInput!): Imovel!
+}
+
+input SearchUserInput {
+  _id: ID
+  username: String
+  email: String
+}
+
+input SearchImovelInput {
+  _id: String
+  categoriaImovel: String
+  jardins: Boolean
+  descricaoImovel: String
+  tipoNegociacao: String
+  statusImovel: String
+  aceitaPermuta: Boolean
+  mobiliado: Boolean
+  valorImovel: Float
+  valorIPTU: Float
+  valorCondominio: Float
+  areaTotal: Float
+  areaConstruida: Float
+  andarImovel: Float
+  qtdeQuarto: Float
+  qtdeBanheiro: Float
+  qtdeSuites: Float
+  qtdeVagas: Float
+  nomeConstrutora: String
+  bairro: String
+  logradouro: String
+  numeroLogradouro: String
+  complemento: String
+  cep: Float
+  cidade: String
+  uf: String
+  comodidadesImovel: [String!]
+  comodidadesCondominio: [String!]
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Mutation {
+  createUser(dados: CreateUserInput!): User!
+  updateUser(dados: UpdateUserInput!, username: String!): User!
+  removeUser(username: String!): Boolean!
+  createImovel(dados: CreateImovelInput!): Imovel!
+  updateImovel(dados: UpdateImovelInput!, id: String!): Imovel!
+  removeImovel(id: String!): Boolean!
+}
+
+input CreateUserInput {
+  """Nome de usuário"""
+  username: String!
+
+  """Endereço de email"""
+  email: String!
+
+  """Senha (mínimo 8 caracteres)"""
+  senha: String!
+
+  """Nível de permissão"""
+  nivel: Int
+}
+
+input UpdateUserInput {
+  username: String
+  email: String
+  senha: String
+  nivel: Int
+}
+
+input CreateImovelInput {
+  """Categoria do imóvel"""
+  categoriaImovel: String!
+
+  """É um empreendimento Jardins?"""
+  jardins: Boolean!
+
+  """Descrição do imóvel"""
+  descricaoImovel: String!
+
+  """Tipo de necociação (R) Revenda, (A) Aluguel, (L) Lançamento"""
+  tipoNegociacao: String!
+
+  """Status do imóvel"""
+  statusImovel: String!
+
+  """Aceita permuta?"""
+  aceitaPermuta: Boolean!
+
+  """É mobiliado?"""
+  mobiliado: Boolean!
+
+  """Valor do imóvel. Ex: 324000.56"""
+  valorImovel: Float!
+
+  """Valor do IPTU. Ex: 324000.56"""
+  valorIPTU: Float!
+
+  """Valor do Condomínio. Ex: 324000.56"""
+  valorCondominio: Float!
+
+  """Área total do imóvel. Ex: 224.56"""
+  areaTotal: Float!
+
+  """Área construída. Ex: 300.5"""
+  areaConstruida: Float!
+
+  """Andar do imóvel, se for prédio"""
+  andarImovel: Int!
+
+  """Quantidade de quartos"""
+  qtdeQuarto: Int!
+
+  """Quantidade de banheiros"""
+  qtdeBanheiro: Int!
+
+  """Quantidade de Suítes"""
+  qtdeSuites: Int!
+
+  """Quantidade de Vagas"""
+  qtdeVagas: Int!
+
+  """Nome da Construtora"""
+  nomeConstrutora: String!
+
+  """Bairro do imóvel"""
+  bairro: String!
+
+  """Endereço. Ex. Rua, Avenida"""
+  logradouro: String!
+
+  """Número do endereço"""
+  numeroLogradouro: String!
+
+  """Campo para complemento"""
+  complemento: String!
+
+  """CEP do endereço"""
+  cep: Int!
+
+  """Cidade do imóvel"""
+  cidade: String!
+
+  """UF (unidade federativa) ou estado mesmo"""
+  uf: String!
+
+  """Detalhes do condomínio. Segurança 24hs, Academia,"""
+  comodidadesImovel: [String!]!
+
+  """Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina"""
+  comodidadesCondominio: [String!]!
+}
+
+input UpdateImovelInput {
+  categoriaImovel: String
+  jardins: Boolean
+  descricaoImovel: String
+  tipoNegociacao: String
+  statusImovel: String
+  aceitaPermuta: Boolean
+  mobiliado: Boolean
+  valorImovel: Float
+  valorIPTU: Float
+  valorCondominio: Float
+  areaTotal: Float
+  areaConstruida: Float
+  andarImovel: Float
+  qtdeQuarto: Float
+  qtdeBanheiro: Float
+  qtdeSuites: Float
+  qtdeVagas: Float
+  nomeConstrutora: String
+  bairro: String
+  logradouro: String
+  numeroLogradouro: String
+  complemento: String
+  cep: Float
+  cidade: String
+  uf: String
+  comodidadesImovel: [String!]
+  comodidadesCondominio: [String!]
+}
+
+type Subscription {
+  userAdded: User!
+}

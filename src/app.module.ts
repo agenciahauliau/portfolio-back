@@ -11,7 +11,7 @@ import { ImoveisModule } from './imoveis/imoveis.module';
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       // Desabilitando o playground
-      //autoSchemaFile: join(process.cwd(), 'schema.gql'),
+      //autoSchemaFile: 'schema.gql'),
       autoSchemaFile: '/tmp/schema.gql',
       introspection: true,
       playground: true,

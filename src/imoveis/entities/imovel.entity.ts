@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID, Int, Float } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 
@@ -11,111 +11,122 @@ export class Imovel {
   @Field(() => ID, { description: 'ID do imóvel' })
   readonly _id: String;
 
-  @Field({ description: 'Categoria do imóvel' })
+  @Field(() => String, { description: 'Categoria do imóvel' })
   @Prop({ trim: true, lowercase: true })
   readonly categoriaImovel: String;
 
-  @Field({ description: 'Descrição do imóvel' })
+  @Field(() => Boolean, { description: 'É um empreendimento Jardins?' })
+  @Prop()
+  readonly jardins: Boolean;
+
+  @Field(() => String, { description: 'Descrição do imóvel' })
   @Prop()
   readonly descricaoImovel: String;
 
-  @Field({
+  @Field(() => String, {
     description: 'Tipo de necociação (R) Revenda, (A) Aluguel, (L) Lançamento',
   })
   @Prop({ trim: true })
   readonly tipoNegociacao: String;
 
-  @Field({ description: 'Status do imóvel' })
+  @Field(() => String, { description: 'Status do imóvel' })
   @Prop({ trim: true, lowercase: true })
   readonly statusImovel: String;
 
-  @Field({ description: 'Aceita permuta?' })
+  @Field(() => Boolean, { description: 'Aceita permuta?' })
   @Prop()
   readonly aceitaPermuta: Boolean;
 
-  @Field({ description: 'É mobiliado?' })
+  @Field(() => Boolean, { description: 'É mobiliado?' })
   @Prop()
   readonly mobiliado: Boolean;
 
-  @Field({ description: 'Valor do imóvel. Ex: 324000.56' })
+  @Field(() => Float, { description: 'Valor do imóvel. Ex: 324000.56' })
   @Prop()
-  readonly valorImovel: String;
+  readonly valorImovel: Number;
 
-  @Field({ description: 'Valor do IPTU. Ex: 324000.56' })
+  @Field(() => Float, { description: 'Valor do IPTU. Ex: 324000.56' })
   @Prop()
-  readonly valorIPTU: String;
+  readonly valorIPTU: Number;
 
-  @Field({ description: 'Valor do Condomínio. Ex: 324000.56' })
+  @Field(() => Float, { description: 'Valor do Condomínio. Ex: 324000.56' })
   @Prop()
-  readonly valorCondominio: String;
+  readonly valorCondominio: Number;
 
-  @Field({ description: 'Área total do imóvel.' })
+  @Field(() => Float, { description: 'Área total do imóvel. Ex: 224.56' })
   @Prop()
-  readonly areaTotal: String;
+  readonly areaTotal: Number;
 
-  @Field({ description: 'Área construída' })
+  @Field(() => Float, { description: 'Área construída. Ex: 300.5' })
   @Prop()
-  readonly areaConstruida: String;
+  readonly areaConstruida: Number;
 
-  @Field()
+  @Field(() => Int, { description: 'Andar do imóvel, se for prédio' })
   @Prop()
-  readonly andarImovel: String;
+  readonly andarImovel: Number;
 
-  @Field()
+  @Field(() => Int, { description: 'Quantidade de quartos' })
   @Prop()
-  readonly qtdeQuarto: String;
+  readonly qtdeQuarto: Number;
 
-  @Field()
+  @Field(() => Int, { description: 'Quantidade de banheiros' })
   @Prop()
-  readonly qtdeBanheiro: String;
+  readonly qtdeBanheiro: Number;
 
-  @Field()
+  @Field(() => Int, { description: 'Quantidade de Suítes' })
   @Prop()
-  readonly qtdeSuites: String;
+  readonly qtdeSuites: Number;
 
-  @Field()
+  @Field(() => Int, { description: 'Quantidade de Vagas' })
   @Prop()
-  readonly qtdeVagas: String;
+  readonly qtdeVagas: Number;
 
-  @Field()
+  @Field(() => String, { description: 'Nome da Construtora' })
   @Prop()
   readonly nomeConstrutora: String;
 
-  @Field()
+  @Field(() => String, { description: 'Bairro do imóvel' })
   @Prop()
   readonly bairro: String;
 
-  @Field()
+  @Field(() => String, { description: 'Endereço. Ex. Rua, Avenida' })
   @Prop()
   readonly logradouro: String;
 
-  @Field()
+  @Field(() => String, { description: 'Número do endereço' })
   @Prop()
   readonly numeroLogradouro: String;
 
-  @Field()
+  @Field(() => String, { description: 'Campo para complemento' })
   @Prop()
   readonly complemento: String;
 
-  @Field()
+  @Field(() => Int, { description: 'CEP do endereço' })
   @Prop()
-  readonly cep: String;
+  readonly cep: Number;
 
-  @Field()
+  @Field(() => String, { description: 'Cidade do imóvel' })
   @Prop()
   readonly cidade: String;
 
-  @Field({ description: 'UF (unidade federativa) ou estado mesmo' })
+  @Field(() => String, {
+    description: 'UF (unidade federativa) ou estado mesmo',
+  })
   @Prop()
   readonly uf: String;
 
-  @Field()
+  @Field(() => [String], {
+    description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
+  })
   @Prop()
-  readonly comodiadesImovel: String;
+  readonly comodidadesImovel: [String];
 
-  @Field()
+  @Field(() => [String], {
+    description:
+      'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
+  })
   @Prop()
-  readonly comodidadesCondominio: String;
+  readonly comodidadesCondominio: [String];
 
   /*   @Field(() => [String])
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: ImgImovel.name })

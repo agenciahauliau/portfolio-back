@@ -4,109 +4,113 @@ import { IsOptional } from 'class-validator';
 
 @InputType()
 export class UpdateImovelInput extends PartialType(CreateImovelInput) {
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  categoriaImovel: string;
+  categoriaImovel: String;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  descricaoImovel: string;
+  jardins?: Boolean;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  tipoNegociacao: string;
+  descricaoImovel: String;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  statusImovel: string;
+  tipoNegociacao: String;
 
-  @Field(() => Boolean, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  aceitaPermuta: boolean;
+  statusImovel: String;
 
-  @Field(() => Boolean, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  mobiliado: boolean;
+  aceitaPermuta: Boolean;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  valorImovel: string;
+  mobiliado: Boolean;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  valorIPTU: string;
+  valorImovel: Number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  valorCondominio: string;
+  valorIPTU: Number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  areaTotal: string;
+  valorCondominio: Number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  areaConstruida: string;
+  areaTotal: Number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  andarImovel: string;
+  areaConstruida: Number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  qtdeQuarto: string;
+  andarImovel: Number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  qtdeBanheiro: string;
+  qtdeQuarto: Number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  qtdeSuites: string;
+  qtdeBanheiro: Number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  qtdeVagas: string;
+  qtdeSuites: Number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  nomeConstrutora: string;
+  qtdeVagas: Number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  bairro: string;
+  nomeConstrutora: String;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  logradouro: string;
+  bairro: String;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  numeroLogradouro?: string;
+  logradouro: String;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  complemento?: string;
+  numeroLogradouro?: String;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  cep: string;
+  complemento?: String;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  cidade: string;
+  cep: Number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  uf: string;
+  cidade: String;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
-  comodiadesImovel?: string;
+  uf: String;
 
-  @Field(() => String, { nullable: true })
+  @Field(() => [String], { nullable: true })
   @IsOptional()
-  comodidadesCondominio?: string;
+  comodidadesImovel?: [String];
+
+  @Field(() => [String], { nullable: true })
+  @IsOptional()
+  comodidadesCondominio?: [String];
 
   /*   @Field(() => [])
   imagensImovel?: ImgImovel[];

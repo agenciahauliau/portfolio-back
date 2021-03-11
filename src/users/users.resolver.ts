@@ -18,7 +18,7 @@ export class UsersResolver {
   /* Criar usuário */
   @Mutation(() => User)
   async createUser(
-    @Args('userData')
+    @Args('dados')
     createUserInput: CreateUserInput,
   ): Promise<User> {
     const result = await this.usersService.create(createUserInput);
@@ -50,7 +50,7 @@ export class UsersResolver {
   @Mutation(() => User, { name: 'updateUser' })
   async updateUser(
     @Args('username', { type: () => String }) username: string,
-    @Args('updateUserInput') updateUserInput: UpdateUserInput,
+    @Args('dados') updateUserInput: UpdateUserInput,
   ) {
     const resultado = await this.usersService.update(username, updateUserInput);
     if (!resultado) {

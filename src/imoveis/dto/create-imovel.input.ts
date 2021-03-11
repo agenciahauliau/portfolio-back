@@ -1,92 +1,105 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Int, Field, Float } from '@nestjs/graphql';
+import { IsOptional } from 'class-validator';
 import { ImgImovel } from '../entities/imagens.entity';
 import { VideoImovel } from '../entities/videos.entity';
 
 @InputType()
 export class CreateImovelInput {
-  @Field({ description: 'Categoria do imóvel' })
+  @Field(() => String, { description: 'Categoria do imóvel' })
   categoriaImovel: String;
 
-  @Field({ description: 'Descrição do imóvel' })
+  @Field(() => Boolean, { description: 'É um empreendimento Jardins?' })
+  @IsOptional()
+  jardins?: Boolean;
+
+  @Field(() => String, { description: 'Descrição do imóvel' })
   descricaoImovel: String;
 
-  @Field({
+  @Field(() => String, {
     description: 'Tipo de necociação (R) Revenda, (A) Aluguel, (L) Lançamento',
   })
   tipoNegociacao: String;
 
-  @Field({ description: 'Status do imóvel' })
+  @Field(() => String, { description: 'Status do imóvel' })
   statusImovel: String;
 
-  @Field({ description: 'Aceita permuta?' })
+  @Field(() => Boolean, { description: 'Aceita permuta?' })
   aceitaPermuta: Boolean;
 
-  @Field({ description: 'É mobiliado?' })
+  @Field(() => Boolean, { description: 'É mobiliado?' })
   mobiliado: Boolean;
 
-  @Field({ description: 'Valor do imóvel. Ex: 324000.56' })
-  valorImovel: String;
+  @Field(() => Float, { description: 'Valor do imóvel. Ex: 324000.56' })
+  valorImovel: Number;
 
-  @Field({ description: 'Valor do IPTU. Ex: 324000.56' })
-  valorIPTU: String;
+  @Field(() => Float, { description: 'Valor do IPTU. Ex: 324000.56' })
+  valorIPTU: Number;
 
-  @Field({ description: 'Valor do Condomínio. Ex: 324000.56' })
-  valorCondominio: String;
+  @Field(() => Float, { description: 'Valor do Condomínio. Ex: 324000.56' })
+  valorCondominio: Number;
 
-  @Field({ description: 'Área total do imóvel.' })
-  areaTotal: String;
+  @Field(() => Float, { description: 'Área total do imóvel. Ex: 224.56' })
+  areaTotal: Number;
 
-  @Field({ description: 'Área construída' })
-  areaConstruida: String;
+  @Field(() => Float, { description: 'Área construída. Ex: 300.5' })
+  areaConstruida: Number;
 
-  @Field()
-  andarImovel: String;
+  @Field(() => Int, { description: 'Andar do imóvel, se for prédio' })
+  @IsOptional()
+  andarImovel?: Number;
 
-  @Field()
-  qtdeQuarto: String;
+  @Field(() => Int, { description: 'Quantidade de quartos' })
+  qtdeQuarto: Number;
 
-  @Field()
-  qtdeBanheiro: String;
+  @Field(() => Int, { description: 'Quantidade de banheiros' })
+  qtdeBanheiro: Number;
 
-  @Field()
-  qtdeSuites: String;
+  @Field(() => Int, { description: 'Quantidade de Suítes' })
+  @IsOptional()
+  qtdeSuites?: Number;
 
-  @Field()
-  qtdeVagas: String;
+  @Field(() => Int, { description: 'Quantidade de Vagas' })
+  @IsOptional()
+  qtdeVagas?: Number;
 
-  @Field()
+  @Field(() => String, { description: 'Nome da Construtora' })
   nomeConstrutora: String;
 
-  @Field()
+  @Field(() => String, { description: 'Bairro do imóvel' })
   bairro: String;
 
-  @Field()
+  @Field(() => String, { description: 'Endereço. Ex. Rua, Avenida' })
   logradouro: String;
 
-  @Field()
+  @Field(() => String, { description: 'Número do endereço' })
+  @IsOptional()
   numeroLogradouro?: String;
 
-  @Field()
+  @Field(() => String, { description: 'Campo para complemento' })
+  @IsOptional()
   complemento?: String;
 
-  @Field()
-  cep: String;
+  @Field(() => Int, { description: 'CEP do endereço' })
+  cep: Number;
 
-  @Field()
+  @Field(() => String, { description: 'Cidade do imóvel' })
   cidade: String;
 
-  @Field({ description: 'UF (unidade federativa) ou estado mesmo' })
+  @Field(() => String, {
+    description: 'UF (unidade federativa) ou estado mesmo',
+  })
   uf: String;
 
-  @Field()
-  comodiadesImovel?: String;
+  @Field(() => [String], {
+    description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
+  })
+  @IsOptional()
+  comodidadesImovel?: [String];
 
-  @Field()
-  comodidadesCondominio?: String;
-
-  /*   @Field(() => [])
-  imagensImovel?: ImgImovel[];
-
-  @Field(() => [])
-  videosImovel?: VideoImovel[]; */
+  @Field(() => [String], {
+    description:
+      'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
+  })
+  @IsOptional()
+  comodidadesCondominio?: [String];
 }

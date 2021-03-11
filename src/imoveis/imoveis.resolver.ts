@@ -13,7 +13,7 @@ export class ImoveisResolver {
 
   @Mutation(() => Imovel)
   async createImovel(
-    @Args('imovelInput') createImovelInput: CreateImovelInput,
+    @Args('dados') createImovelInput: CreateImovelInput,
   ): Promise<Imovel> {
     const result = await this.imoveisService.create(createImovelInput);
     return result;
@@ -43,7 +43,7 @@ export class ImoveisResolver {
   @Mutation(() => Imovel, { name: 'updateImovel' })
   async updateImovel(
     @Args('id', { type: () => String }) id: string,
-    @Args('updateImovelInput') updateImovelInput: UpdateImovelInput,
+    @Args('dados') updateImovelInput: UpdateImovelInput,
   ): Promise<Imovel> {
     const resultado = await this.imoveisService.update(id, updateImovelInput);
     if (!resultado) {
