@@ -12,7 +12,7 @@ export class Imovel {
   readonly _id: String;
 
   @Field(() => String, { description: 'Categoria do imóvel' })
-  @Prop({ trim: true, lowercase: true })
+  @Prop({ trim: true })
   readonly categoriaImovel: String;
 
   @Field(() => Boolean, { description: 'É um empreendimento Jardins?' })
@@ -30,7 +30,7 @@ export class Imovel {
   readonly tipoNegociacao: String;
 
   @Field(() => String, { description: 'Status do imóvel' })
-  @Prop({ trim: true, lowercase: true })
+  @Prop({ trim: true })
   readonly statusImovel: String;
 
   @Field(() => Boolean, { description: 'Aceita permuta?' })
