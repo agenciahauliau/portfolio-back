@@ -3,7 +3,7 @@ import { IsOptional } from 'class-validator';
 
 @InputType()
 export class SearchImovelInput {
-  @Field({ nullable: true })
+  @Field(() => ID, { nullable: true })
   @IsOptional()
   _id: string;
 
@@ -114,14 +114,6 @@ export class SearchImovelInput {
   @Field(() => [String], { nullable: true })
   @IsOptional()
   comodidadesCondominio: [String];
-
-  @Field()
-  @IsOptional()
-  readonly createdAt: String;
-
-  @Field()
-  @IsOptional()
-  readonly updatedAt: String;
 
   /*   @Field(() => [])
   imagensImovel: ImgImovel[];

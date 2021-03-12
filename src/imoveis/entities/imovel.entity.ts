@@ -137,12 +137,12 @@ export class Imovel {
   readonly videosImovel: VideoImovel[]; */
 
   @Field({ description: 'Quando foi criado' })
-  @Prop()
-  readonly createdAt: String;
+  @Prop({ default: Date.now })
+  readonly createdAt: Number;
 
   @Field({ description: 'Quando foi atualizado' })
   @Prop()
-  readonly updatedAt: String;
+  readonly updatedAt: Number;
 }
 
 export type ImovelDocument = Imovel & Document;
