@@ -1,4 +1,4 @@
-import { NotFoundException } from '@nestjs/common';
+import { NotFoundException, UseGuards } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'apollo-server-express';
 
@@ -7,6 +7,8 @@ import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { SearchUserInput } from './dto/search-user.input';
+import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
+import { CurrentUser } from 'src/auth/current-user.decorator';
 
 const pubSub = new PubSub();
 
@@ -24,6 +26,15 @@ export class UsersResolver {
     const result = await this.usersService.create(createUserInput);
     pubSub.publish('userAdded', { userAdded: result });
     return result;
+  }
+
+  @Query(() => User, { name: 'me', nullable: true })
+  @UseGuards(GqlAuthGuard)
+  async getMe(
+    @CurrentUser() user: User,
+    @Args('dados') searchUser: SearchUserInput,
+  ): Promise<User> {
+    return await this.usersService.findOne(searchUser);
   }
 
   /* Pesquisar por todos ususários */
