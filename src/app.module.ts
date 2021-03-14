@@ -5,20 +5,26 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UsersModule } from './users/users.module';
 import { ImoveisModule } from './imoveis/imoveis.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     GraphQLModule.forRoot({
-      // Desabilitando o playground
+      //Desabilitando o playground
+      playground: true,
       //autoSchemaFile: 'schema.gql'),
       autoSchemaFile: '/tmp/schema.gql',
+      //Introspecção para fazer funcionar o playground
       introspection: true,
-      playground: true,
+      //Debug
       debug: false,
+      //sortSchema para evitar que o schema seja ordenado
       sortSchema: false,
       //Fazendo o GraphQL disponível na endpoint /v1
       useGlobalPrefix: true,
+      //Adicionando opção para reconhecer a autenticação no cabeçalho
+      context: ({ req }) => ({ headers: req.headers }),
       //Formatando o erro
       formatError: (err) => {
         if (!err.extensions.exception.response) {
@@ -43,6 +49,7 @@ import { ImoveisModule } from './imoveis/imoveis.module';
     }),
     UsersModule,
     ImoveisModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
