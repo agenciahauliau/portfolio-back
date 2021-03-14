@@ -20,13 +20,13 @@ export class UsersService {
     const salt = await bcrypt.genSalt(this.saltOrRounds);
 
     //Faz o hash da senha
-    const hash = await bcrypt.hash(createUserInput.senha, salt);
+    const senhaCriptografada = await bcrypt.hash(createUserInput.senha, salt);
 
     //Armazena a senha no objeto do tipo userModel
     const createdUser = new this.userModel({
       username: createUserInput.username,
       email: createUserInput.email,
-      senha: hash,
+      senha: senhaCriptografada,
       nivel: createUserInput.nivel,
     });
     return await createdUser
@@ -76,10 +76,10 @@ export class UsersService {
     const salt = await bcrypt.genSalt(this.saltOrRounds);
 
     //Faz o hash da senha
-    const hash = await bcrypt.hash(updateUserInput.senha, salt);
+    const senhaCriptografada = await bcrypt.hash(updateUserInput.senha, salt);
 
     //Troca a senha criptografada
-    updateUserInput.senha = hash;
+    updateUserInput.senha = senhaCriptografada;
 
     return await this.userModel
       .findOneAndUpdate({ username: param }, updateUserInput, {
