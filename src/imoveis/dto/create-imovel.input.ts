@@ -6,100 +6,100 @@ import { VideoImovel } from '../entities/videos.entity';
 @InputType()
 export class CreateImovelInput {
   @Field(() => String, { description: 'Categoria do imóvel' })
-  categoriaImovel: String;
+  categoriaImovel: string;
 
   @Field(() => Boolean, { description: 'É um empreendimento Jardins?' })
   @IsOptional()
-  jardins?: Boolean;
+  jardins?: boolean;
 
   @Field(() => String, { description: 'Descrição do imóvel' })
-  descricaoImovel: String;
+  descricaoImovel: string;
 
   @Field(() => String, {
     description: 'Tipo de necociação (R) Revenda, (A) Aluguel, (L) Lançamento',
   })
-  tipoNegociacao: String;
+  tipoNegociacao: string;
 
   @Field(() => String, { description: 'Status do imóvel' })
-  statusImovel: String;
+  statusImovel: string;
 
   @Field(() => Boolean, { description: 'Aceita permuta?' })
-  aceitaPermuta: Boolean;
+  aceitaPermuta: boolean;
 
   @Field(() => Boolean, { description: 'É mobiliado?' })
-  mobiliado: Boolean;
+  mobiliado: boolean;
 
   @Field(() => Float, { description: 'Valor do imóvel. Ex: 324000.56' })
-  valorImovel: Number;
+  valorImovel: number;
 
   @Field(() => Float, { description: 'Valor do IPTU. Ex: 324000.56' })
-  valorIPTU: Number;
+  valorIPTU: number;
 
   @Field(() => Float, { description: 'Valor do Condomínio. Ex: 324000.56' })
-  valorCondominio: Number;
+  valorCondominio: number;
 
   @Field(() => Float, { description: 'Área total do imóvel. Ex: 224.56' })
-  areaTotal: Number;
+  areaTotal: number;
 
   @Field(() => Float, { description: 'Área construída. Ex: 300.5' })
-  areaConstruida: Number;
+  areaConstruida: number;
 
   @Field(() => Int, { description: 'Andar do imóvel, se for prédio' })
   @IsOptional()
-  andarImovel?: Number;
+  andarImovel?: number;
 
   @Field(() => Int, { description: 'Quantidade de quartos' })
-  qtdeQuarto: Number;
+  qtdeQuarto: number;
 
   @Field(() => Int, { description: 'Quantidade de banheiros' })
-  qtdeBanheiro: Number;
+  qtdeBanheiro: number;
 
   @Field(() => Int, { description: 'Quantidade de Suítes' })
   @IsOptional()
-  qtdeSuites?: Number;
+  qtdeSuites?: number;
 
   @Field(() => Int, { description: 'Quantidade de Vagas' })
   @IsOptional()
-  qtdeVagas?: Number;
+  qtdeVagas?: number;
 
   @Field(() => String, { description: 'Nome da Construtora' })
-  nomeConstrutora: String;
+  nomeConstrutora: string;
 
   @Field(() => String, { description: 'Bairro do imóvel' })
-  bairro: String;
+  bairro: string;
 
   @Field(() => String, { description: 'Endereço. Ex. Rua, Avenida' })
-  logradouro: String;
+  logradouro: string;
 
   @Field(() => String, { description: 'Número do endereço' })
   @IsOptional()
-  numeroLogradouro?: String;
+  numeroLogradouro?: string;
 
   @Field(() => String, { description: 'Campo para complemento' })
   @IsOptional()
-  complemento?: String;
+  complemento?: string;
 
   @Field(() => Int, { description: 'CEP do endereço' })
-  cep: Number;
+  cep: number;
 
   @Field(() => String, { description: 'Cidade do imóvel' })
-  cidade: String;
+  cidade: string;
 
   @Field(() => String, {
     description: 'UF (unidade federativa) ou estado mesmo',
   })
-  uf: String;
+  uf: string;
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
   })
   @IsOptional()
-  comodidadesImovel?: [String];
+  comodidadesImovel?: [string];
 
   @Field(() => [String], {
     description:
       'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
   })
   @IsOptional()
-  comodidadesCondominio?: [String];
+  comodidadesCondominio?: [string];
 }

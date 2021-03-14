@@ -24,13 +24,13 @@ export class CreateUserInput {
   @NotContains(' ', {
     message: 'Nome de usuário não pode conter espaços ou caracteres especiais',
   })
-  username: String;
+  username: string;
 
   @Field(() => String, { description: 'Endereço de email' })
   @IsString()
   @IsNotEmpty()
   @IsEmail()
-  email: String;
+  email: string;
 
   @Field(() => String, { description: 'Senha (mínimo 8 caracteres)' })
   @IsString()
@@ -42,12 +42,12 @@ export class CreateUserInput {
   @MaxLength(60, {
     message: 'Senha grande demais, o máximo são $constraint1 caracteres',
   })
-  senha: String;
+  senha: string;
 
   @Field(() => Int, { description: 'Nível de permissão', nullable: true })
   @IsInt()
   @IsOptional()
   @Min(1, { message: 'Menor que 1 não pode, foi mal' })
   @Max(8, { message: 'Maior que 8 não pode, foi mal' })
-  nivel: Number;
+  nivel: number;
 }

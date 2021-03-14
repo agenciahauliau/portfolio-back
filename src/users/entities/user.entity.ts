@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID, HideField } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
@@ -8,30 +8,31 @@ export type UserDocument = User & Document;
 @Schema({ timestamps: true })
 export class User {
   @Field(() => ID, { description: 'ID, duh ¬¬' })
-  readonly _id: String;
+  readonly _id: string;
 
   @Field({ description: 'Nome de usuário' })
   @Prop({ unique: true, trim: true, lowercase: true, query: true })
-  readonly username: String;
+  readonly username: string;
 
   @Field({ description: 'Endereço de email' })
   @Prop({ unique: true, trim: true, lowercase: true, query: true })
-  readonly email: String;
+  readonly email: string;
 
+  @HideField()
   @Prop()
-  readonly senha: String;
+  readonly senha: string;
 
   @Field({ description: 'Nível de permissão' })
   @Prop({ min: 1, max: 8 })
-  readonly nivel: Number;
+  readonly nivel: number;
 
   @Field({ description: 'Quando foi criado' })
-  @Prop()
-  readonly createdAt: String;
+  @Prop({ default: Date.now })
+  readonly createdAt: number;
 
   @Field({ description: 'Quando foi atualizado' })
   @Prop()
-  readonly updatedAt: String;
+  readonly updatedAt: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

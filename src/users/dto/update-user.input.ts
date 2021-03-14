@@ -6,17 +6,17 @@ import { IsOptional } from 'class-validator';
 export class UpdateUserInput extends PartialType(CreateUserInput) {
   @Field(() => String, { nullable: true })
   @IsOptional()
-  username: String;
+  username: string;
 
   @Field(() => String, { nullable: true })
   @IsOptional()
-  email: String;
+  email: string;
 
   @Field(() => String, { nullable: true })
   @IsOptional()
-  senha: String;
+  senha: string;
 
   @Field(() => Int, { nullable: true })
   @IsOptional()
-  nivel: Number;
+  nivel: number;
 }

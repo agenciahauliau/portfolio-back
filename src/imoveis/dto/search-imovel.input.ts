@@ -9,111 +9,111 @@ export class SearchImovelInput {
 
   @Field({ nullable: true })
   @IsOptional()
-  categoriaImovel: String;
+  categoriaImovel: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  jardins: Boolean;
+  jardins: boolean;
 
   @Field({ nullable: true })
   @IsOptional()
-  descricaoImovel: String;
+  descricaoImovel: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  tipoNegociacao: String;
+  tipoNegociacao: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  statusImovel: String;
+  statusImovel: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  aceitaPermuta: Boolean;
+  aceitaPermuta: boolean;
 
   @Field({ nullable: true })
   @IsOptional()
-  mobiliado: Boolean;
+  mobiliado: boolean;
 
   @Field({ nullable: true })
   @IsOptional()
-  valorImovel: Number;
+  valorImovel: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  valorIPTU: Number;
+  valorIPTU: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  valorCondominio: Number;
+  valorCondominio: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  areaTotal: Number;
+  areaTotal: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  areaConstruida: Number;
+  areaConstruida: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  andarImovel: Number;
+  andarImovel: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  qtdeQuarto: Number;
+  qtdeQuarto: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  qtdeBanheiro: Number;
+  qtdeBanheiro: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  qtdeSuites: Number;
+  qtdeSuites: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  qtdeVagas: Number;
+  qtdeVagas: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  nomeConstrutora: String;
+  nomeConstrutora: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  bairro: String;
+  bairro: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  logradouro: String;
+  logradouro: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  numeroLogradouro: String;
+  numeroLogradouro: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  complemento: String;
+  complemento: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  cep: Number;
+  cep: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  cidade: String;
+  cidade: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  uf: String;
+  uf: string;
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
-  comodidadesImovel: [String];
+  comodidadesImovel: [string];
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
-  comodidadesCondominio: [String];
+  comodidadesCondominio: [string];
 
   /*   @Field(() => [])
   imagensImovel: ImgImovel[];

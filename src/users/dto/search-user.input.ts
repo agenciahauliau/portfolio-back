@@ -5,13 +5,13 @@ import { IsOptional } from 'class-validator';
 export class SearchUserInput {
   @Field(() => ID, { nullable: true })
   @IsOptional()
-  _id: string;
+  _id?: string;
 
   @Field(() => String, { nullable: true })
   @IsOptional()
-  username: string;
+  username?: string;
 
   @Field(() => String, { nullable: true })
   @IsOptional()
-  email: string;
+  email?: string;
 }
