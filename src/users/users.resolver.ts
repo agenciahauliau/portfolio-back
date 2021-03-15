@@ -19,7 +19,6 @@ export class UsersResolver {
 
   /* Criar usuário */
   @Mutation(() => User)
-  @UseGuards(GqlAuthGuard)
   async createUser(
     @Args('dados')
     createUserInput: CreateUserInput,
