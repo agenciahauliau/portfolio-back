@@ -1,10 +1,11 @@
-import { NotFoundException } from '@nestjs/common';
+import { NotFoundException, UseGuards } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { ImoveisService } from './imoveis.service';
 import { Imovel } from './entities/imovel.entity';
 import { CreateImovelInput } from './dto/create-imovel.input';
 import { UpdateImovelInput } from './dto/update-imovel.input';
 import { SearchImovelInput } from './dto/search-imovel.input';
+import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 
 @Resolver(() => Imovel)
 export class ImoveisResolver {
@@ -12,6 +13,7 @@ export class ImoveisResolver {
   constructor(private readonly imoveisService: ImoveisService) {}
 
   @Mutation(() => Imovel)
+  @UseGuards(GqlAuthGuard)
   async createImovel(
     @Args('dados') createImovelInput: CreateImovelInput,
   ): Promise<Imovel> {
@@ -41,6 +43,7 @@ export class ImoveisResolver {
   }
 
   @Mutation(() => Imovel, { name: 'updateImovel' })
+  @UseGuards(GqlAuthGuard)
   async updateImovel(
     @Args('id', { type: () => String }) id: string,
     @Args('dados') updateImovelInput: UpdateImovelInput,
@@ -53,6 +56,7 @@ export class ImoveisResolver {
   }
 
   @Mutation(() => Boolean)
+  @UseGuards(GqlAuthGuard)
   async removeImovel(
     @Args('id', { type: () => String }) id: string,
   ): Promise<Boolean> {

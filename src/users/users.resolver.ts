@@ -19,6 +19,7 @@ export class UsersResolver {
 
   /* Criar usuário */
   @Mutation(() => User)
+  @UseGuards(GqlAuthGuard)
   async createUser(
     @Args('dados')
     createUserInput: CreateUserInput,
@@ -28,17 +29,15 @@ export class UsersResolver {
     return result;
   }
 
-  @Query(() => User, { name: 'me', nullable: true })
+  @Query(() => User, { name: 'me' })
   @UseGuards(GqlAuthGuard)
-  async getMe(
-    @CurrentUser() user: User,
-    @Args('dados') searchUser: SearchUserInput,
-  ): Promise<User> {
-    return await this.usersService.findOne(searchUser);
+  async getMe(@CurrentUser('user') user: User): Promise<User> {
+    return user;
   }
 
   /* Pesquisar por todos ususários */
   @Query(() => [User], { name: 'users' })
+  @UseGuards(GqlAuthGuard)
   findAll(
     @Args('quantidade', { nullable: true }) qtde: Number,
   ): Promise<User[]> {
@@ -47,6 +46,7 @@ export class UsersResolver {
 
   /* Pesquisar por um usuário */
   @Query(() => User, { name: 'user' })
+  @UseGuards(GqlAuthGuard)
   async findOne(@Args('dados') searchUser: SearchUserInput): Promise<User> {
     const resultado = await this.usersService.findOne(searchUser);
     if (!resultado) {
@@ -59,6 +59,7 @@ export class UsersResolver {
 
   /* Atualizar usuário */
   @Mutation(() => User, { name: 'updateUser' })
+  @UseGuards(GqlAuthGuard)
   async updateUser(
     @Args('username', { type: () => String }) username: string,
     @Args('dados') updateUserInput: UpdateUserInput,
@@ -72,6 +73,7 @@ export class UsersResolver {
 
   /* Remover usuário */
   @Mutation(() => Boolean)
+  @UseGuards(GqlAuthGuard)
   async removeUser(@Args('username', { type: () => String }) username: string) {
     const resultado = await this.usersService.remove(username);
     if (!resultado) {
