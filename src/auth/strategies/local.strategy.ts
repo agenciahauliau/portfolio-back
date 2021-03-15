@@ -3,7 +3,6 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
 import { User } from '../../users/entities/user.entity';
 import { AuthService } from '../auth.service';
-import { AuthInput } from '../dto/auth.input';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -12,7 +11,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       usernameField: 'email',
       passwordField: 'senha',
     });
-    /* this.executaTudo(); */
   }
 
   async validate(email: string, senha: string): Promise<User> {
@@ -23,12 +21,4 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     }
     return user;
   }
-
-  /* async executaTudo(): Promise<any> {
-    let validate = await this.validate({
-      email: 'eduardo@rangell.com',
-      senha: '1234567890',
-    });
-    Logger.log(`validate ${validate}`);
-  } */
 }
