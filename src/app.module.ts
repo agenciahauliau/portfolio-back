@@ -27,13 +27,14 @@ import { AuthModule } from './auth/auth.module';
       context: ({ req }) => ({ headers: req.headers }),
       //Formatando o erro
       formatError: (err) => {
-        if (!err.extensions.exception.response) {
+        /* if (!err.extensions.exception.response) {
           response.status(HttpStatus.INTERNAL_SERVER_ERROR);
           return err.message;
         } else {
           response.status(err.extensions.exception.response.statusCode);
           return err.extensions.exception.response.message;
-        }
+        } */
+        return err;
       },
       // Formatando a resposta
       formatResponse: (res) => {
