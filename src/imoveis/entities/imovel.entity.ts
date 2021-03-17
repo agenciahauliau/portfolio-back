@@ -15,7 +15,10 @@ export class Imovel {
   @Prop({ trim: true })
   readonly categoriaImovel: string;
 
-  @Field(() => Boolean, { description: 'É um empreendimento Jardins?' })
+  @Field(() => Boolean, {
+    description: 'É um empreendimento Jardins?',
+    nullable: true,
+  })
   @Prop()
   readonly jardins: boolean;
 
@@ -61,7 +64,10 @@ export class Imovel {
   @Prop()
   readonly areaConstruida: number;
 
-  @Field(() => Int, { description: 'Andar do imóvel, se for prédio' })
+  @Field(() => Int, {
+    description: 'Andar do imóvel, se for prédio',
+    nullable: true,
+  })
   @Prop()
   readonly andarImovel: number;
 
@@ -73,11 +79,11 @@ export class Imovel {
   @Prop()
   readonly qtdeBanheiro: number;
 
-  @Field(() => Int, { description: 'Quantidade de Suítes' })
+  @Field(() => Int, { description: 'Quantidade de Suítes', nullable: true })
   @Prop()
   readonly qtdeSuites: number;
 
-  @Field(() => Int, { description: 'Quantidade de Vagas' })
+  @Field(() => Int, { description: 'Quantidade de Vagas', nullable: true })
   @Prop()
   readonly qtdeVagas: number;
 
@@ -93,11 +99,14 @@ export class Imovel {
   @Prop()
   readonly logradouro: string;
 
-  @Field(() => String, { description: 'Número do endereço' })
+  @Field(() => String, { description: 'Número do endereço', nullable: true })
   @Prop()
   readonly numeroLogradouro: string;
 
-  @Field(() => String, { description: 'Campo para complemento' })
+  @Field(() => String, {
+    description: 'Campo para complemento',
+    nullable: true,
+  })
   @Prop()
   readonly complemento: string;
 
@@ -117,6 +126,7 @@ export class Imovel {
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
+    nullable: true,
   })
   @Prop()
   readonly comodidadesImovel: [string];
@@ -124,6 +134,7 @@ export class Imovel {
   @Field(() => [String], {
     description:
       'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
+    nullable: true,
   })
   @Prop()
   readonly comodidadesCondominio: [string];
