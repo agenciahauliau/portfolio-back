@@ -8,7 +8,10 @@ export class CreateImovelInput {
   @Field(() => String, { description: 'Categoria do imóvel' })
   categoriaImovel: string;
 
-  @Field(() => Boolean, { description: 'É um empreendimento Jardins?' })
+  @Field(() => Boolean, {
+    description: 'É um empreendimento Jardins?',
+    nullable: true,
+  })
   @IsOptional()
   jardins?: boolean;
 
@@ -44,7 +47,10 @@ export class CreateImovelInput {
   @Field(() => Float, { description: 'Área construída. Ex: 300.5' })
   areaConstruida: number;
 
-  @Field(() => Int, { description: 'Andar do imóvel, se for prédio' })
+  @Field(() => Int, {
+    description: 'Andar do imóvel, se for prédio',
+    nullable: true,
+  })
   @IsOptional()
   andarImovel?: number;
 
@@ -54,11 +60,11 @@ export class CreateImovelInput {
   @Field(() => Int, { description: 'Quantidade de banheiros' })
   qtdeBanheiro: number;
 
-  @Field(() => Int, { description: 'Quantidade de Suítes' })
+  @Field(() => Int, { description: 'Quantidade de Suítes', nullable: true })
   @IsOptional()
   qtdeSuites?: number;
 
-  @Field(() => Int, { description: 'Quantidade de Vagas' })
+  @Field(() => Int, { description: 'Quantidade de Vagas', nullable: true })
   @IsOptional()
   qtdeVagas?: number;
 
@@ -71,11 +77,14 @@ export class CreateImovelInput {
   @Field(() => String, { description: 'Endereço. Ex. Rua, Avenida' })
   logradouro: string;
 
-  @Field(() => String, { description: 'Número do endereço' })
+  @Field(() => String, { description: 'Número do endereço', nullable: true })
   @IsOptional()
   numeroLogradouro?: string;
 
-  @Field(() => String, { description: 'Campo para complemento' })
+  @Field(() => String, {
+    description: 'Campo para complemento',
+    nullable: true,
+  })
   @IsOptional()
   complemento?: string;
 
@@ -92,6 +101,7 @@ export class CreateImovelInput {
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
+    nullable: true,
   })
   @IsOptional()
   comodidadesImovel?: [string];
@@ -99,6 +109,7 @@ export class CreateImovelInput {
   @Field(() => [String], {
     description:
       'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
+    nullable: true,
   })
   @IsOptional()
   comodidadesCondominio?: [string];
