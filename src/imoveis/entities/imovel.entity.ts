@@ -17,7 +17,6 @@ export class Imovel {
 
   @Field(() => Boolean, {
     description: 'É um empreendimento Jardins?',
-    nullable: true,
   })
   @Prop()
   readonly jardins: boolean;
@@ -66,7 +65,6 @@ export class Imovel {
 
   @Field(() => Int, {
     description: 'Andar do imóvel, se for prédio',
-    nullable: true,
   })
   @Prop()
   readonly andarImovel: number;
@@ -105,7 +103,6 @@ export class Imovel {
 
   @Field(() => String, {
     description: 'Campo para complemento',
-    nullable: true,
   })
   @Prop()
   readonly complemento: string;
@@ -126,7 +123,6 @@ export class Imovel {
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
-    nullable: true,
   })
   @Prop()
   readonly comodidadesImovel: [string];
@@ -134,7 +130,6 @@ export class Imovel {
   @Field(() => [String], {
     description:
       'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
-    nullable: true,
   })
   @Prop()
   readonly comodidadesCondominio: [string];
