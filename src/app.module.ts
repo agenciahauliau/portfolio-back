@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { UsersModule } from './users/users.module';
 import { ImoveisModule } from './imoveis/imoveis.module';
 import { AuthModule } from './auth/auth.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -23,10 +24,12 @@ import { AuthModule } from './auth/auth.module';
       sortSchema: false,
       //Fazendo o GraphQL disponível na endpoint /v1
       useGlobalPrefix: true,
+      //Permitindo upload
+      uploads: { maxFileSize: 20000000, maxFiles: 10 },
       //Adicionando opção para reconhecer a autenticação no cabeçalho
       context: ({ req }) => ({ headers: req.headers }),
       //Formatando o erro
-      formatError: (err) => {
+      formatError: (err: any) => {
         /* if (!err.extensions.exception.response) {
           response.status(HttpStatus.INTERNAL_SERVER_ERROR);
           return err.message;
@@ -34,6 +37,7 @@ import { AuthModule } from './auth/auth.module';
           response.status(err.extensions.exception.response.statusCode);
           return err.extensions.exception.response.message;
         } */
+        console.log('error', JSON.stringify(err));
         return err;
       },
       // Formatando a resposta
@@ -51,6 +55,7 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     ImoveisModule,
     AuthModule,
+    FilesModule,
   ],
 })
 export class AppModule {}
