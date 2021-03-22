@@ -1,5 +1,14 @@
 import { InputType, Int, Field, Float } from '@nestjs/graphql';
-import { IsOptional } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsInt,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Max,
+  Min,
+} from 'class-validator';
 import { ImgImovel } from '../entities/imagens.entity';
 import { VideoImovel } from '../entities/videos.entity';
 
@@ -13,71 +22,101 @@ export class CreateImovelInput {
     nullable: true,
   })
   @IsOptional()
+  @IsBoolean({ message: '$property só pode ser true ou false' })
   jardins?: boolean;
 
   @Field(() => String, { description: 'Descrição do imóvel' })
+  @IsString({ message: '$property têm que ser do tipo string' })
   descricaoImovel: string;
 
   @Field(() => String, {
     description: 'Tipo de necociação (R) Revenda, (A) Aluguel, (L) Lançamento',
   })
+  @IsString({ message: '$property têm que ser do tipo string' })
   tipoNegociacao: string;
 
   @Field(() => String, { description: 'Status do imóvel' })
+  @IsString({ message: '$property têm que ser do tipo string' })
   statusImovel: string;
 
   @Field(() => Boolean, { description: 'Aceita permuta?' })
+  @IsBoolean({ message: '$property só pode ser true ou false' })
   aceitaPermuta: boolean;
 
   @Field(() => Boolean, { description: 'É mobiliado?' })
+  @IsBoolean({ message: '$property só pode ser true ou false' })
   mobiliado: boolean;
 
   @Field(() => Float, { description: 'Valor do imóvel. Ex: 324000.56' })
+  @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
+  @Min(0, { message: '$property não pode ser menor que 0' })
   valorImovel: number;
 
   @Field(() => Float, { description: 'Valor do IPTU. Ex: 324000.56' })
+  @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
+  @Min(0, { message: '$property não pode ser menor que 0' })
   valorIPTU: number;
 
   @Field(() => Float, { description: 'Valor do Condomínio. Ex: 324000.56' })
+  @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
+  @Min(0, { message: '$property não pode ser menor que 0' })
   valorCondominio: number;
 
   @Field(() => Float, { description: 'Área total do imóvel. Ex: 224.56' })
+  @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
+  @Min(0, { message: '$property não pode ser menor que 0' })
   areaTotal: number;
 
   @Field(() => Float, { description: 'Área construída. Ex: 300.5' })
+  @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
+  @Min(0, { message: '$property não pode ser menor que 0' })
   areaConstruida: number;
 
   @Field(() => Int, {
     description: 'Andar do imóvel, se for prédio',
     nullable: true,
   })
+  @IsInt({ message: '$property tem que ser número inteiro' })
+  @Min(0, { message: '$property não pode ser menor que 0' })
   @IsOptional()
   andarImovel?: number;
 
   @Field(() => Int, { description: 'Quantidade de quartos' })
+  @IsInt({ message: '$property tem que ser número inteiro' })
+  @Min(0, { message: '$property não pode ser menor que 0' })
   qtdeQuarto: number;
 
   @Field(() => Int, { description: 'Quantidade de banheiros' })
+  @IsInt({ message: '$property tem que ser número inteiro' })
+  @Min(0, { message: '$property não pode ser menor que 0' })
   qtdeBanheiro: number;
 
   @Field(() => Int, { description: 'Quantidade de Suítes', nullable: true })
+  @IsInt({ message: '$property tem que ser número inteiro' })
   @IsOptional()
+  @Min(0, { message: '$property não pode ser menor que 0' })
   qtdeSuites?: number;
 
   @Field(() => Int, { description: 'Quantidade de Vagas', nullable: true })
+  @IsInt({ message: '$property tem que ser número inteiro' })
+  @Min(0, { message: '$property não pode ser menor que 0' })
   @IsOptional()
   qtdeVagas?: number;
 
   @Field(() => String, { description: 'Nome da Construtora' })
+  @IsString({ message: '$property têm que ser do tipo string' })
   nomeConstrutora: string;
 
   @Field(() => String, { description: 'Bairro do imóvel' })
+  @IsString({ message: '$property têm que ser do tipo string' })
   bairro: string;
 
   @Field(() => String, { description: 'Endereço. Ex. Rua, Avenida' })
+  @IsString({ message: '$property têm que ser do tipo string' })
   logradouro: string;
 
   @Field(() => String, { description: 'Número do endereço', nullable: true })
+  @IsString({ message: '$property têm que ser do tipo string' })
   @IsOptional()
   numeroLogradouro?: string;
 
@@ -85,18 +124,24 @@ export class CreateImovelInput {
     description: 'Campo para complemento',
     nullable: true,
   })
+  @IsString({ message: '$property têm que ser do tipo string' })
   @IsOptional()
   complemento?: string;
 
   @Field(() => Int, { description: 'CEP do endereço' })
+  @IsInt({ message: '$property tem que ser número inteiro' })
+  @Min(0, { message: '$property não pode ser menor que 0' })
+  @Max(99999999, { message: ' não pode ser maior que 99999999' })
   cep: number;
 
   @Field(() => String, { description: 'Cidade do imóvel' })
+  @IsString({ message: '$property têm que ser do tipo string' })
   cidade: string;
 
   @Field(() => String, {
     description: 'UF (unidade federativa) ou estado mesmo',
   })
+  @IsString({ message: '$property têm que ser do tipo string' })
   uf: string;
 
   @Field(() => [String], {
@@ -104,13 +149,14 @@ export class CreateImovelInput {
     nullable: true,
   })
   @IsOptional()
+  @IsArray()
   comodidadesImovel?: [string];
 
   @Field(() => [String], {
-    description:
-      'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
+    description: 'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
     nullable: true,
   })
   @IsOptional()
+  @IsArray()
   comodidadesCondominio?: [string];
 }

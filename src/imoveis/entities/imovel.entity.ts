@@ -128,8 +128,7 @@ export class Imovel {
   readonly comodidadesImovel: [string];
 
   @Field(() => [String], {
-    description:
-      'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
+    description: 'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
   })
   @Prop()
   readonly comodidadesCondominio: [string];

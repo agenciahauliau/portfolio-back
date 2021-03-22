@@ -11,9 +11,7 @@ import { SearchUserInput } from './dto/search-user.input';
 export class UsersService {
   private readonly saltOrRounds = 10;
 
-  constructor(
-    @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
-  ) {}
+  constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>) {}
 
   async create(createUserInput: CreateUserInput): Promise<User> {
     //Cria o Salt

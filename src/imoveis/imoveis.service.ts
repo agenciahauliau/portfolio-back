@@ -56,10 +56,7 @@ export class ImoveisService {
       });
   }
 
-  async update(
-    id: string,
-    updateImovelInput: UpdateImovelInput,
-  ): Promise<Imovel> {
+  async update(id: string, updateImovelInput: UpdateImovelInput): Promise<Imovel> {
     return await this.imovelModel
       .findByIdAndUpdate(id, updateImovelInput, {
         new: true,

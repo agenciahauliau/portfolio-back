@@ -14,9 +14,7 @@ export class ImoveisResolver {
 
   @Mutation(() => Imovel)
   @UseGuards(GqlAuthGuard)
-  async createImovel(
-    @Args('dados') createImovelInput: CreateImovelInput,
-  ): Promise<Imovel> {
+  async createImovel(@Args('dados') createImovelInput: CreateImovelInput): Promise<Imovel> {
     const result = await this.imoveisService.create(createImovelInput);
     return result;
   }
@@ -30,14 +28,10 @@ export class ImoveisResolver {
   }
 
   @Query(() => Imovel, { name: 'imovel' })
-  async findOne(
-    @Args('dados') searchImovel: SearchImovelInput,
-  ): Promise<Imovel> {
+  async findOne(@Args('dados') searchImovel: SearchImovelInput): Promise<Imovel> {
     const resultado = await this.imoveisService.findOne(searchImovel);
     if (!resultado) {
-      throw new NotFoundException(
-        `${this.respostaDeErro}: ${JSON.stringify(searchImovel)}`,
-      );
+      throw new NotFoundException(`${this.respostaDeErro}: ${JSON.stringify(searchImovel)}`);
     }
     return resultado;
   }
@@ -57,9 +51,7 @@ export class ImoveisResolver {
 
   @Mutation(() => Boolean)
   @UseGuards(GqlAuthGuard)
-  async removeImovel(
-    @Args('id', { type: () => String }) id: string,
-  ): Promise<Boolean> {
+  async removeImovel(@Args('id', { type: () => String }) id: string): Promise<Boolean> {
     const resultado = await this.imoveisService.remove(id);
     if (!resultado) {
       throw new NotFoundException(`${this.respostaDeErro}: ${id}`);

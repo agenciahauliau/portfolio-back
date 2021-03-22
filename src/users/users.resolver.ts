@@ -37,9 +37,7 @@ export class UsersResolver {
   /* Pesquisar por todos ususários */
   @Query(() => [User], { name: 'users' })
   @UseGuards(GqlAuthGuard)
-  findAll(
-    @Args('quantidade', { nullable: true }) qtde: Number,
-  ): Promise<User[]> {
+  findAll(@Args('quantidade', { nullable: true }) qtde: Number): Promise<User[]> {
     return this.usersService.findAll(qtde);
   }
 
@@ -49,9 +47,7 @@ export class UsersResolver {
   async findOne(@Args('dados') searchUser: SearchUserInput): Promise<User> {
     const resultado = await this.usersService.findOne(searchUser);
     if (!resultado) {
-      throw new NotFoundException(
-        `${this.respostaDeErro}: ${JSON.stringify(searchUser)}`,
-      );
+      throw new NotFoundException(`${this.respostaDeErro}: ${JSON.stringify(searchUser)}`);
     }
     return resultado;
   }

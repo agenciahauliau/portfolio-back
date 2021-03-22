@@ -11,10 +11,7 @@ export class AuthService {
     private readonly jwtServices: JwtService,
   ) {}
 
-  public async validateUser(
-    email: string,
-    senha: string,
-  ): Promise<User | null> {
+  public async validateUser(email: string, senha: string): Promise<User | null> {
     //Pesquisa pelo usuário no BD
     Logger.log(`validateUser: email: ${email}, senha: ${senha}`);
     const user = await this.usersServices.findOne({ email: email });
