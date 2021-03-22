@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import * as helmet from 'helmet';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { ValidationPipe } from '@nestjs/common/pipes';
+import { join } from 'path';
+import * as helmet from 'helmet';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     // Chaves para melhor exibição de logs
     logger: ['error', 'warn', 'log', 'debug'],
     //Habilitando CORS
@@ -16,6 +18,7 @@ async function bootstrap() {
   //app.use(helmet());
   //URL final terá como inicio o /v1
   app.setGlobalPrefix('v1');
+  app.useStaticAssets(join(__dirname, '..', 'uploads'));
   // Recebe a porta de onde está sendo hospedado, caso contrário, inicia na porta 8080
   await app.listen(Number(process.env.PORT) || 8080);
 }
