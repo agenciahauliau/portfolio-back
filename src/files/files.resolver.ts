@@ -30,6 +30,6 @@ export class FilesResolver {
     @Args({ name: 'file', type: () => GraphQLUpload })
     file: FileUpload,
   ): Promise<File> {
-    return this.filesService.saveLocal(file);
+    return await this.filesService.saveLocal(file);
   }
 }

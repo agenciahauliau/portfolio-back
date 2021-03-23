@@ -21,8 +21,8 @@ export class FilesService implements OnModuleInit {
 
   /* Checa se existe a pasta e então a cria, se caso não existir */
   onModuleInit(): void {
-    if (!fs.existsSync('./uploads')) {
-      fs.mkdirSync('./uploads');
+    if (!fs.existsSync('/tmp/uploads')) {
+      fs.mkdirSync('/tmp/uploads');
     }
   }
 }
