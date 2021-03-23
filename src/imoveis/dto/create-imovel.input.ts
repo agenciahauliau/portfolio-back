@@ -1,4 +1,4 @@
-import { InputType, Int, Field, Float } from '@nestjs/graphql';
+import { InputType, Int, Field, Float, ID } from '@nestjs/graphql';
 import {
   IsArray,
   IsBoolean,
@@ -9,12 +9,17 @@ import {
   Max,
   Min,
 } from 'class-validator';
-import { ImgImovel } from '../entities/imagens.entity';
-import { VideoImovel } from '../entities/videos.entity';
+import { Schema as MongooseSchema } from 'mongoose';
+import { Galeria } from 'src/galeria/entities/galeria.entity';
 
 @InputType()
 export class CreateImovelInput {
+  @Field(() => String, { description: 'Nome do imóvel' })
+  @IsString({ message: '$property têm que ser do tipo string' })
+  nomeImovel: string;
+
   @Field(() => String, { description: 'Categoria do imóvel' })
+  @IsString({ message: '$property têm que ser do tipo string' })
   categoriaImovel: string;
 
   @Field(() => Boolean, {
@@ -51,6 +56,16 @@ export class CreateImovelInput {
   @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
   @Min(0, { message: '$property não pode ser menor que 0' })
   valorImovel: number;
+
+  @Field(() => Float, { description: 'Valor de entrada do imóvel, quando for lançamento' })
+  @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
+  @Min(0, { message: '$property não pode ser menor que 0' })
+  valorEntrada: number;
+
+  @Field(() => Float, { description: 'Valor de parcela do imóvel, quando for lançamento' })
+  @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
+  @Min(0, { message: '$property não pode ser menor que 0' })
+  valorParcela: number;
 
   @Field(() => Float, { description: 'Valor do IPTU. Ex: 324000.56' })
   @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
@@ -159,4 +174,8 @@ export class CreateImovelInput {
   @IsOptional()
   @IsArray()
   comodidadesCondominio?: [string];
+
+  @Field(() => [String], { nullable: true })
+  @IsOptional()
+  galerias: MongooseSchema.Types.ObjectId[] | Galeria[];
 }

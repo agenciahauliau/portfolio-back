@@ -1,15 +1,17 @@
 import { ObjectType, Field, ID, Int, Float } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
-
-import { ImgImovel } from './imagens.entity';
-import { VideoImovel } from './videos.entity';
+import { Galeria } from '../../galeria/entities/galeria.entity';
 
 @ObjectType()
 @Schema({ timestamps: true })
 export class Imovel {
   @Field(() => ID, { description: 'ID do imóvel' })
   readonly _id: string;
+
+  @Field(() => String, { description: 'Nome do imóvel' })
+  @Prop()
+  readonly nomeImovel: string;
 
   @Field(() => String, { description: 'Categoria do imóvel' })
   @Prop({ trim: true })
@@ -46,6 +48,14 @@ export class Imovel {
   @Field(() => Float, { description: 'Valor do imóvel. Ex: 324000.56' })
   @Prop()
   readonly valorImovel: number;
+
+  @Field(() => Float, { description: 'Valor de entrada do imóvel, quando for lançamento' })
+  @Prop()
+  readonly valorEntrada: number;
+
+  @Field(() => Float, { description: 'Valor de parcela do imóvel, quando for lançamento' })
+  @Prop()
+  readonly valorParcela: number;
 
   @Field(() => Float, { description: 'Valor do IPTU. Ex: 324000.56' })
   @Prop()
@@ -133,13 +143,11 @@ export class Imovel {
   @Prop()
   readonly comodidadesCondominio: [string];
 
-  /*   @Field(() => [String])
-  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: ImgImovel.name })
-  readonly imagensImovel: ImgImovel[];
-
-  @Field(() => [String])
-  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: VideoImovel.name })
-  readonly videosImovel: VideoImovel[]; */
+  @Field(() => [Galeria], {
+    description: 'Galeria de imagens ou videos',
+  })
+  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Galeria.name })
+  readonly galerias: MongooseSchema.Types.ObjectId[] | Galeria[];
 
   @Field({ description: 'Quando foi criado' })
   @Prop({ default: Date.now })

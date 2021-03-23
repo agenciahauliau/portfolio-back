@@ -1,9 +1,15 @@
 import { CreateImovelInput } from './create-imovel.input';
 import { InputType, Field, PartialType } from '@nestjs/graphql';
 import { IsOptional } from 'class-validator';
+import { Schema as MongooseSchema } from 'mongoose';
+import { Galeria } from 'src/galeria/entities/galeria.entity';
 
 @InputType()
 export class UpdateImovelInput extends PartialType(CreateImovelInput) {
+  @Field({ nullable: true })
+  @IsOptional()
+  nomeImovel: string;
+
   @Field({ nullable: true })
   @IsOptional()
   categoriaImovel: string;
@@ -35,6 +41,14 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
   @Field({ nullable: true })
   @IsOptional()
   valorImovel: number;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  valorEntrada: number;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  valorParcela: number;
 
   @Field({ nullable: true })
   @IsOptional()
@@ -112,9 +126,6 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
   @IsOptional()
   comodidadesCondominio?: [string];
 
-  /*   @Field(() => [])
-  imagensImovel?: ImgImovel[];
-
-  @Field(() => [])
-  videosImovel?: VideoImovel[]; */
+  @Field(() => [String])
+  galerias: MongooseSchema.Types.ObjectId[] | Galeria[];
 }

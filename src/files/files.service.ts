@@ -9,7 +9,7 @@ import { File } from './entities/file.entity';
 export class FilesService implements OnModuleInit {
   constructor() {}
 
-  async save({ createReadStream, filename }: FileUpload): Promise<File> {
+  async saveLocal({ createReadStream, filename }: FileUpload): Promise<File> {
     const name = `${v4()}-${filename}`;
     return new Promise((resolve, reject) =>
       createReadStream()

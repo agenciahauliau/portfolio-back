@@ -7,6 +7,7 @@ import { File } from './entities/file.entity';
 import { CreateFileInput } from './dto/create-file.input';
 import { UpdateFileInput } from './dto/update-file.input';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
+import { uploadFile } from '@shared';
 
 @Resolver(() => File)
 export class FilesResolver {
@@ -14,10 +15,21 @@ export class FilesResolver {
 
   @Mutation(() => File)
   @UseGuards(GqlAuthGuard)
+  async uploadFileRemoto(
+    @Args({ name: 'file', type: () => GraphQLUpload }) file: FileUpload,
+  ): Promise<any> {
+    const { filename } = file;
+    console.log(file);
+    const path = await uploadFile(file);
+    return path;
+  }
+
+  @Mutation(() => File)
+  @UseGuards(GqlAuthGuard)
   async uploadFile(
     @Args({ name: 'file', type: () => GraphQLUpload })
     file: FileUpload,
   ): Promise<File> {
-    return this.filesService.save(file);
+    return this.filesService.saveLocal(file);
   }
 }

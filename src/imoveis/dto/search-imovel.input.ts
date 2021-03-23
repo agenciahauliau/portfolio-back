@@ -9,6 +9,10 @@ export class SearchImovelInput {
 
   @Field({ nullable: true })
   @IsOptional()
+  nomeImovel: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
   categoriaImovel: string;
 
   @Field({ nullable: true })
@@ -38,6 +42,14 @@ export class SearchImovelInput {
   @Field({ nullable: true })
   @IsOptional()
   valorImovel: number;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  valorEntrada: number;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  valorParcela: number;
 
   @Field({ nullable: true })
   @IsOptional()

@@ -1,7 +1,8 @@
 import { NotFoundException, UseGuards } from '@nestjs/common';
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { ImoveisService } from './imoveis.service';
-import { Imovel } from './entities/imovel.entity';
+import { Imovel, ImovelDocument } from './entities/imovel.entity';
+import { Galeria } from '../galeria/entities/galeria.entity';
 import { CreateImovelInput } from './dto/create-imovel.input';
 import { UpdateImovelInput } from './dto/update-imovel.input';
 import { SearchImovelInput } from './dto/search-imovel.input';
@@ -57,5 +58,11 @@ export class ImoveisResolver {
       throw new NotFoundException(`${this.respostaDeErro}: ${id}`);
     }
     return resultado;
+  }
+
+  @ResolveField()
+  async galerias(@Parent() imovel: ImovelDocument, @Args('populate') populate: boolean) {
+    if (populate) await imovel.populate({ path: 'galerias', model: Galeria.name }).execPopulate();
+    return imovel.galerias;
   }
 }
