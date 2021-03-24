@@ -11,7 +11,7 @@ async function bootstrap() {
     logger: ['error', 'warn', 'log', 'debug'],
     //Habilitando CORS
     cors: {
-      origin: '*',
+      origin: 'https://portfolio-imb.web.app',
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
       credentials: false,
       allowedHeaders: '*',

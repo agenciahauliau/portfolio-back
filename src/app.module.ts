@@ -14,7 +14,7 @@ import { GaleriaModule } from './galeria/galeria.module';
     ConfigModule.forRoot({ isGlobal: true }),
     GraphQLModule.forRoot({
       cors: {
-        origin: '*',
+        origin: 'https://portfolio-imb.web.app/',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: false,
         allowedHeaders: '*',
