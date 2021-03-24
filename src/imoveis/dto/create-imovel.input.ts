@@ -60,12 +60,12 @@ export class CreateImovelInput {
   @Field(() => Float, { description: 'Valor de entrada do imóvel, quando for lançamento' })
   @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
   @Min(0, { message: '$property não pode ser menor que 0' })
-  valorEntrada: number;
+  valorEntrada?: number;
 
   @Field(() => Float, { description: 'Valor de parcela do imóvel, quando for lançamento' })
   @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
   @Min(0, { message: '$property não pode ser menor que 0' })
-  valorParcela: number;
+  valorParcela?: number;
 
   @Field(() => Float, { description: 'Valor do IPTU. Ex: 324000.56' })
   @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 2 })
@@ -177,5 +177,5 @@ export class CreateImovelInput {
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
-  galerias: MongooseSchema.Types.ObjectId[] | Galeria[];
+  galerias?: MongooseSchema.Types.ObjectId[] | Galeria[];
 }

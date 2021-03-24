@@ -126,10 +126,4 @@ export class SearchImovelInput {
   @Field(() => [String], { nullable: true })
   @IsOptional()
   comodidadesCondominio: [string];
-
-  /*   @Field(() => [])
-  imagensImovel: ImgImovel[];
-
-  @Field(() => [])
-  videosImovel: VideoImovel[]; */
 }

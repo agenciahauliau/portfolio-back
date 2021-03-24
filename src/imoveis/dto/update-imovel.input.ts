@@ -126,6 +126,7 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
   @IsOptional()
   comodidadesCondominio?: [string];
 
-  @Field(() => [String])
-  galerias: MongooseSchema.Types.ObjectId[] | Galeria[];
+  @Field(() => [String], { nullable: true })
+  @IsOptional()
+  galerias?: MongooseSchema.Types.ObjectId[] | Galeria[];
 }
