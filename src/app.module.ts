@@ -13,12 +13,6 @@ import { GaleriaModule } from './galeria/galeria.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     GraphQLModule.forRoot({
-      cors: {
-        origin: 'https://portfolio-imb.web.app/',
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        credentials: false,
-        allowedHeaders: '*',
-      },
       //Desabilitando o playground
       playground: true,
       //autoSchemaFile: 'schema.gql'),
