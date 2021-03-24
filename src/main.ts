@@ -12,7 +12,9 @@ async function bootstrap() {
     //Habilitando CORS
     cors: {
       origin: '*',
-      credentials: true,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      credentials: false,
+      allowedHeaders: '*',
     },
   });
   //Necessário para o class-validator executar

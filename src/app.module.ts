@@ -15,6 +15,9 @@ import { GaleriaModule } from './galeria/galeria.module';
     GraphQLModule.forRoot({
       cors: {
         origin: '*',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: false,
+        allowedHeaders: '*',
       },
       //Desabilitando o playground
       playground: true,
