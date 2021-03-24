@@ -6,7 +6,7 @@
 .env
 
 # Uploads
-/uploads
+/uploads/*.**
 
 # Logs
 logs
