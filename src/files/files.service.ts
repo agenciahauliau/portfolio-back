@@ -9,6 +9,7 @@ import { File } from './entities/file.entity';
 
 @Injectable()
 export class FilesService implements OnModuleInit {
+  listaTodasImgs = [];
   constructor() {
     v2.config({
       cloud_name: CLOUDINARY_NAME,
@@ -27,9 +28,23 @@ export class FilesService implements OnModuleInit {
     );
   }
 
+  async listaTodasImagens() {
+    await v2.api.resources((error, result) => {
+      result.resources.map((e) => {
+        this.listaTodasImgs.push(e.secure_url);
+      });
+      console.log(result, error);
+    });
+    return this.listaTodasImgs;
+  }
+
   async saveRemoto({ createReadStream, filename }: FileUpload): Promise<File> {
-    const uniqueFilename = new Date().toISOString();
-    const name = `${v4()}-${uniqueFilename}-${filename}`;
+    let data = new Date();
+    let data2 = new Date(data.valueOf() - data.getTimezoneOffset() * 60000);
+    let horaBrasil = data2.toISOString().replace(/\.\d{3}Z$/, '');
+    console.log(v4());
+    console.log(horaBrasil);
+    const name = `${v4()}-${horaBrasil}-${filename}`;
     return await new Promise(async (resolve, reject) => {
       createReadStream()
         .pipe(

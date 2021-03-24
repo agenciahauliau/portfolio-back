@@ -1,4 +1,5 @@
 import { v2 } from 'cloudinary';
+import { v4 } from 'uuid';
 
 import { CLOUDINARY_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../../environments';
 
@@ -21,14 +22,17 @@ export const uploadFile = async (file: any) => {
     api_secret: CLOUDINARY_API_SECRET,
   });
 
-  const uniqueFilename = new Date().toISOString();
+  let data = new Date();
+  let data2 = new Date(data.valueOf() - data.getTimezoneOffset() * 60000);
+  let horaBrasil = data2.toISOString().replace(/\.\d{3}Z$/, '');
+  const name = `${v4()}-${horaBrasil}-${file.filename}`;
   const result = await new Promise(async (resolve, reject) => {
     file.createReadStream().pipe(
       v2.uploader.upload_stream(
         {
           allowed_formats: ['jpg', 'png', 'mp4', 'avi', 'mov'],
           folder: 'hualiau',
-          public_id: uniqueFilename,
+          public_id: name,
           tags: 'portfolio',
         },
         (error, result) => {

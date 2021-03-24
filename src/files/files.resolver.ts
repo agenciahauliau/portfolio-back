@@ -1,4 +1,4 @@
-import { Resolver, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Mutation, Args, Query, ID } from '@nestjs/graphql';
 import { FileUpload } from 'graphql-upload';
 import { GraphQLUpload } from 'apollo-server-express';
 import { UseGuards } from '@nestjs/common';
@@ -28,6 +28,12 @@ export class FilesResolver {
         return err;
       });
     //return await this.filesService.saveRemoto(file);
+  }
+
+  @Query(() => [String])
+  async listarUploads(): Promise<any[]> {
+    const resultado = await this.filesService.listaTodasImagens();
+    return resultado;
   }
 
   /* @Mutation(() => File)
