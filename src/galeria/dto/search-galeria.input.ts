@@ -5,21 +5,21 @@ import { IsOptional } from 'class-validator';
 export class SearchGaleriaInput {
   @Field(() => ID, { nullable: true })
   @IsOptional()
-  _id: string;
+  _id?: string;
 
   @Field(() => String, { nullable: true })
   @IsOptional()
-  nomeGaleria: string;
+  nomeGaleria?: string;
 
   @Field(() => String, { nullable: true })
   @IsOptional()
-  arquivoDestaque: string;
+  arquivoDestaque?: string;
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
-  url: [string];
+  url?: [string];
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
-  idImovel: [string];
+  idImovel?: [string];
 }
