@@ -49,9 +49,9 @@ export class GaleriaResolver {
     return resultado;
   }
 
-  @Mutation(() => Galeria)
+  @Mutation(() => Boolean)
   @UseGuards(GqlAuthGuard)
-  async removeGaleria(@Args('id', { type: () => Int }) id: string): Promise<Boolean> {
+  async removeGaleria(@Args('id', { type: () => String }) id: string): Promise<Boolean> {
     const resultado = await this.galeriaService.remove(id);
     if (!resultado) {
       throw new NotFoundException(`${this.respostaDeErro}: ${id}`);

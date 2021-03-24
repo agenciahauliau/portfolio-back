@@ -11,6 +11,10 @@ export class SearchGaleriaInput {
   @IsOptional()
   nomeGaleria: string;
 
+  @Field(() => String, { nullable: true })
+  @IsOptional()
+  arquivoDestaque: string;
+
   @Field(() => [String], { nullable: true })
   @IsOptional()
   url: [string];
