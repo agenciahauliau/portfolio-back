@@ -10,7 +10,10 @@ async function bootstrap() {
     // Chaves para melhor exibição de logs
     logger: ['error', 'warn', 'log', 'debug'],
     //Habilitando CORS
-    cors: true,
+    cors: {
+      origin: '*',
+      credentials: true,
+    },
   });
   //Necessário para o class-validator executar
   app.useGlobalPipes(new ValidationPipe());

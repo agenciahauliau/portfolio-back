@@ -13,6 +13,9 @@ import { GaleriaModule } from './galeria/galeria.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     GraphQLModule.forRoot({
+      cors: {
+        origin: '*',
+      },
       //Desabilitando o playground
       playground: true,
       //autoSchemaFile: 'schema.gql'),
