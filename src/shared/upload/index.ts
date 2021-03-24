@@ -25,7 +25,7 @@ export const uploadFile = async (file: any) => {
   let data = new Date();
   let data2 = new Date(data.valueOf() - data.getTimezoneOffset() * 60000);
   let horaBrasil = data2.toISOString().replace(/\.\d{3}Z$/, '');
-  const name = `${v4()}-${horaBrasil}-${file.filename}`;
+  const name = `${v4()}-${horaBrasil}`;
   const result = await new Promise(async (resolve, reject) => {
     file.createReadStream().pipe(
       v2.uploader.upload_stream(
