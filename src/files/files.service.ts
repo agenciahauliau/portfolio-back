@@ -29,7 +29,8 @@ export class FilesService implements OnModuleInit {
   }
 
   async listaTodasImagens() {
-    await v2.api.resources((error, result) => {
+    await v2.api.resources({ tag: 'portfolio' }, (error, result) => {
+      this.listaTodasImgs = [];
       result.resources.map((e) => {
         this.listaTodasImgs.push(e.secure_url);
       });

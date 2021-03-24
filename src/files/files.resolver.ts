@@ -31,7 +31,7 @@ export class FilesResolver {
   }
 
   @Query(() => [String])
-  async listarUploads(): Promise<any[]> {
+  async listarUploads() {
     const resultado = await this.filesService.listaTodasImagens();
     return resultado;
   }
