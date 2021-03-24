@@ -1,13 +1,21 @@
 import { Injectable, InternalServerErrorException, OnModuleInit } from '@nestjs/common';
 import * as fs from 'fs';
 import { v4 } from 'uuid';
+import { v2 } from 'cloudinary';
+import { CLOUDINARY_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '@environments';
 import { FileUpload } from 'graphql-upload';
 import { join } from 'path';
 import { File } from './entities/file.entity';
 
 @Injectable()
 export class FilesService implements OnModuleInit {
-  constructor() {}
+  constructor() {
+    v2.config({
+      cloud_name: CLOUDINARY_NAME,
+      api_key: CLOUDINARY_API_KEY,
+      api_secret: CLOUDINARY_API_SECRET,
+    });
+  }
 
   async saveLocal({ createReadStream, filename }: FileUpload): Promise<File> {
     const name = `${v4()}-${filename}`;
@@ -17,6 +25,34 @@ export class FilesService implements OnModuleInit {
         .on('finish', () => resolve({ name }))
         .on('error', () => reject(new InternalServerErrorException())),
     );
+  }
+
+  async saveRemoto({ createReadStream, filename }: FileUpload): Promise<File> {
+    const uniqueFilename = new Date().toISOString();
+    const name = `${v4()}-${uniqueFilename}-${filename}`;
+    return await new Promise(async (resolve, reject) => {
+      createReadStream()
+        .pipe(
+          v2.uploader.upload_stream(
+            {
+              allowed_formats: ['jpg', 'png', 'mp4', 'avi', 'mov'],
+              folder: 'hualiau',
+              public_id: name,
+              tags: 'portfolio',
+            },
+            (error, result) => {
+              console.log('error shared/index', error);
+              console.log('result shared/index', result);
+              if (error) {
+                reject(error);
+              }
+              resolve(result);
+            },
+          ),
+        )
+        .on('close', () => resolve({ name }))
+        .on('error', () => reject());
+    });
   }
 
   /* Checa se existe a pasta e então a cria, se caso não existir */

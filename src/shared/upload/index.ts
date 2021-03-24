@@ -14,7 +14,7 @@ import { CLOUDINARY_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../.
  *
  * @beta
  */
-export const uploadFile = async (file: any): Promise<string> => {
+export const uploadFile = async (file: any) => {
   v2.config({
     cloud_name: CLOUDINARY_NAME,
     api_key: CLOUDINARY_API_KEY,
@@ -22,29 +22,26 @@ export const uploadFile = async (file: any): Promise<string> => {
   });
 
   const uniqueFilename = new Date().toISOString();
-
-  const result = await new Promise(async (resolve, reject) =>
-    file
-      .createReadStream()
-      .pipe(
-        v2.uploader.upload_stream(
-          {
-            folder: 'hualiau',
-            public_id: uniqueFilename,
-            tags: 'portfolio',
-          }, // directory and tags are optional
-          (err, image) => {
-            if (err) {
-              reject(err);
-            }
-            resolve(image);
-          },
-        ),
-      )
-      .on('close', () => {
-        resolve(true);
-      })
-      .on('error', () => reject(false)),
-  );
-  return result['secure_url'];
+  const result = await new Promise(async (resolve, reject) => {
+    file.createReadStream().pipe(
+      v2.uploader.upload_stream(
+        {
+          allowed_formats: ['jpg', 'png', 'mp4', 'avi', 'mov'],
+          folder: 'hualiau',
+          public_id: uniqueFilename,
+          tags: 'portfolio',
+        },
+        (error, result) => {
+          console.log('error shared/index', error);
+          console.log('result shared/index', result);
+          if (result) {
+            return resolve(result);
+          } else {
+            return reject(error);
+          }
+        },
+      ),
+    );
+  });
+  return result;
 };
