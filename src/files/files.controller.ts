@@ -7,14 +7,14 @@ import { multerOptions } from './multer.config';
 export class FilesController {
   constructor(private filesService: FilesService) {}
 
+  @Get()
+  async tudo(@Res() res: Response) {
+    return res.status(200).send(await this.filesService.listarTodosArquivos());
+  }
+
   @Get(':nome')
   busca(@Param('nome') nome, @Res() res) {
     return res.sendFile(nome, { root: 'uploads' });
-  }
-
-  @Get()
-  async tudo(@Res() res: Response) {
-    return res.status(200).send(await this.filesService.listaLocal());
   }
 
   @Post('upload')

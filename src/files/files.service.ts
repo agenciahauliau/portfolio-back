@@ -1,13 +1,7 @@
-import { Injectable, InternalServerErrorException, OnModuleInit } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger, OnModuleInit } from '@nestjs/common';
 import * as fs from 'fs';
 import { v4 } from 'uuid';
-import { v2 } from 'cloudinary';
-import {
-  CLOUDINARY_NAME,
-  CLOUDINARY_API_KEY,
-  CLOUDINARY_API_SECRET,
-  FILE_UPLOAD_DIR,
-} from '@environments';
+import { FILE_UPLOAD_DIR } from '@environments';
 import { FileUpload } from 'graphql-upload';
 import { join } from 'path';
 import { File } from './entities/file.entity';
@@ -16,49 +10,56 @@ import { File } from './entities/file.entity';
 export class FilesService implements OnModuleInit {
   listaTodasImgs = [];
   constructor() {
-    v2.config({
+    /**
+     * Config CLOUDINARY - DESATIVADO POR HORA
+    /* v2.config({
       cloud_name: CLOUDINARY_NAME,
       api_key: CLOUDINARY_API_KEY,
       api_secret: CLOUDINARY_API_SECRET,
-    });
-    this.listaLocal();
+    }); */
+    this.deletarArquivo('1616788951196.png');
   }
 
-  async listaLocal() {
+  async listarTodosArquivos() {
     const dir = FILE_UPLOAD_DIR;
     let data = [];
     let filenames = fs.readdirSync(dir);
-
     filenames.forEach((file) => {
       data.push(file);
     });
-    console.log(data);
     return data;
-    /* fs.readdir(dir, (err, files) => {
-      if (err) {
-        throw err;
+  }
+
+  async deletarArquivo(nome: string) {
+    const file = `${FILE_UPLOAD_DIR}/${nome}`;
+    try {
+      if (fs.existsSync(file)) {
+        fs.unlinkSync(file);
+        Logger.log(`Arquivo ${nome} deletado`);
+        return `Arquivo ${nome} deletado`;
+      } else {
+        Logger.log(`Arquivo ${nome} não existe mais`);
+        return `Arquivo ${nome} não existe mais`;
       }
-      files.forEach((file) => {
-        data.push(file);
-        return file;
-      });
-    }); */
-    /* setTimeout(() => {
-      console.log(data);
-    }, 3000); */
+    } catch (error) {
+      Logger.log(error);
+    }
   }
 
   async saveLocal({ createReadStream, filename }: FileUpload): Promise<File> {
     const name = `${v4()}-${filename}`;
     return new Promise((resolve, reject) =>
       createReadStream()
-        .pipe(fs.createWriteStream(join('./uploads', name)))
+        .pipe(fs.createWriteStream(join(FILE_UPLOAD_DIR, name)))
         .on('finish', () => resolve({ name }))
         .on('error', () => reject(new InternalServerErrorException())),
     );
   }
 
-  async listaTodasImagens() {
+  /**
+   * Funções CLOUDINARY - Desativado por enquanto
+   */
+  /* async listaTodasImagens() {
     await v2.api.resources({ tag: 'portfolio' }, (error, result) => {
       this.listaTodasImgs = [];
       result.resources.map((e) => {
@@ -99,12 +100,12 @@ export class FilesService implements OnModuleInit {
         .on('close', () => resolve({ name }))
         .on('error', () => reject());
     });
-  }
+  } */
 
   /* Checa se existe a pasta e então a cria, se caso não existir */
   onModuleInit(): void {
-    if (!fs.existsSync('/tmp/uploads')) {
-      fs.mkdirSync('/tmp/uploads');
+    if (!fs.existsSync(FILE_UPLOAD_DIR)) {
+      fs.mkdirSync(FILE_UPLOAD_DIR);
     }
   }
 }

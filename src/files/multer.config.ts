@@ -18,7 +18,7 @@ export const multerOptions = {
   },
   // Check the mimetypes to allow for upload
   fileFilter: (req: any, file: any, cb: any) => {
-    if (file.mimetype.match(/\/(jpg|jpeg|png|gif|mp4|m4v)$/)) {
+    if (file.mimetype.match(/\/(jpg|jpeg|png|gif|mp4|m4v|avif|webp)$/)) {
       // Allow storage of file
       cb(null, true);
     } else {
@@ -46,7 +46,7 @@ export const multerOptions = {
     // File modification details
     filename: (req: any, file: any, cb: any) => {
       // Calling the callback passing the random name generated with the original extension name
-      cb(null, `${uuid()}${extname(file.originalname)}`);
+      cb(null, `${Date.now()}${extname(file.originalname)}`);
     },
   }),
 };
