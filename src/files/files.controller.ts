@@ -9,7 +9,8 @@ import {
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FileFieldsInterceptor, FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
 import { multerOptions } from './multer.config';
 
 @Controller('files')
@@ -20,8 +21,41 @@ export class FilesController {
   }
 
   @Post('upload')
-  @UseInterceptors(FileInterceptor('file', multerOptions))
-  async upload(@UploadedFile() file) {
-    return file.path;
+  @UseInterceptors(FileInterceptor('files', multerOptions))
+  async upload(@UploadedFile() files) {
+    return { data: files.path };
+  }
+
+  @Post('upload')
+  @UseInterceptors(FilesInterceptor('files', 4, multerOptions))
+  uploadFile(@UploadedFiles() files: Express.Multer.File) {
+    console.log(files);
+  }
+  /* @Post('subir')
+  @UseInterceptors(
+    FilesInterceptor('files', 4, {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, cb) => {
+          const fileNameSplit = file.originalname.split('.');
+          const fileExt = fileNameSplit[fileNameSplit.length - 1];
+          cb(null, `${Date.now()}.${fileExt}`);
+        },
+      }),
+    }),
+  )
+  uploadFile(@UploadedFiles() files: Express.Multer.File) {
+    console.log(files);
+  } */
+
+  @Post('muitos')
+  @UseInterceptors(
+    FileFieldsInterceptor([
+      { name: 'avatar', maxCount: 1 },
+      { name: 'background', maxCount: 4 },
+    ]),
+  )
+  uploadFiles(@UploadedFiles() files) {
+    console.log(files);
   }
 }
