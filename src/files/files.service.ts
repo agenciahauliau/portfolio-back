@@ -16,6 +16,31 @@ export class FilesService implements OnModuleInit {
       api_key: CLOUDINARY_API_KEY,
       api_secret: CLOUDINARY_API_SECRET,
     });
+    this.listaLocal();
+  }
+
+  async listaLocal() {
+    const dir = './uploads';
+    let data = [];
+    let filenames = fs.readdirSync(dir);
+
+    filenames.forEach((file) => {
+      data.push(file);
+    });
+    console.log(data);
+    return data;
+    /* fs.readdir(dir, (err, files) => {
+      if (err) {
+        throw err;
+      }
+      files.forEach((file) => {
+        data.push(file);
+        return file;
+      });
+    }); */
+    /* setTimeout(() => {
+      console.log(data);
+    }, 3000); */
   }
 
   async saveLocal({ createReadStream, filename }: FileUpload): Promise<File> {

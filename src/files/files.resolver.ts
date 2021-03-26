@@ -32,8 +32,9 @@ export class FilesResolver {
 
   @Query(() => [String])
   async listarUploads() {
-    const resultado = await this.filesService.listaTodasImagens();
-    return resultado;
+    return await this.filesService.listaLocal();
+    //const resultado = await this.filesService.listaTodasImagens();
+    //return resultado;
   }
 
   /* @Mutation(() => File)
