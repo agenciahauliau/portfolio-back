@@ -24,7 +24,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "gcp-build": "npm run build"
+    "gcp-build": "npm run build",
+    "docker:build": "docker build -t portfolio-back . && docker save -o portfolio-back.tar portfolio-back"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.13",
