@@ -3,10 +3,11 @@ import { existsSync, mkdirSync } from 'fs';
 import { diskStorage } from 'multer';
 import { v4 as uuid } from 'uuid';
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { FILE_UPLOAD_DIR } from '@environments';
 
 // Multer configuration
 export const multerConfig = {
-  dest: process.env.UPLOAD_LOCATION,
+  dest: FILE_UPLOAD_DIR,
 };
 
 // Multer upload options

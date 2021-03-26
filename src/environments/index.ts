@@ -10,6 +10,9 @@ const EMAIL_TOKEN_SECRET: string = process.env.EMAIL_TOKEN_SECRET || 'email-toke
 const RESETPASS_TOKEN: string = process.env.RESETPASS_TOKEN || 'resetpass-token';
 const RESETPASS_TOKEN_SECRET: string = process.env.RESETPASS_TOKEN_SECRET || 'resetpass-token-key';
 
+// file uploads
+const FILE_UPLOAD_DIR: string = process.env.FILE_UPLOAD_DIR || './uploads';
+
 // bcrypt
 const BCRYPT_SALT: number = +process.env.BCRYPT_SALT || 10;
 
@@ -40,4 +43,5 @@ export {
   CLOUDINARY_NAME,
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
+  FILE_UPLOAD_DIR,
 };

@@ -2,7 +2,12 @@ import { Injectable, InternalServerErrorException, OnModuleInit } from '@nestjs/
 import * as fs from 'fs';
 import { v4 } from 'uuid';
 import { v2 } from 'cloudinary';
-import { CLOUDINARY_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '@environments';
+import {
+  CLOUDINARY_NAME,
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET,
+  FILE_UPLOAD_DIR,
+} from '@environments';
 import { FileUpload } from 'graphql-upload';
 import { join } from 'path';
 import { File } from './entities/file.entity';
@@ -20,7 +25,7 @@ export class FilesService implements OnModuleInit {
   }
 
   async listaLocal() {
-    const dir = './uploads';
+    const dir = FILE_UPLOAD_DIR;
     let data = [];
     let filenames = fs.readdirSync(dir);
 
