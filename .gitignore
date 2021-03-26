@@ -8,6 +8,9 @@
 # Ignoring dotenv file
 .env
 
+# Ignoring tar files
+*.tar
+
 # Logs
 logs
 *.log
