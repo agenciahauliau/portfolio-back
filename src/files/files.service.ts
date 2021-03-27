@@ -17,7 +17,6 @@ export class FilesService implements OnModuleInit {
       api_key: CLOUDINARY_API_KEY,
       api_secret: CLOUDINARY_API_SECRET,
     }); */
-    this.deletarArquivo('1616788951196.png');
   }
 
   async listarTodosArquivos() {

@@ -22,7 +22,7 @@ export class FilesController {
   async upload(@UploadedFiles() files) {
     let dados = [];
     for (let file of files) {
-      dados.push(file.path);
+      dados.push(file.filename);
     }
     return dados;
   }
