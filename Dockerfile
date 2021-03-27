@@ -1,13 +1,12 @@
 FROM node:14 AS BUILDER
 WORKDIR /app
-COPY ./package*.json ./
-RUN npm ci
+COPY ./package.json ./
+RUN npm install
 COPY . .
-RUN npm run build && npm prune --production
+RUN npm run build
 
 FROM node:14-alpine
 WORKDIR /app
-ENV NODE_ENV=production
 COPY --from=builder /app ./
 EXPOSE 8080
 CMD ["npm", "run", "start:prod"]
