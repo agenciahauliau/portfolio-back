@@ -12,6 +12,10 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
 
   @Field({ nullable: true })
   @IsOptional()
+  imagemPrincipal: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
   categoriaImovel: string;
 
   @Field({ nullable: true })
@@ -117,6 +121,11 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
   @Field({ nullable: true })
   @IsOptional()
   uf: string;
+
+  @Field(() => [String], {
+    nullable: true,
+  })
+  imagensAdicionais?: [string];
 
   @Field(() => [String], { nullable: true })
   @IsOptional()

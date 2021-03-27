@@ -10,19 +10,27 @@ export class Galeria {
 
   @Field(() => String)
   @Prop({ unique: true })
-  readonly nomeGaleria: string;
+  nomeGaleria: string;
 
   @Field(() => [String])
   @Prop()
-  readonly url: [string];
+  url: [string];
 
   @Field(() => String)
   @Prop()
-  readonly arquivoDestaque: string;
+  arquivoDestaque: string;
 
   @Field(() => [String])
   @Prop()
-  readonly idImovel: [string];
+  idImovel: [string];
+
+  @Field({ description: 'Quando foi criado' })
+  @Prop({ default: Date.now })
+  readonly createdAt: number;
+
+  @Field({ description: 'Quando foi atualizado' })
+  @Prop()
+  readonly updatedAt: number;
 }
 
 export type GaleriaDocument = Galeria & Document;

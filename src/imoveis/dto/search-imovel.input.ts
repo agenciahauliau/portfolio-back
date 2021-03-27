@@ -11,6 +11,10 @@ export class SearchImovelInput {
   @IsOptional()
   nomeImovel: string;
 
+  @Field(() => String, { nullable: true })
+  @IsOptional()
+  imagemPrincipal: string;
+
   @Field({ nullable: true })
   @IsOptional()
   categoriaImovel: string;

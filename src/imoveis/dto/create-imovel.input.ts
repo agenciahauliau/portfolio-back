@@ -1,4 +1,4 @@
-import { InputType, Int, Field, Float, ID } from '@nestjs/graphql';
+import { InputType, Int, Field, Float } from '@nestjs/graphql';
 import {
   IsArray,
   IsBoolean,
@@ -17,6 +17,10 @@ export class CreateImovelInput {
   @Field(() => String, { description: 'Nome do imóvel' })
   @IsString({ message: '$property têm que ser do tipo string' })
   nomeImovel: string;
+
+  @Field(() => String, { description: 'URL da imagem principal do imovel' })
+  @IsString({ message: '$property têm que ser do tipo string' })
+  imagemPrincipal: string;
 
   @Field(() => String, { description: 'Categoria do imóvel' })
   @IsString({ message: '$property têm que ser do tipo string' })
@@ -158,6 +162,12 @@ export class CreateImovelInput {
   })
   @IsString({ message: '$property têm que ser do tipo string' })
   uf: string;
+
+  @Field(() => [String], {
+    description: 'Imagens adicionais',
+    nullable: true,
+  })
+  imagensAdicionais?: [string];
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
