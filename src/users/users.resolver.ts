@@ -34,6 +34,12 @@ export class UsersResolver {
     return user;
   }
 
+  @Query(() => Boolean, { name: 'check' })
+  @UseGuards(GqlAuthGuard)
+  async logado(): Promise<boolean> {
+    return true;
+  }
+
   /* Pesquisar por todos ususários */
   @Query(() => [User], { name: 'users' })
   @UseGuards(GqlAuthGuard)
