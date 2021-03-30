@@ -53,6 +53,7 @@ import { MulterModule } from '@nestjs/platform-express';
     MongooseModule.forRoot(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useCreateIndex: true,
+      authSource: 'admin',
     }),
     UsersModule,
     ImoveisModule,

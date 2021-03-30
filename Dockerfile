@@ -7,6 +7,6 @@ RUN npm run build
 
 FROM node:14-alpine
 WORKDIR /app
-COPY --from=builder /app ./
+COPY --from=BUILDER /app ./
 EXPOSE 8080
 CMD ["npm", "run", "start:prod"]
