@@ -6,7 +6,6 @@ import {
   IsNumber,
   IsOptional,
   IsString,
-  Max,
   MaxLength,
   Min,
   MinLength,
@@ -45,6 +44,13 @@ export class CreateImovelInput {
   })
   @IsString({ message: '$property têm que ser do tipo string' })
   tipoNegociacao: string;
+
+  @Field(() => String, {
+    description:
+      'Se é um Lançamento imobiliário, ele pode ter status aprovado, pendente e não aprovado',
+  })
+  @IsString({ message: '$property têm que ser do tipo string' })
+  statusLancamento: string;
 
   @Field(() => String, { description: 'Status do imóvel' })
   @IsString({ message: '$property têm que ser do tipo string' })
@@ -170,6 +176,11 @@ export class CreateImovelInput {
   })
   imagensAdicionais?: [string];
 
+  @Field(() => [String], { description: 'Imagem da planta do condomínio', nullable: true })
+  @IsOptional()
+  @IsArray()
+  imgPlantaCondominio?: [string];
+
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
     nullable: true,
@@ -185,6 +196,11 @@ export class CreateImovelInput {
   @IsOptional()
   @IsArray()
   comodidadesCondominio?: [string];
+
+  @Field(() => Int, { description: 'Data provavel do lançamento', nullable: true })
+  @IsNumber({ allowNaN: false, allowInfinity: false })
+  @IsOptional()
+  previsaoLancamento?: number;
 
   @Field(() => [String], { nullable: true })
   @IsOptional()

@@ -37,6 +37,13 @@ export class Imovel {
   @Prop({ trim: true })
   tipoNegociacao: string;
 
+  @Field(() => String, {
+    description:
+      'Se é um Lançamento imobiliário, ele pode ter status aprovado, pendente e não aprovado',
+  })
+  @Prop({ trim: true })
+  statusLancamento: string;
+
   @Field(() => String, { description: 'Status do imóvel' })
   @Prop({ trim: true })
   statusImovel: string;
@@ -141,6 +148,10 @@ export class Imovel {
   @Prop()
   imagensAdicionais?: [string];
 
+  @Field(() => [String], { description: 'Imagem da planta do condomínio' })
+  @Prop()
+  imgPlantaCondominio?: [string];
+
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
   })
@@ -158,6 +169,10 @@ export class Imovel {
   })
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Galeria.name })
   galerias: MongooseSchema.Types.ObjectId[] | Galeria[];
+
+  @Field(() => Int, { description: 'Data provavel do lançamento' })
+  @Prop()
+  previsaoLancamento: number;
 
   @Field({ description: 'Quando foi criado' })
   @Prop({ default: Date.now })

@@ -32,6 +32,10 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
 
   @Field({ nullable: true })
   @IsOptional()
+  statusLancamento: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
   statusImovel: string;
 
   @Field({ nullable: true })
@@ -125,7 +129,16 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
   @Field(() => [String], {
     nullable: true,
   })
+  @IsOptional()
   imagensAdicionais?: [string];
+
+  @Field({ nullable: true })
+  @IsOptional()
+  previsaoLancamento?: number;
+
+  @Field(() => [String], { nullable: true })
+  @IsOptional()
+  imgPlantaCondominio?: [string];
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
