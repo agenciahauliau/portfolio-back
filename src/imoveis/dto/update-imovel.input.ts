@@ -112,7 +112,7 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
 
   @Field({ nullable: true })
   @IsOptional()
-  cep: number;
+  cep: string;
 
   @Field({ nullable: true })
   @IsOptional()

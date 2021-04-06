@@ -113,7 +113,7 @@ export class SearchImovelInput {
 
   @Field({ nullable: true })
   @IsOptional()
-  cep: number;
+  cep: string;
 
   @Field({ nullable: true })
   @IsOptional()

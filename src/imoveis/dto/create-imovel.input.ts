@@ -7,7 +7,9 @@ import {
   IsOptional,
   IsString,
   Max,
+  MaxLength,
   Min,
+  MinLength,
 } from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
 import { Galeria } from 'src/galeria/entities/galeria.entity';
@@ -147,11 +149,10 @@ export class CreateImovelInput {
   @IsOptional()
   complemento?: string;
 
-  @Field(() => Int, { description: 'CEP do endereço' })
-  @IsInt({ message: '$property tem que ser número inteiro' })
-  @Min(0, { message: '$property não pode ser menor que 0' })
-  @Max(99999999, { message: ' não pode ser maior que 99999999' })
-  cep: number;
+  @Field(() => String, { description: 'CEP do endereço' })
+  @MinLength(8, { message: '$property não pode ser menor que 8 dígitos' })
+  @MaxLength(8, { message: ' $property não pode ser maior que 8 dígitos' })
+  cep: string;
 
   @Field(() => String, { description: 'Cidade do imóvel' })
   @IsString({ message: '$property têm que ser do tipo string' })

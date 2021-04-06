@@ -121,9 +121,9 @@ export class Imovel {
   @Prop()
   complemento: string;
 
-  @Field(() => Int, { description: 'CEP do endereço' })
+  @Field(() => String, { description: 'CEP do endereço' })
   @Prop()
-  cep: number;
+  cep: string;
 
   @Field(() => String, { description: 'Cidade do imóvel' })
   @Prop()
