@@ -197,8 +197,8 @@ export class CreateImovelInput {
   @IsArray()
   comodidadesCondominio?: [string];
 
-  @Field(() => Int, { description: 'Data provavel do lançamento', nullable: true })
-  @IsNumber({ allowNaN: false, allowInfinity: false })
+  @Field(() => Float, { description: 'Data provavel do lançamento', nullable: true })
+  @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 0 })
   @IsOptional()
   previsaoLancamento?: number;
 

@@ -170,7 +170,7 @@ export class Imovel {
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Galeria.name })
   galerias: MongooseSchema.Types.ObjectId[] | Galeria[];
 
-  @Field(() => Int, { description: 'Data provavel do lançamento' })
+  @Field(() => Float, { description: 'Data provavel do lançamento' })
   @Prop()
   previsaoLancamento: number;
 
