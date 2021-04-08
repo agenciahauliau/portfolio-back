@@ -41,7 +41,7 @@ export class Imovel {
     description:
       'Se é um Lançamento imobiliário, ele pode ter status aprovado, pendente e não aprovado',
   })
-  @Prop({ trim: true })
+  @Prop({ trim: true, lowercase: true })
   statusLancamento: string;
 
   @Field(() => String, { description: 'Status do imóvel' })
