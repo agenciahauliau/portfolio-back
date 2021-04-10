@@ -139,7 +139,7 @@ export class Imovel {
   @Field(() => String, {
     description: 'UF (unidade federativa) ou estado mesmo',
   })
-  @Prop()
+  @Prop({ uppercase: true })
   uf: string;
 
   @Field(() => [String], {
