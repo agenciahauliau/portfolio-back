@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
 import { GaleriaModule } from './galeria/galeria.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { LeadsModule } from './leads/leads.module';
 
 @Module({
   imports: [
@@ -63,6 +64,7 @@ import { MulterModule } from '@nestjs/platform-express';
     MulterModule.register({
       dest: './uploads',
     }),
+    LeadsModule,
   ],
 })
 export class AppModule {}
