@@ -107,6 +107,7 @@ export class ImoveisService {
    * @Param param: Vai ser usar para definir qual key do objeto terá o dado extraído. Ex: valorEntrada
    */
   async menorValor(input: any, param: string): Promise<number> {
+    if (!input) return 0;
     if (!input.length) return 0;
     let result = [];
     for (const i of input) {

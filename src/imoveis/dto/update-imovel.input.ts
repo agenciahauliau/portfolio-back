@@ -1,5 +1,5 @@
 import { CreateImovelInput } from './create-imovel.input';
-import { InputType, Field, PartialType } from '@nestjs/graphql';
+import { InputType, Field, PartialType, Int } from '@nestjs/graphql';
 import { IsOptional } from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
 import { Galeria } from 'src/galeria/entities/galeria.entity';
@@ -75,23 +75,23 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
   @IsOptional()
   areaConstruida: number;
 
-  @Field({ nullable: true })
+  @Field(() => Int, { nullable: true })
   @IsOptional()
   andarImovel: number;
 
-  @Field({ nullable: true })
+  @Field(() => Int, { nullable: true })
   @IsOptional()
   qtdeQuarto: number;
 
-  @Field({ nullable: true })
+  @Field(() => Int, { nullable: true })
   @IsOptional()
   qtdeBanheiro: number;
 
-  @Field({ nullable: true })
+  @Field(() => Int, { nullable: true })
   @IsOptional()
   qtdeSuites: number;
 
-  @Field({ nullable: true })
+  @Field(() => Int, { nullable: true })
   @IsOptional()
   qtdeVagas: number;
 
