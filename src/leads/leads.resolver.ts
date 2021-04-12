@@ -1,19 +1,20 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { NotFoundException, UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { LeadsService } from './leads.service';
-import { Lead } from './entities/lead.entity';
+import { Lead, LeadDocument } from './entities/lead.entity';
 import { CreateLeadInput } from './dto/create-lead.input';
 import { UpdateLeadInput } from './dto/update-lead.input';
 import { SearchLeadInput } from './dto/search-lead.input';
+import { Imovel } from '../imoveis/entities/imovel.entity';
 
 @Resolver(() => Lead)
 export class LeadsResolver {
   private readonly respostaDeErro = 'Lead não encontrado';
   constructor(private readonly leadsService: LeadsService) {}
 
-  @Mutation(() => Lead)
-  async createLead(@Args('dados') createLeadInput: CreateLeadInput): Promise<Lead> {
+  @Mutation(() => Boolean)
+  async createLead(@Args('dados') createLeadInput: CreateLeadInput): Promise<Boolean> {
     const result = await this.leadsService.create(createLeadInput);
     return result;
   }
@@ -58,5 +59,11 @@ export class LeadsResolver {
       throw new NotFoundException(`${this.respostaDeErro}: ${id}`);
     }
     return result;
+  }
+
+  @ResolveField()
+  async imoveis(@Parent() lead: LeadDocument, @Args('populate') populate: boolean) {
+    if (populate) await lead.populate({ path: 'imoveis', model: Imovel.name }).execPopulate();
+    return lead.imoveis;
   }
 }
