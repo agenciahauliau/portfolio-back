@@ -28,7 +28,7 @@ export class Lead {
 
   @Field(() => String, { description: 'Campo de comentário' })
   @Prop()
-  comentario: string;
+  comentarios: string;
 
   @Field(() => String, { description: 'Campo de preferência de contato' })
   @Prop()
@@ -36,7 +36,7 @@ export class Lead {
 
   @Field(() => [Imovel])
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Imovel.name })
-  dadosImovel: MongooseSchema.Types.ObjectId[] | Imovel[];
+  imoveis: MongooseSchema.Types.ObjectId[] | Imovel[];
 
   @Field({ description: 'Quando foi criado' })
   @Prop({ default: Date.now })

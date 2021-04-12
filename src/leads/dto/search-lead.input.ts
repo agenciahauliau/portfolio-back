@@ -32,8 +32,4 @@ export class SearchLeadInput {
   @Field({ nullable: true })
   @IsOptional()
   preferenciaDeContato: string;
-
-  @Field(() => [String], { nullable: true })
-  @IsOptional()
-  dadosImovel: MongooseSchema.Types.ObjectId[] | Imovel[];
 }

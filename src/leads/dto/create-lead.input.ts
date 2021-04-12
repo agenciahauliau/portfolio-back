@@ -5,7 +5,7 @@ import { Imovel } from '../../imoveis/entities/imovel.entity';
 
 @InputType()
 export class CreateLeadInput {
-  @Field(() => String, { description: 'Tipo do Leaed' })
+  @Field(() => String, { description: 'Tipo do Lead' })
   @IsString({ message: '$property têm que ser do tipo string' })
   tipoLead: string;
 
@@ -33,5 +33,5 @@ export class CreateLeadInput {
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
-  dadosImovel?: MongooseSchema.Types.ObjectId[] | Imovel[];
+  imoveis?: MongooseSchema.Types.ObjectId[] | Imovel[];
 }

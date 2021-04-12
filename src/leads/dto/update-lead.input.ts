@@ -18,7 +18,7 @@ export class UpdateLeadInput extends PartialType(CreateLeadInput) {
   @IsOptional()
   nome: string;
 
-  @Field({ nullable: true })
+  @Field(() => Int, { nullable: true })
   @IsOptional()
   telefone: number;
 
@@ -32,5 +32,5 @@ export class UpdateLeadInput extends PartialType(CreateLeadInput) {
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
-  dadosImovel?: MongooseSchema.Types.ObjectId[] | Imovel[];
+  imoveis?: MongooseSchema.Types.ObjectId[] | Imovel[];
 }
