@@ -2,6 +2,7 @@ import { ObjectType, Field, ID, Int, Float } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 import { Galeria } from '../../galeria/entities/galeria.entity';
+import { Tipologia } from './tipologia.entity';
 
 @ObjectType()
 @Schema({ timestamps: true })
@@ -173,6 +174,12 @@ export class Imovel {
   @Field(() => Float, { description: 'Data provavel do lançamento' })
   @Prop()
   previsaoLancamento: number;
+
+  @Field(() => [Tipologia], {
+    description: 'Tipologias',
+  })
+  @Prop()
+  tipologias: Tipologia[];
 
   @Field({ description: 'Quando foi criado' })
   @Prop({ default: Date.now })

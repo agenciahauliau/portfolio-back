@@ -12,6 +12,7 @@ import {
 } from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
 import { Galeria } from 'src/galeria/entities/galeria.entity';
+import { Tipologia } from '../entities/tipologia.entity';
 
 @InputType()
 export class CreateImovelInput {
@@ -200,6 +201,10 @@ export class CreateImovelInput {
   @Field(() => Float, { description: 'Data provavel do lançamento' })
   @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 0 })
   previsaoLancamento: number;
+
+  @Field(() => [Tipologia], { description: 'Criação de tipologias', nullable: true })
+  @IsOptional()
+  tipologias?: Tipologia[];
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
