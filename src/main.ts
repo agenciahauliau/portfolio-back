@@ -3,7 +3,9 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { ValidationPipe } from '@nestjs/common/pipes';
 import { join } from 'path';
 import * as helmet from 'helmet';
+import * as csurf from 'csurf';
 import { AppModule } from './app.module';
+import { NODE_ENV } from './environments/index';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -15,7 +17,8 @@ async function bootstrap() {
   //Necessário para o class-validator executar
   app.useGlobalPipes(new ValidationPipe());
   // Usando Helmet para proteção
-  //app.use(helmet());
+  app.use(helmet({ contentSecurityPolicy: NODE_ENV === 'production' ? undefined : false }));
+  //app.use(csurf());
   //URL final terá como inicio o /v1
   app.setGlobalPrefix('v1');
   app.useStaticAssets(join(__dirname, '..', 'uploads'));

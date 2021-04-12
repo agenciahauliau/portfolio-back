@@ -13,6 +13,9 @@ const RESETPASS_TOKEN_SECRET: string = process.env.RESETPASS_TOKEN_SECRET || 're
 // file uploads
 const FILE_UPLOAD_DIR: string = process.env.FILE_UPLOAD_DIR || './uploads';
 
+// Node env
+const NODE_ENV = process.env.NODE_ENV || undefined;
+
 // bcrypt
 const BCRYPT_SALT: number = +process.env.BCRYPT_SALT || 10;
 
@@ -44,4 +47,5 @@ export {
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
   FILE_UPLOAD_DIR,
+  NODE_ENV,
 };
