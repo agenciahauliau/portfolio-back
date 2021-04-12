@@ -5,6 +5,7 @@ import { Imovel, ImovelDocument } from './entities/imovel.entity';
 import { CreateImovelInput } from './dto/create-imovel.input';
 import { UpdateImovelInput } from './dto/update-imovel.input';
 import { SearchImovelInput } from './dto/search-imovel.input';
+import { Tipologia } from './entities/tipologia.entity';
 
 @Injectable()
 export class ImoveisService {
@@ -14,6 +15,14 @@ export class ImoveisService {
   ) {}
 
   async create(createImovelInput: CreateImovelInput): Promise<Imovel> {
+    createImovelInput.valorEntrada = await this.menorValor(
+      createImovelInput.tipologias,
+      'valorEntrada',
+    );
+    createImovelInput.valorParcela = await this.menorValor(
+      createImovelInput.tipologias,
+      'valorParcela',
+    );
     const createdImovel = new this.imovelModel(createImovelInput);
     return await createdImovel
       .save()
@@ -57,6 +66,14 @@ export class ImoveisService {
   }
 
   async update(id: string, updateImovelInput: UpdateImovelInput): Promise<Imovel> {
+    updateImovelInput.valorEntrada = await this.menorValor(
+      updateImovelInput.tipologias,
+      'valorEntrada',
+    );
+    updateImovelInput.valorParcela = await this.menorValor(
+      updateImovelInput.tipologias,
+      'valorParcela',
+    );
     return await this.imovelModel
       .findByIdAndUpdate(id, updateImovelInput, {
         new: true,
@@ -83,5 +100,18 @@ export class ImoveisService {
         Logger.log(`remove: ${err}`);
         return err;
       });
+  }
+
+  /**
+   * @Param input: É o array object que você quer inserir. Ex: createdImovelInput.tipologias
+   * @Param param: Vai ser usar para definir qual key do objeto terá o dado extraído. Ex: valorEntrada
+   */
+  async menorValor(input: any, param: string): Promise<number> {
+    if (!input.length) return 0;
+    let result = [];
+    for (const i of input) {
+      result.push(i[param]);
+    }
+    return Math.min(...result);
   }
 }
