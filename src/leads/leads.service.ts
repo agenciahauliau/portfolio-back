@@ -13,13 +13,13 @@ export class LeadsService {
     private readonly leadModel: Model<LeadDocument>,
   ) {}
 
-  async create(createLeadInput: CreateLeadInput): Promise<Lead> {
+  async create(createLeadInput: CreateLeadInput): Promise<Boolean> {
     const createdLead = new this.leadModel(createLeadInput);
     return await createdLead
       .save()
       .then((res) => {
         Logger.log(`create: lead _id:${res._id}`);
-        return res;
+        return res ? true : false;
       })
       .catch((err) => {
         Logger.log(`lead create error: ${err}`);
