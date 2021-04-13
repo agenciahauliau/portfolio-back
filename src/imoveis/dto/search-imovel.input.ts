@@ -1,4 +1,4 @@
-import { InputType, Field, ID, Int } from '@nestjs/graphql';
+import { InputType, Field, ID } from '@nestjs/graphql';
 import { IsOptional } from 'class-validator';
 
 @InputType()
@@ -75,23 +75,23 @@ export class SearchImovelInput {
   @IsOptional()
   areaConstruida: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
   andarImovel: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
   qtdeQuarto: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
   qtdeBanheiro: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
   qtdeSuites: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
   qtdeVagas: number;
 
