@@ -1,7 +1,7 @@
 import { InputType, Field, ID } from '@nestjs/graphql';
 import { IsOptional } from 'class-validator';
-import { Galeria } from '../entities/galeria.entity';
 import { Tipologia } from '../entities/tipologia.entity';
+import { Galeria } from '../entities/galeria.entity';
 
 @InputType()
 export class SearchImovelInput {
@@ -137,6 +137,10 @@ export class SearchImovelInput {
   @IsOptional()
   imgPlantaCondominio?: [string];
 
+  @Field(() => [Galeria], { nullable: true })
+  @IsOptional()
+  galerias?: Galeria[];
+
   @Field(() => [String], { nullable: true })
   @IsOptional()
   comodidadesImovel: [string];
@@ -144,10 +148,6 @@ export class SearchImovelInput {
   @Field(() => [String], { nullable: true })
   @IsOptional()
   comodidadesCondominio: [string];
-
-  @Field(() => [Galeria], { nullable: true })
-  @IsOptional()
-  galerias?: Galeria[];
 
   @Field(() => [Tipologia], { nullable: true })
   @IsOptional()

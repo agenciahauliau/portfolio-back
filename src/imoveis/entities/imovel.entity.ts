@@ -143,12 +143,6 @@ export class Imovel {
   @Prop({ uppercase: true })
   readonly uf: string;
 
-  @Field(() => [String], {
-    description: 'Imagens adicionais',
-  })
-  @Prop()
-  readonly imagensAdicionais?: [string];
-
   @Field(() => [String], { description: 'Imagem da planta do condomínio' })
   @Prop()
   readonly imgPlantaCondominio?: [string];
@@ -168,12 +162,6 @@ export class Imovel {
   @Field(() => [Galeria], { description: 'Galerias adicionais' })
   @Prop()
   readonly galerias: Galeria[];
-
-  /*@Field(() => [Galeria], {
-    description: 'Galeria de imagens ou videos',
-  })
-  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Galeria.name })
-  readonly galerias: MongooseSchema.Types.ObjectId[] | Galeria[]; */
 
   @Field(() => Float, { description: 'Data provavel do lançamento' })
   @Prop()

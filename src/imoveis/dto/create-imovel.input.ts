@@ -170,12 +170,6 @@ export class CreateImovelInput {
   @IsString({ message: '$property têm que ser do tipo string' })
   uf: string;
 
-  @Field(() => [String], {
-    description: 'Imagens adicionais',
-    nullable: true,
-  })
-  imagensAdicionais?: [string];
-
   @Field(() => [String], { description: 'Imagem da planta do condomínio', nullable: true })
   @IsOptional()
   @IsArray()
@@ -208,8 +202,4 @@ export class CreateImovelInput {
   @Field(() => [Galeria], { description: 'Criação de galerias', nullable: true })
   @IsOptional()
   galerias?: Galeria[];
-
-  /*@Field(() => [String], { nullable: true })
-  @IsOptional()
-  galerias?: MongooseSchema.Types.ObjectId[] | Galeria[]; */
 }

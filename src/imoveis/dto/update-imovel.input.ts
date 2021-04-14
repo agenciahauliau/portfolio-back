@@ -126,11 +126,11 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
   @IsOptional()
   uf: string;
 
-  @Field(() => [String], {
+  @Field(() => [Galeria], {
     nullable: true,
   })
   @IsOptional()
-  imagensAdicionais?: [string];
+  galerias?: Galeria[];
 
   @Field({ nullable: true })
   @IsOptional()
@@ -147,14 +147,6 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
   @Field(() => [String], { nullable: true })
   @IsOptional()
   comodidadesCondominio?: [string];
-
-  @Field(() => [Galeria], { nullable: true })
-  @IsOptional()
-  galerias?: Galeria[];
-
-  /* @Field(() => [String], { nullable: true })
-  @IsOptional()
-  galerias?: MongooseSchema.Types.ObjectId[] | Galeria[]; */
 
   @Field(() => [Tipologia], { nullable: true })
   @IsOptional()
