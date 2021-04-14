@@ -1,7 +1,7 @@
 import { ObjectType, Field, ID, Int, Float } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
-import { Galeria } from '../../galeria/entities/galeria.entity';
+import { Document } from 'mongoose';
+import { Galeria } from './galeria.entity';
 import { Tipologia } from './tipologia.entity';
 
 @ObjectType()
@@ -12,174 +12,178 @@ export class Imovel {
 
   @Field(() => String, { description: 'Nome do imóvel' })
   @Prop()
-  nomeImovel: string;
+  readonly nomeImovel: string;
 
   @Field(() => String, { description: 'Foto principal' })
   @Prop()
-  imagemPrincipal: string;
+  readonly imagemPrincipal: string;
 
   @Field(() => String, { description: 'Categoria do imóvel' })
   @Prop({ trim: true })
-  categoriaImovel: string;
+  readonly categoriaImovel: string;
 
   @Field(() => Boolean, {
     description: 'É um empreendimento Jardins?',
   })
   @Prop()
-  jardins: boolean;
+  readonly jardins: boolean;
 
   @Field(() => String, { description: 'Descrição do imóvel' })
   @Prop()
-  descricaoImovel: string;
+  readonly descricaoImovel: string;
 
   @Field(() => String, {
     description: 'Tipo de necociação (R) Revenda, (A) Aluguel, (L) Lançamento',
   })
   @Prop({ trim: true })
-  tipoNegociacao: string;
+  readonly tipoNegociacao: string;
 
   @Field(() => String, {
     description:
       'Se é um Lançamento imobiliário, ele pode ter status aprovado, pendente e não aprovado',
   })
   @Prop({ trim: true, lowercase: true })
-  statusLancamento: string;
+  readonly statusLancamento: string;
 
   @Field(() => String, { description: 'Status do imóvel' })
   @Prop({ trim: true })
-  statusImovel: string;
+  readonly statusImovel: string;
 
   @Field(() => Boolean, { description: 'Aceita permuta?' })
   @Prop()
-  aceitaPermuta: boolean;
+  readonly aceitaPermuta: boolean;
 
   @Field(() => Boolean, { description: 'É mobiliado?' })
   @Prop()
-  mobiliado: boolean;
+  readonly mobiliado: boolean;
 
   @Field(() => Float, { description: 'Valor do imóvel. Ex: 324000.56' })
   @Prop()
-  valorImovel: number;
+  readonly valorImovel: number;
 
   @Field(() => Float, { description: 'Valor de entrada do imóvel, quando for lançamento' })
   @Prop()
-  valorEntrada: number;
+  readonly valorEntrada: number;
 
   @Field(() => Float, { description: 'Valor de parcela do imóvel, quando for lançamento' })
   @Prop()
-  valorParcela: number;
+  readonly valorParcela: number;
 
   @Field(() => Float, { description: 'Valor do IPTU. Ex: 324000.56' })
   @Prop()
-  valorIPTU: number;
+  readonly valorIPTU: number;
 
   @Field(() => Float, { description: 'Valor do Condomínio. Ex: 324000.56' })
   @Prop()
-  valorCondominio: number;
+  readonly valorCondominio: number;
 
   @Field(() => Float, { description: 'Área total do imóvel. Ex: 224.56' })
   @Prop()
-  areaTotal: number;
+  readonly areaTotal: number;
 
   @Field(() => Float, { description: 'Área construída. Ex: 300.5' })
   @Prop()
-  areaConstruida: number;
+  readonly areaConstruida: number;
 
   @Field(() => Int, {
     description: 'Andar do imóvel, se for prédio',
   })
   @Prop()
-  andarImovel: number;
+  readonly andarImovel: number;
 
   @Field(() => Int, { description: 'Quantidade de quartos' })
   @Prop()
-  qtdeQuarto: number;
+  readonly qtdeQuarto: number;
 
   @Field(() => Int, { description: 'Quantidade de banheiros' })
   @Prop()
-  qtdeBanheiro: number;
+  readonly qtdeBanheiro: number;
 
   @Field(() => Int, { description: 'Quantidade de Suítes', nullable: true })
   @Prop()
-  qtdeSuites: number;
+  readonly qtdeSuites: number;
 
   @Field(() => Int, { description: 'Quantidade de Vagas', nullable: true })
   @Prop()
-  qtdeVagas: number;
+  readonly qtdeVagas: number;
 
   @Field(() => String, { description: 'Nome da Construtora' })
   @Prop()
-  nomeConstrutora: string;
+  readonly nomeConstrutora: string;
 
   @Field(() => String, { description: 'Bairro do imóvel' })
   @Prop()
-  bairro: string;
+  readonly bairro: string;
 
   @Field(() => String, { description: 'Endereço. Ex. Rua, Avenida' })
   @Prop()
-  logradouro: string;
+  readonly logradouro: string;
 
   @Field(() => String, { description: 'Número do endereço', nullable: true })
   @Prop()
-  numeroLogradouro: string;
+  readonly numeroLogradouro: string;
 
   @Field(() => String, {
     description: 'Campo para complemento',
   })
   @Prop()
-  complemento: string;
+  readonly complemento: string;
 
   @Field(() => String, { description: 'CEP do endereço' })
   @Prop()
-  cep: string;
+  readonly cep: string;
 
   @Field(() => String, { description: 'Cidade do imóvel' })
   @Prop()
-  cidade: string;
+  readonly cidade: string;
 
   @Field(() => String, {
     description: 'UF (unidade federativa) ou estado mesmo',
   })
   @Prop({ uppercase: true })
-  uf: string;
+  readonly uf: string;
 
   @Field(() => [String], {
     description: 'Imagens adicionais',
   })
   @Prop()
-  imagensAdicionais?: [string];
+  readonly imagensAdicionais?: [string];
 
   @Field(() => [String], { description: 'Imagem da planta do condomínio' })
   @Prop()
-  imgPlantaCondominio?: [string];
+  readonly imgPlantaCondominio?: [string];
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
   })
   @Prop()
-  comodidadesImovel: [string];
+  readonly comodidadesImovel: [string];
 
   @Field(() => [String], {
     description: 'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
   })
   @Prop()
-  comodidadesCondominio: [string];
+  readonly comodidadesCondominio: [string];
 
-  @Field(() => [Galeria], {
+  @Field(() => [Galeria], { description: 'Galerias adicionais' })
+  @Prop()
+  readonly galerias: Galeria[];
+
+  /*@Field(() => [Galeria], {
     description: 'Galeria de imagens ou videos',
   })
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Galeria.name })
-  galerias: MongooseSchema.Types.ObjectId[] | Galeria[];
+  readonly galerias: MongooseSchema.Types.ObjectId[] | Galeria[]; */
 
   @Field(() => Float, { description: 'Data provavel do lançamento' })
   @Prop()
-  previsaoLancamento: number;
+  readonly previsaoLancamento: number;
 
   @Field(() => [Tipologia], {
     description: 'Tipologias',
   })
   @Prop()
-  tipologias: Tipologia[];
+  readonly tipologias: Tipologia[];
 
   @Field({ description: 'Quando foi criado' })
   @Prop({ default: Date.now })
