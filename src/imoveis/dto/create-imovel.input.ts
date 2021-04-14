@@ -10,9 +10,8 @@ import {
   Min,
   MinLength,
 } from 'class-validator';
-import { Schema as MongooseSchema } from 'mongoose';
-import { Galeria } from 'src/galeria/entities/galeria.entity';
 import { Tipologia } from '../entities/tipologia.entity';
+import { Galeria } from '../entities/galeria.entity';
 
 @InputType()
 export class CreateImovelInput {
@@ -206,7 +205,11 @@ export class CreateImovelInput {
   @IsOptional()
   tipologias?: Tipologia[];
 
-  @Field(() => [String], { nullable: true })
+  @Field(() => [Galeria], { description: 'Criação de galerias', nullable: true })
   @IsOptional()
-  galerias?: MongooseSchema.Types.ObjectId[] | Galeria[];
+  galerias?: Galeria[];
+
+  /*@Field(() => [String], { nullable: true })
+  @IsOptional()
+  galerias?: MongooseSchema.Types.ObjectId[] | Galeria[]; */
 }
