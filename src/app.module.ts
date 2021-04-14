@@ -7,7 +7,6 @@ import { UsersModule } from './users/users.module';
 import { ImoveisModule } from './imoveis/imoveis.module';
 import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
-import { GaleriaModule } from './galeria/galeria.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { LeadsModule } from './leads/leads.module';
 
@@ -60,7 +59,6 @@ import { LeadsModule } from './leads/leads.module';
     ImoveisModule,
     AuthModule,
     FilesModule,
-    GaleriaModule,
     MulterModule.register({
       dest: './uploads',
     }),
