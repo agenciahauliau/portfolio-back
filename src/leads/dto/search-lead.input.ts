@@ -1,7 +1,5 @@
 import { InputType, Field, ID } from '@nestjs/graphql';
 import { IsOptional } from 'class-validator';
-import { Schema as MongooseSchema } from 'mongoose';
-import { Imovel } from '../../imoveis/entities/imovel.entity';
 
 @InputType()
 export class SearchLeadInput {
