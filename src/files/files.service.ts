@@ -2,7 +2,6 @@ import { Injectable, InternalServerErrorException, Logger, OnModuleInit } from '
 import * as fs from 'fs';
 import { v4 } from 'uuid';
 import { FILE_UPLOAD_DIR } from '@environments';
-import { FileUpload } from 'graphql-upload';
 import { join } from 'path';
 import { File } from './entities/file.entity';
 
@@ -45,7 +44,7 @@ export class FilesService implements OnModuleInit {
     }
   }
 
-  async saveLocal({ createReadStream, filename }: FileUpload): Promise<File> {
+  /*   async saveLocal({ createReadStream, filename }: FileUpload): Promise<File> {
     const name = `${v4()}-${filename}`;
     return new Promise((resolve, reject) =>
       createReadStream()
@@ -53,7 +52,7 @@ export class FilesService implements OnModuleInit {
         .on('finish', () => resolve({ name }))
         .on('error', () => reject(new InternalServerErrorException())),
     );
-  }
+  } */
 
   /**
    * Funções CLOUDINARY - Desativado por enquanto
