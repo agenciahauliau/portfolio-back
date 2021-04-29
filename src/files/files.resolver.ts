@@ -1,5 +1,4 @@
 import { Resolver, Mutation, Args, Query, ID } from '@nestjs/graphql';
-import { FileUpload } from 'graphql-upload';
 import { GraphQLUpload } from 'apollo-server-express';
 import { UseGuards } from '@nestjs/common';
 import { FilesService } from './files.service';
@@ -11,7 +10,7 @@ import { uploadFile } from '@shared';
 export class FilesResolver {
   constructor(private readonly filesService: FilesService) {}
 
-  @Mutation(() => String)
+  /*  @Mutation(() => String)
   @UseGuards(GqlAuthGuard)
   async uploadFileRemoto(
     @Args({ name: 'file', type: () => GraphQLUpload }) file: FileUpload,
@@ -25,7 +24,7 @@ export class FilesResolver {
         console.log('err', err);
         return err;
       });
-  }
+  } */
 
   @Query(() => [String])
   async listarUploads() {
