@@ -12,6 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
         useFactory: () => {
           const schema = ImovelSchema;
           schema.plugin(require('mongoose-unique-validator'));
+          schema.plugin(require('mongoose-update-versioning'));
           return schema;
         },
       },

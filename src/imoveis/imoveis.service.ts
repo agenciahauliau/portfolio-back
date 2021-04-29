@@ -76,7 +76,6 @@ export class ImoveisService {
     );
     return await this.imovelModel
       .findByIdAndUpdate(id, updateImovelInput, {
-        new: true,
         useFindAndModify: true,
       })
       .then((res) => {

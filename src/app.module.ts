@@ -52,6 +52,7 @@ import { LeadsModule } from './leads/leads.module';
     }),
     MongooseModule.forRoot(process.env.MONGO_URL, {
       useNewUrlParser: true,
+      useUnifiedTopology: true,
       useCreateIndex: true,
       authSource: 'admin',
     }),
