@@ -18,5 +18,6 @@ import { MongooseModule } from '@nestjs/mongoose';
     ]),
   ],
   providers: [ImoveisResolver, ImoveisService],
+  exports: [ImoveisService],
 })
 export class ImoveisModule {}
