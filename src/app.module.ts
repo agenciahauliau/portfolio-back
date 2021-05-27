@@ -18,7 +18,7 @@ import env from '@environments';
       //Desabilitando ou habilitando o playground
       playground: env().PLAYGROUND,
       //autoSchemaFile: 'schema.gql'),
-      autoSchemaFile: '/tmp/schema.gql',
+      autoSchemaFile: env().AUTO_SCHEMA_FILE,
       //Introspecção para fazer funcionar o playground
       introspection: env().INTROSPECTION,
       //Debug

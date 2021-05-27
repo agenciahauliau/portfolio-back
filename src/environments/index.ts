@@ -39,6 +39,7 @@ export default () => ({
   GQL_DEBUG: process.env.GQL_DEBUG === 'true' ? true : false,
   SORT_SCHEMA: process.env.SORT_SCHEMA === 'true' ? true : false,
   USE_GLOBAL_PREFIX: process.env.USE_GLOBAL_PREFIX === 'false' ? false : true,
+  AUTO_SCHEMA_FILE: process.env.AUTO_SCHEMA_FILE || 'schema.gql',
 
   // cloudinary
   CLOUDINARY_NAME: process.env.CLOUDINARY_NAME || 'outronome',

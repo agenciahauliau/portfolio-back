@@ -16,15 +16,36 @@ type User {
   nivel: Float!
 
   """Quando foi criado"""
-  createdAt: String!
+  createdAt: Float!
 
   """Quando foi atualizado"""
-  updatedAt: String!
+  updatedAt: Float!
+}
+
+type Galeria {
+  tipoGaleria: String!
+  nomeGaleria: String!
+  arquivos: [String!]!
+  arquivoDestaque: String!
+}
+
+type Tipologia {
+  quartos: Int!
+  suites: Int!
+  tamanho: Float!
+  valorEntrada: Float!
+  valorParcela: Float!
 }
 
 type Imovel {
   """ID do imóvel"""
   _id: ID!
+
+  """Nome do imóvel"""
+  nomeImovel: String!
+
+  """Foto principal"""
+  imagemPrincipal: String!
 
   """Categoria do imóvel"""
   categoriaImovel: String!
@@ -38,6 +59,11 @@ type Imovel {
   """Tipo de necociação (R) Revenda, (A) Aluguel, (L) Lançamento"""
   tipoNegociacao: String!
 
+  """
+  Se é um Lançamento imobiliário, ele pode ter status aprovado, pendente e não aprovado
+  """
+  statusLancamento: String!
+
   """Status do imóvel"""
   statusImovel: String!
 
@@ -49,6 +75,12 @@ type Imovel {
 
   """Valor do imóvel. Ex: 324000.56"""
   valorImovel: Float!
+
+  """Valor de entrada do imóvel, quando for lançamento"""
+  valorEntrada: Float!
+
+  """Valor de parcela do imóvel, quando for lançamento"""
+  valorParcela: Float!
 
   """Valor do IPTU. Ex: 324000.56"""
   valorIPTU: Float!
@@ -72,10 +104,10 @@ type Imovel {
   qtdeBanheiro: Int!
 
   """Quantidade de Suítes"""
-  qtdeSuites: Int!
+  qtdeSuites: Int
 
   """Quantidade de Vagas"""
-  qtdeVagas: Int!
+  qtdeVagas: Int
 
   """Nome da Construtora"""
   nomeConstrutora: String!
@@ -87,13 +119,13 @@ type Imovel {
   logradouro: String!
 
   """Número do endereço"""
-  numeroLogradouro: String!
+  numeroLogradouro: String
 
   """Campo para complemento"""
   complemento: String!
 
   """CEP do endereço"""
-  cep: Int!
+  cep: String!
 
   """Cidade do imóvel"""
   cidade: String!
@@ -101,24 +133,86 @@ type Imovel {
   """UF (unidade federativa) ou estado mesmo"""
   uf: String!
 
+  """Imagem da planta do condomínio"""
+  imgPlantaCondominio: [String!]!
+
   """Detalhes do condomínio. Segurança 24hs, Academia,"""
   comodidadesImovel: [String!]!
 
   """Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina"""
   comodidadesCondominio: [String!]!
 
+  """Galerias adicionais"""
+  galerias: [Galeria!]!
+
+  """Data provavel do lançamento"""
+  previsaoLancamento: Float!
+
+  """Tipologias"""
+  tipologias: [Tipologia!]!
+
   """Quando foi criado"""
-  createdAt: String!
+  createdAt: Float!
 
   """Quando foi atualizado"""
-  updatedAt: String!
+  updatedAt: Float!
+}
+
+type Lead {
+  """ID do lead"""
+  _id: ID!
+
+  """Tipo do lead"""
+  tipoLead: String!
+
+  """Campo nome do lead"""
+  nome: String!
+
+  """Campo email do lead"""
+  email: String!
+
+  """Campo telefone do lead"""
+  telefone: Int!
+
+  """Campo de comentário"""
+  comentarios: String!
+
+  """Campo de preferência de contato"""
+  preferenciaDeContato: String!
+  imoveis(populate: Boolean!): [Imovel!]!
+
+  """Quando foi criado"""
+  createdAt: Float!
+
+  """Quando foi atualizado"""
+  updatedAt: Float!
+}
+
+input GaleriaInput {
+  tipoGaleria: String!
+  nomeGaleria: String!
+  arquivos: [String!]!
+  arquivoDestaque: String!
+}
+
+input TipologiaInput {
+  quartos: Int!
+  suites: Int!
+  tamanho: Float!
+  valorEntrada: Float!
+  valorParcela: Float!
 }
 
 type Query {
+  me: User!
+  check: Boolean!
   users(quantidade: Float): [User!]!
   user(dados: SearchUserInput!): User!
   imoveis(filtros: SearchImovelInput, quantidade: Float): [Imovel!]!
   imovel(dados: SearchImovelInput!): Imovel!
+  listarUploads: [String!]!
+  leads(filtros: SearchLeadInput, quantidade: Float): [Lead!]!
+  lead(dados: SearchLeadInput!): Lead!
 }
 
 input SearchUserInput {
@@ -128,15 +222,20 @@ input SearchUserInput {
 }
 
 input SearchImovelInput {
-  _id: String
+  _id: ID
+  nomeImovel: String
+  imagemPrincipal: String
   categoriaImovel: String
   jardins: Boolean
   descricaoImovel: String
   tipoNegociacao: String
+  statusLancamento: String
   statusImovel: String
   aceitaPermuta: Boolean
   mobiliado: Boolean
   valorImovel: Float
+  valorEntrada: Float
+  valorParcela: Float
   valorIPTU: Float
   valorCondominio: Float
   areaTotal: Float
@@ -151,13 +250,25 @@ input SearchImovelInput {
   logradouro: String
   numeroLogradouro: String
   complemento: String
-  cep: Float
+  cep: String
   cidade: String
   uf: String
+  previsaoLancamento: Float
+  imgPlantaCondominio: [String!]
+  galerias: [GaleriaInput!]
   comodidadesImovel: [String!]
   comodidadesCondominio: [String!]
-  createdAt: String!
-  updatedAt: String!
+  tipologias: [TipologiaInput!]
+}
+
+input SearchLeadInput {
+  _id: ID
+  tipoLead: String
+  email: String
+  nome: String
+  telefone: Float
+  comentarios: String
+  preferenciaDeContato: String
 }
 
 type Mutation {
@@ -167,6 +278,11 @@ type Mutation {
   createImovel(dados: CreateImovelInput!): Imovel!
   updateImovel(dados: UpdateImovelInput!, id: String!): Imovel!
   removeImovel(id: String!): Boolean!
+  login(data: AuthInput!): String!
+  deletaArquivo(filename: String!): String!
+  createLead(dados: CreateLeadInput!): Boolean!
+  updateLead(dados: UpdateLeadInput!, id: String!): Lead!
+  removeLead(id: String!): Boolean!
 }
 
 input CreateUserInput {
@@ -191,17 +307,28 @@ input UpdateUserInput {
 }
 
 input CreateImovelInput {
+  """Nome do imóvel"""
+  nomeImovel: String!
+
+  """URL da imagem principal do imovel"""
+  imagemPrincipal: String!
+
   """Categoria do imóvel"""
   categoriaImovel: String!
 
   """É um empreendimento Jardins?"""
-  jardins: Boolean!
+  jardins: Boolean
 
   """Descrição do imóvel"""
   descricaoImovel: String!
 
   """Tipo de necociação (R) Revenda, (A) Aluguel, (L) Lançamento"""
   tipoNegociacao: String!
+
+  """
+  Se é um Lançamento imobiliário, ele pode ter status aprovado, pendente e não aprovado
+  """
+  statusLancamento: String!
 
   """Status do imóvel"""
   statusImovel: String!
@@ -214,6 +341,12 @@ input CreateImovelInput {
 
   """Valor do imóvel. Ex: 324000.56"""
   valorImovel: Float!
+
+  """Valor de entrada do imóvel, quando for lançamento"""
+  valorEntrada: Float!
+
+  """Valor de parcela do imóvel, quando for lançamento"""
+  valorParcela: Float!
 
   """Valor do IPTU. Ex: 324000.56"""
   valorIPTU: Float!
@@ -228,7 +361,7 @@ input CreateImovelInput {
   areaConstruida: Float!
 
   """Andar do imóvel, se for prédio"""
-  andarImovel: Int!
+  andarImovel: Int
 
   """Quantidade de quartos"""
   qtdeQuarto: Int!
@@ -237,10 +370,10 @@ input CreateImovelInput {
   qtdeBanheiro: Int!
 
   """Quantidade de Suítes"""
-  qtdeSuites: Int!
+  qtdeSuites: Int
 
   """Quantidade de Vagas"""
-  qtdeVagas: Int!
+  qtdeVagas: Int
 
   """Nome da Construtora"""
   nomeConstrutora: String!
@@ -252,13 +385,13 @@ input CreateImovelInput {
   logradouro: String!
 
   """Número do endereço"""
-  numeroLogradouro: String!
+  numeroLogradouro: String
 
   """Campo para complemento"""
-  complemento: String!
+  complemento: String
 
   """CEP do endereço"""
-  cep: Int!
+  cep: String!
 
   """Cidade do imóvel"""
   cidade: String!
@@ -266,22 +399,39 @@ input CreateImovelInput {
   """UF (unidade federativa) ou estado mesmo"""
   uf: String!
 
+  """Imagem da planta do condomínio"""
+  imgPlantaCondominio: [String!]
+
   """Detalhes do condomínio. Segurança 24hs, Academia,"""
-  comodidadesImovel: [String!]!
+  comodidadesImovel: [String!]
 
   """Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina"""
-  comodidadesCondominio: [String!]!
+  comodidadesCondominio: [String!]
+
+  """Data provavel do lançamento"""
+  previsaoLancamento: Float!
+
+  """Criação de tipologias"""
+  tipologias: [TipologiaInput!]
+
+  """Criação de galerias"""
+  galerias: [GaleriaInput!]
 }
 
 input UpdateImovelInput {
+  nomeImovel: String
+  imagemPrincipal: String
   categoriaImovel: String
   jardins: Boolean
   descricaoImovel: String
   tipoNegociacao: String
+  statusLancamento: String
   statusImovel: String
   aceitaPermuta: Boolean
   mobiliado: Boolean
   valorImovel: Float
+  valorEntrada: Float
+  valorParcela: Float
   valorIPTU: Float
   valorCondominio: Float
   areaTotal: Float
@@ -296,11 +446,63 @@ input UpdateImovelInput {
   logradouro: String
   numeroLogradouro: String
   complemento: String
-  cep: Float
+  cep: String
   cidade: String
   uf: String
+  imgPlantaCondominio: [String!]
   comodidadesImovel: [String!]
   comodidadesCondominio: [String!]
+  previsaoLancamento: Float
+  tipologias: [TipologiaInput!]
+  galerias: [GaleriaInput!]
+}
+
+input AuthInput {
+  email: String!
+  senha: String!
+}
+
+input CreateLeadInput {
+  """Tipo do Lead"""
+  tipoLead: String!
+
+  """Campo email do lead"""
+  email: String!
+
+  """Campo nome do lead"""
+  nome: String
+
+  """Campo telefone do lead"""
+  telefone: Int
+
+  """Campo de comentário"""
+  comentarios: String
+
+  """Campo de preferência de contato"""
+  preferenciaDeContato: String
+
+  """Campo de tipo de negociação para criação de um imóvel."""
+  tipoNegociacao: String
+
+  """Campo da categoria do imovel para criação de um imovel."""
+  categoriaImovel: String
+  imoveis: [String!]
+}
+
+input UpdateLeadInput {
+  tipoLead: String
+  email: String
+  nome: String
+  telefone: Int
+  comentarios: String
+  preferenciaDeContato: String
+
+  """Campo de tipo de negociação para criação de um imóvel."""
+  tipoNegociacao: String
+
+  """Campo da categoria do imovel para criação de um imovel."""
+  categoriaImovel: String
+  imoveis: [String!]
 }
 
 type Subscription {

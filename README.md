@@ -57,6 +57,7 @@ Caso queira, você pode definir algumas variáveis antes de iniciar o sistema. V
 |     `GQL_DEBUG`     |                        false                        |                                                                                      |
 |    `SORT_SCHEMA`    |                        false                        |                                                                                      |
 | `USE_GLOBAL_PREFIX` |                        true                         | Caso queria que o caminho não tenha o prefixo, como por exemplo `v1`, defina `false` |
+| `AUTO_SCHEMA_FILE`  |                     schema.gql                      |  Local onde o GraphQL vai gerar o esquema, pode ser alterado. Ex.: /tmp/schema.gql   |
 |    `JWT_SECRET`     |                   k#22J+Hwuu$PzG                    |    Chave secreta para criação dos tokens de autenticação. Obrigatório configurar.    |
 |  `JWT_EXPIRES_IN`   |                        86400                        |     Tempo que o sistema irá definir para expirar o token. 1 dia = 86400 segundos     |
 
