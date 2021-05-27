@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException, Logger, OnModuleInit } from '@nestjs/common';
 import * as fs from 'fs';
 import { v4 } from 'uuid';
-import { FILE_UPLOAD_DIR } from '@environments';
+import env from '@environments';
 import { join } from 'path';
 import { File } from './entities/file.entity';
 
@@ -19,7 +19,7 @@ export class FilesService implements OnModuleInit {
   }
 
   async listarTodosArquivos() {
-    const dir = FILE_UPLOAD_DIR;
+    const dir = env().FILE_UPLOAD_DIR;
     let data = [];
     let filenames = fs.readdirSync(dir);
     filenames.forEach((file) => {
@@ -29,7 +29,7 @@ export class FilesService implements OnModuleInit {
   }
 
   async deletarArquivo(nome: string) {
-    const file = `${FILE_UPLOAD_DIR}/${nome}`;
+    const file = `${env().FILE_UPLOAD_DIR}/${nome}`;
     try {
       if (fs.existsSync(file)) {
         fs.unlinkSync(file);
@@ -102,8 +102,8 @@ export class FilesService implements OnModuleInit {
 
   /* Checa se existe a pasta e então a cria, se caso não existir */
   onModuleInit(): void {
-    if (!fs.existsSync(FILE_UPLOAD_DIR)) {
-      fs.mkdirSync(FILE_UPLOAD_DIR);
+    if (!fs.existsSync(env().FILE_UPLOAD_DIR)) {
+      fs.mkdirSync(env().FILE_UPLOAD_DIR);
     }
   }
 }

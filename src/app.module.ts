@@ -9,25 +9,26 @@ import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { LeadsModule } from './leads/leads.module';
+import env from '@environments';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, load: [env], cache: true }),
     GraphQLModule.forRoot({
-      //Desabilitando o playground
-      playground: true,
+      //Desabilitando ou habilitando o playground
+      playground: env().PLAYGROUND,
       //autoSchemaFile: 'schema.gql'),
       autoSchemaFile: '/tmp/schema.gql',
       //Introspecção para fazer funcionar o playground
-      introspection: true,
+      introspection: env().INTROSPECTION,
       //Debug
-      debug: false,
+      debug: env().GQL_DEBUG,
       //sortSchema para evitar que o schema seja ordenado
-      sortSchema: false,
+      sortSchema: env().SORT_SCHEMA,
       //Fazendo o GraphQL disponível na endpoint /v1
-      useGlobalPrefix: true,
+      useGlobalPrefix: env().USE_GLOBAL_PREFIX,
       //Permitindo upload
-      uploads: { maxFileSize: 20000000, maxFiles: 10 },
+      uploads: { maxFileSize: env().MAX_FILE_SIZE, maxFiles: env().MAX_FILES },
       //Adicionando opção para reconhecer a autenticação no cabeçalho
       context: ({ req }) => ({ headers: req.headers }),
       //Formatando o erro
@@ -50,7 +51,7 @@ import { LeadsModule } from './leads/leads.module';
         }
       },
     }),
-    MongooseModule.forRoot(process.env.MONGO_URL, {
+    MongooseModule.forRoot(env().MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
@@ -61,7 +62,7 @@ import { LeadsModule } from './leads/leads.module';
     AuthModule,
     FilesModule,
     MulterModule.register({
-      dest: './uploads',
+      dest: env().FILE_UPLOAD_DIR,
     }),
     LeadsModule,
   ],

@@ -1,51 +1,47 @@
-// jsonwebtoken
-const ISSUER: string = process.env.ISSUER || 'Hauliau';
-const AUDIENCE: string = process.env.AUDIENCE || 'https://github.com/agenciahauliau';
-const ACCESS_TOKEN: string = process.env.ACCESS_TOKEN || 'access-token';
-const ACCESS_TOKEN_SECRET: string = process.env.ACCESS_TOKEN_SECRET || 'access-token-key';
-const REFRESH_TOKEN: string = process.env.REFRESH_TOKEN || 'refresh-token';
-const REFRESH_TOKEN_SECRET: string = process.env.REFRESH_TOKEN_SECRET || 'refresh-token-key';
-const EMAIL_TOKEN: string = process.env.EMAIL_TOKEN || 'email-token';
-const EMAIL_TOKEN_SECRET: string = process.env.EMAIL_TOKEN_SECRET || 'email-token-key';
-const RESETPASS_TOKEN: string = process.env.RESETPASS_TOKEN || 'resetpass-token';
-const RESETPASS_TOKEN_SECRET: string = process.env.RESETPASS_TOKEN_SECRET || 'resetpass-token-key';
+export default () => ({
+  ISSUER: process.env.ISSUER || 'Hauliau',
+  AUDIENCE: process.env.AUDIENCE || 'https://github.com/agenciahauliau',
+  ACCESS_TOKEN: process.env.ACCESS_TOKEN || 'access-token',
+  ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET || 'access-token-key',
+  REFRESH_TOKEN: process.env.REFRESH_TOKEN || 'refresh-token',
+  REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET || 'refresh-token-key',
+  EMAIL_TOKEN: process.env.EMAIL_TOKEN || 'email-token',
+  EMAIL_TOKEN_SECRET: process.env.EMAIL_TOKEN_SECRET || 'email-token-key',
+  RESETPASS_TOKEN: process.env.RESETPASS_TOKEN || 'resetpass-token',
+  RESETPASS_TOKEN_SECRET: process.env.RESETPASS_TOKEN_SECRET || 'resetpass-token-key',
+  JWT_SECRET: process.env.JWT_SECRET || 'k#22J+Hwuu$PzG',
+  JWT_EXPIRES_IN: parseInt(process.env.JWT_EXPIRES_IN) || 86400,
+  // NestJS
+  PORT: parseInt(process.env.PORT) || 8080,
+  GLOBAL_PREFIX: process.env.GLOBAL_PREFIX || 'v1',
+  NODE_ENV: process.env.NODE_ENV === 'production' ? undefined : false,
+  // bcrypt
+  BCRYPT_SALT: parseInt(process.env.BCRYPT_SALT) || 10,
+  // Helmet
+  HELMET: process.env.HELMET === 'true' ? true : false,
+  // CSURF
+  CSURF: process.env.CSURF === 'true' ? true : false,
+  // CORS
+  CORS: process.env.CORS === 'false' ? false : true,
 
-// file uploads
-const FILE_UPLOAD_DIR: string = process.env.FILE_UPLOAD_DIR || './uploads';
+  // file uploads
+  FILE_UPLOAD_DIR: process.env.FILE_UPLOAD_DIR || './uploads',
+  MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE) || 20000000,
+  MAX_FILES: parseInt(process.env.MAX_FILES) || 10,
+  ALLOWED_FILETYPES: process.env.ALLOWED_FILETYPES || 'jpg|jpeg|png|gif|mp4|m4v|avif|webp',
 
-// Node env
-const NODE_ENV = process.env.NODE_ENV || undefined;
+  // MongoDB
+  MONGO_URL: process.env.MONGO_URL || 'mongodb://{username}:{password}@127.0.0.1/portfolio',
 
-// bcrypt
-const BCRYPT_SALT: number = +process.env.BCRYPT_SALT || 10;
+  // GraphQL
+  PLAYGROUND: process.env.PLAYGROUND === 'true' ? true : false,
+  INTROSPECTION: process.env.INTROSPECTION === 'true' ? true : false,
+  GQL_DEBUG: process.env.GQL_DEBUG === 'true' ? true : false,
+  SORT_SCHEMA: process.env.SORT_SCHEMA === 'true' ? true : false,
+  USE_GLOBAL_PREFIX: process.env.USE_GLOBAL_PREFIX === 'false' ? false : true,
 
-// nodemailer
-const NODEMAILER_USER: string = process.env.NODEMAILER_USER || 'xxx';
-const NODEMAILER_PASS: string = process.env.NODEMAILER_PASS || 'xxx';
-
-// cloudinary
-const CLOUDINARY_NAME: string = process.env.CLOUDINARY_NAME || 'outronome';
-const CLOUDINARY_API_KEY: string = process.env.CLOUDINARY_API_KEY || '475584948229723';
-const CLOUDINARY_API_SECRET: string =
-  process.env.CLOUDINARY_API_SECRET || 'Duno2be58mE2lCFLcuOssGKG54c';
-
-export {
-  ISSUER,
-  AUDIENCE,
-  ACCESS_TOKEN,
-  ACCESS_TOKEN_SECRET,
-  REFRESH_TOKEN,
-  REFRESH_TOKEN_SECRET,
-  RESETPASS_TOKEN,
-  RESETPASS_TOKEN_SECRET,
-  EMAIL_TOKEN,
-  EMAIL_TOKEN_SECRET,
-  BCRYPT_SALT,
-  NODEMAILER_USER,
-  NODEMAILER_PASS,
-  CLOUDINARY_NAME,
-  CLOUDINARY_API_KEY,
-  CLOUDINARY_API_SECRET,
-  FILE_UPLOAD_DIR,
-  NODE_ENV,
-};
+  // cloudinary
+  CLOUDINARY_NAME: process.env.CLOUDINARY_NAME || 'outronome',
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY || '475584948229723',
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET || 'Duno2be58mE2lCFLcuOssGKG54c',
+});

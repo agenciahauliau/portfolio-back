@@ -3,22 +3,22 @@ import { existsSync, mkdirSync } from 'fs';
 import { diskStorage } from 'multer';
 import { v4 as uuid } from 'uuid';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { FILE_UPLOAD_DIR } from '@environments';
+import env from '@environments';
 
 // Multer configuration
 export const multerConfig = {
-  dest: FILE_UPLOAD_DIR,
+  dest: env().FILE_UPLOAD_DIR,
 };
 
 // Multer upload options
 export const multerOptions = {
   // Enable file size limits
   limits: {
-    fileSize: 20000000,
+    fileSize: env().MAX_FILE_SIZE,
   },
   // Check the mimetypes to allow for upload
   fileFilter: (req: any, file: any, cb: any) => {
-    if (file.mimetype.match(/\/(jpg|jpeg|png|gif|mp4|m4v|avif|webp)$/)) {
+    if (file.mimetype.match(RegExp(env().ALLOWED_FILETYPES))) {
       // Allow storage of file
       cb(null, true);
     } else {

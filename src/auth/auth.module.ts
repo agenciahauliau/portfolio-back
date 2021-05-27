@@ -8,6 +8,7 @@ import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
+import env from '@environments';
 
 @Module({
   imports: [
@@ -15,8 +16,8 @@ import { LocalStrategy } from './strategies/local.strategy';
     UsersModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '86400s' },
+      secret: env().JWT_SECRET,
+      signOptions: { expiresIn: `${env().JWT_EXPIRES_IN}s` },
     }),
   ],
   controllers: [AuthController],

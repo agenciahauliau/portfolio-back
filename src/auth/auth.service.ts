@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { User } from '../users/entities/user.entity';
 import { UsersService } from '../users/users.service';
+import env from '@environments';
 
 @Injectable()
 export class AuthService {
@@ -41,7 +42,7 @@ export class AuthService {
 
   public async verify(token: string): Promise<User> {
     const decoded = this.jwtServices.verify(token, {
-      secret: process.env.JWT_SECRET,
+      secret: env().JWT_SECRET,
     });
 
     Logger.log(`decoded ${JSON.stringify(decoded)}`);

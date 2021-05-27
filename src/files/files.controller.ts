@@ -3,6 +3,8 @@ import { Response } from 'express';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { FilesService } from './files.service';
 import { multerOptions } from './multer.config';
+import env from '@environments';
+
 @Controller('files')
 export class FilesController {
   constructor(private filesService: FilesService) {}
@@ -18,7 +20,7 @@ export class FilesController {
   }
 
   @Post('upload')
-  @UseInterceptors(FilesInterceptor('files', 10, multerOptions))
+  @UseInterceptors(FilesInterceptor('files', env().MAX_FILES, multerOptions))
   async upload(@UploadedFiles() files) {
     let dados = [];
     for (let file of files) {

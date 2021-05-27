@@ -1,7 +1,7 @@
 import { v2 } from 'cloudinary';
 import { v4 } from 'uuid';
 
-import { CLOUDINARY_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../../environments';
+import env from '@environments';
 
 /**
  * Returns image url by upload file.
@@ -17,9 +17,9 @@ import { CLOUDINARY_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../.
  */
 export const uploadFile = async (file: any) => {
   v2.config({
-    cloud_name: CLOUDINARY_NAME,
-    api_key: CLOUDINARY_API_KEY,
-    api_secret: CLOUDINARY_API_SECRET,
+    cloud_name: env().CLOUDINARY_NAME,
+    api_key: env().CLOUDINARY_API_KEY,
+    api_secret: env().CLOUDINARY_API_SECRET,
   });
 
   let data = new Date();
