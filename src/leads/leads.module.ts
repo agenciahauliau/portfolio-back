@@ -14,6 +14,7 @@ import { ImoveisModule } from 'src/imoveis/imoveis.module';
         useFactory: () => {
           const schema = LeadSchema;
           schema.plugin(require('mongoose-unique-validator'));
+          schema.plugin(require('mongoose-update-versioning'));
           return schema;
         },
       },
