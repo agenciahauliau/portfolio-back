@@ -64,7 +64,6 @@ export class ImoveisService {
     }
     if (filters?.or != undefined && Object.keys(filters?.or)?.length === 0) filters.or = [{}];
     if (filters?.or != undefined) filters = await renameKey(filters, 'or', '$or');
-    Logger.log(filters);
     return await this.imovelModel
       .find({ ...filters })
       .limit(qtde)
