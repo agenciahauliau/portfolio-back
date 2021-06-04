@@ -5,7 +5,8 @@ import { Imovel, ImovelDocument } from './entities/imovel.entity';
 import { CreateImovelInput } from './dto/create-imovel.input';
 import { UpdateImovelInput } from './dto/update-imovel.input';
 import { SearchImovelInput } from './dto/search-imovel.input';
-import { Tipologia } from './entities/tipologia.entity';
+import { renameKey } from '@shared';
+import { SearchImovelCondInput } from './dto/search-cond-imovel.input';
 
 @Injectable()
 export class ImoveisService {
@@ -37,13 +38,38 @@ export class ImoveisService {
   }
 
   /* Listar mais de um imóvel */
-  async listarTudo(qtde?: any, filters?: SearchImovelInput) {
+  async listarTudo(filters?: SearchImovelInput, qtde?: any) {
     return await this.imovelModel
       .find({ ...filters })
       .limit(qtde)
       .exec()
       .then((res) => {
-        Logger.log(`findAll: ${res}`);
+        res.forEach((el) => Logger.log(`findAll: ${el._id}`));
+        return res;
+      })
+      .catch((err) => {
+        Logger.log(`findAll: ${err}`);
+        return err;
+      });
+  }
+
+  /* Listar mais de um imóvel */
+  async listarTudoComFiltros(filters?: SearchImovelCondInput, qtde?: any) {
+    for (let item in filters) {
+      if (!!filters[item]['in']) filters[item] = await renameKey(filters[item], 'in', '$in');
+      if (!!filters[item]['gte']) filters[item] = await renameKey(filters[item], 'gte', '$gte');
+      if (!!filters[item]['lte']) filters[item] = await renameKey(filters[item], 'lte', '$lte');
+      if (!!filters[item]['lt']) filters[item] = await renameKey(filters[item], 'lt', '$lt');
+      if (!!filters[item]['gt']) filters[item] = await renameKey(filters[item], 'gt', '$gt');
+    }
+    if (filters?.or != undefined && Object.keys(filters?.or)?.length === 0) filters.or = [{}];
+    if (filters?.or != undefined) filters = await renameKey(filters, 'or', '$or');
+    Logger.log(filters);
+    return await this.imovelModel
+      .find({ ...filters })
+      .limit(qtde)
+      .then((res) => {
+        res.forEach((el) => Logger.log(`findAll: ${el._id}`));
         return res;
       })
       .catch((err) => {
@@ -105,7 +131,7 @@ export class ImoveisService {
    * @Param input: É o array object que você quer inserir. Ex: createdImovelInput.tipologias
    * @Param param: Vai ser usar para definir qual key do objeto terá o dado extraído. Ex: valorEntrada
    */
-  async menorValor(input: any, param: string): Promise<number> {
+  private async menorValor(input: any, param: string): Promise<number> {
     if (!input) return 0;
     if (!input.length) return 0;
     let result = [];

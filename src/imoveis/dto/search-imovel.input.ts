@@ -2,132 +2,132 @@ import { InputType, Field, ID } from '@nestjs/graphql';
 import { IsOptional } from 'class-validator';
 import { Tipologia } from '../entities/tipologia.entity';
 import { Galeria } from '../entities/galeria.entity';
-
+import { Filtro } from '../entities/filtros.entity';
 @InputType()
 export class SearchImovelInput {
   @Field(() => ID, { nullable: true })
   @IsOptional()
-  _id: string;
+  _id?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  nomeImovel: string;
+  nomeImovel?: string;
 
   @Field(() => String, { nullable: true })
   @IsOptional()
-  imagemPrincipal: string;
+  imagemPrincipal?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  categoriaImovel: string;
+  categoriaImovel?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  jardins: boolean;
+  jardins?: boolean;
 
   @Field({ nullable: true })
   @IsOptional()
-  descricaoImovel: string;
+  descricaoImovel?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  tipoNegociacao: string;
+  tipoNegociacao?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  statusLancamento: string;
+  statusLancamento?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  statusImovel: string;
+  statusImovel?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  aceitaPermuta: boolean;
+  aceitaPermuta?: boolean;
 
   @Field({ nullable: true })
   @IsOptional()
-  mobiliado: boolean;
+  mobiliado?: boolean;
 
   @Field({ nullable: true })
   @IsOptional()
-  valorImovel: number;
+  valorImovel?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  valorEntrada: number;
+  valorEntrada?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  valorParcela: number;
+  valorParcela?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  valorIPTU: number;
+  valorIPTU?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  valorCondominio: number;
+  valorCondominio?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  areaTotal: number;
+  areaTotal?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  areaConstruida: number;
+  areaConstruida?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  andarImovel: number;
+  andarImovel?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  qtdeQuarto: number;
+  qtdeQuarto?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  qtdeBanheiro: number;
+  qtdeBanheiro?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  qtdeSuites: number;
+  qtdeSuites?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  qtdeVagas: number;
+  qtdeVagas?: number;
 
   @Field({ nullable: true })
   @IsOptional()
-  nomeConstrutora: string;
+  nomeConstrutora?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  bairro: string;
+  bairro?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  logradouro: string;
+  logradouro?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  numeroLogradouro: string;
+  numeroLogradouro?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  complemento: string;
+  complemento?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  cep: string;
+  cep?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  cidade: string;
+  cidade?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  uf: string;
+  uf?: string;
 
   @Field({ nullable: true })
   @IsOptional()
@@ -135,19 +135,19 @@ export class SearchImovelInput {
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
-  imgPlantaCondominio?: [string];
+  imgPlantaCondominio?: string[];
 
   @Field(() => [Galeria], { nullable: true })
   @IsOptional()
   galerias?: Galeria[];
 
-  @Field(() => [String], { nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  comodidadesImovel: [string];
+  comodidadesImovel?: object | string[];
 
-  @Field(() => [String], { nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  comodidadesCondominio: [string];
+  comodidadesCondominio?: object | string[];
 
   @Field(() => [Tipologia], { nullable: true })
   @IsOptional()

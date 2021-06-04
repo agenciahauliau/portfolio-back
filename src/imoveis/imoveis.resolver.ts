@@ -6,6 +6,7 @@ import { CreateImovelInput } from './dto/create-imovel.input';
 import { UpdateImovelInput } from './dto/update-imovel.input';
 import { SearchImovelInput } from './dto/search-imovel.input';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
+import { SearchImovelCondInput } from './dto/search-cond-imovel.input';
 
 @Resolver(() => Imovel)
 export class ImoveisResolver {
@@ -21,10 +22,18 @@ export class ImoveisResolver {
 
   @Query(() => [Imovel], { name: 'imoveis' })
   async listar(
-    @Args('quantidade', { nullable: true }) qtde: Number,
     @Args('filtros', { nullable: true }) filtros?: SearchImovelInput,
+    @Args('quantidade', { nullable: true }) qtde?: Number,
   ): Promise<Imovel[]> {
-    return await this.imoveisService.listarTudo(qtde, filtros);
+    return await this.imoveisService.listarTudo(filtros, qtde);
+  }
+
+  @Query(() => [Imovel], { name: 'imoveis_condicional' })
+  async listarCondicional(
+    @Args('filtros', { nullable: true }) filtros?: SearchImovelCondInput,
+    @Args('quantidade', { nullable: true }) qtde?: Number,
+  ): Promise<Imovel[]> {
+    return await this.imoveisService.listarTudoComFiltros(filtros, qtde);
   }
 
   @Query(() => Imovel, { name: 'imovel' })

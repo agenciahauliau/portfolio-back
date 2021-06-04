@@ -10,7 +10,7 @@ export class Galeria {
   readonly nomeGaleria: string;
 
   @Field(() => [String])
-  readonly arquivos: [string];
+  readonly arquivos: string[];
 
   @Field(() => String)
   readonly arquivoDestaque: string;

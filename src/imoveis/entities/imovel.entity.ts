@@ -145,19 +145,19 @@ export class Imovel {
 
   @Field(() => [String], { description: 'Imagem da planta do condomínio' })
   @Prop()
-  readonly imgPlantaCondominio?: [string];
+  readonly imgPlantaCondominio?: string[];
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
   })
   @Prop()
-  readonly comodidadesImovel: [string];
+  readonly comodidadesImovel: string[];
 
   @Field(() => [String], {
     description: 'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
   })
   @Prop()
-  readonly comodidadesCondominio: [string];
+  readonly comodidadesCondominio: string[];
 
   @Field(() => [Galeria], { description: 'Galerias adicionais' })
   @Prop()

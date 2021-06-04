@@ -188,6 +188,11 @@ type Lead {
   updatedAt: Float!
 }
 
+type Post {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 input GaleriaInput {
   tipoGaleria: String!
   nomeGaleria: String!
@@ -208,11 +213,14 @@ type Query {
   check: Boolean!
   users(quantidade: Float): [User!]!
   user(dados: SearchUserInput!): User!
-  imoveis(filtros: SearchImovelInput, quantidade: Float): [Imovel!]!
+  imoveis(quantidade: Float, filtros: SearchImovelInput): [Imovel!]!
+  imoveis_condicional(quantidade: Float, filtros: SearchImovelCondInput): [Imovel!]!
   imovel(dados: SearchImovelInput!): Imovel!
   listarUploads: [String!]!
   leads(filtros: SearchLeadInput, quantidade: Float): [Lead!]!
   lead(dados: SearchLeadInput!): Lead!
+  posts: [Post!]!
+  post(id: Int!): Post!
 }
 
 input SearchUserInput {
@@ -256,10 +264,85 @@ input SearchImovelInput {
   previsaoLancamento: Float
   imgPlantaCondominio: [String!]
   galerias: [GaleriaInput!]
-  comodidadesImovel: [String!]
-  comodidadesCondominio: [String!]
+  comodidadesImovel: FiltroInput
+  comodidadesCondominio: FiltroInput
   tipologias: [TipologiaInput!]
 }
+
+input FiltroInput {
+  """
+  Opção para ENTRE ou BETWEEN. Exemplo: $in: ["Academia", "Segurança 24hs"]
+  """
+  in: [String!]
+
+  """
+  (Utilizar apenas em campos numéricos!) Opção para MAIOR OU IGUAL QUE. Exemplo: gte: 80000
+  """
+  gte: Float
+
+  """
+  (Utilizar apenas em campos numéricos!) Opção para MENOR OU IGUAL QUE. Exemplo: gte: 10000.67
+  """
+  lte: Float
+
+  """
+  (Utilizar apenas em campos numéricos!) Opção para MAIOR QUE. Exemplo: gte: 50.99
+  """
+  gt: Float
+
+  """
+  (Utilizar apenas em campos numéricos!) Opção para MENOR QUE. Exemplo: gte: 4.20
+  """
+  lt: Float
+}
+
+input SearchImovelCondInput {
+  _id: ID
+  nomeImovel: FiltroInput
+  imagemPrincipal: FiltroInput
+  categoriaImovel: FiltroInput
+  jardins: Boolean
+  descricaoImovel: String
+  tipoNegociacao: FiltroInput
+  statusLancamento: String
+  statusImovel: FiltroInput
+  aceitaPermuta: Boolean
+  mobiliado: Boolean
+  valorImovel: FiltroInput
+  valorEntrada: FiltroInput
+  valorParcela: FiltroInput
+  valorIPTU: FiltroInput
+  valorCondominio: FiltroInput
+  areaTotal: FiltroInput
+  areaConstruida: FiltroInput
+  andarImovel: FiltroInput
+  qtdeQuarto: FiltroInput
+  qtdeBanheiro: FiltroInput
+  qtdeSuites: FiltroInput
+  qtdeVagas: FiltroInput
+  nomeConstrutora: FiltroInput
+  bairro: FiltroInput
+  logradouro: FiltroInput
+  numeroLogradouro: FiltroInput
+  complemento: String
+  cep: String
+  cidade: FiltroInput
+  uf: FiltroInput
+  previsaoLancamento: FiltroInput
+  comodidadesImovel: FiltroInput
+  comodidadesCondominio: FiltroInput
+  tipologias: [TipologiaInput!]
+
+  """
+  Opção para "OU". Exemplo: $or: [{ bairro: "Alphaville" }, { bairro: "Bela Vista" }]
+  """
+  or: JSON
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 input SearchLeadInput {
   _id: ID
@@ -283,6 +366,9 @@ type Mutation {
   createLead(dados: CreateLeadInput!): Boolean!
   updateLead(dados: UpdateLeadInput!, id: String!): Lead!
   removeLead(id: String!): Boolean!
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
+  removePost(id: Int!): Post!
 }
 
 input CreateUserInput {
@@ -503,6 +589,17 @@ input UpdateLeadInput {
   """Campo da categoria do imovel para criação de um imovel."""
   categoriaImovel: String
   imoveis: [String!]
+}
+
+input CreatePostInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdatePostInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
 
 type Subscription {
