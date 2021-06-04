@@ -13,6 +13,8 @@ env_variables:
   MONGO_URL: mongodb+srv://hi4ume:y82n61di4uDokmLz@cluster0.ehwfw.mongodb.net/portfolio?retryWrites=true&w=majority
   JWT_SECRET: k*#_22J+Hwuu$PzG
   FILE_UPLOAD_DIR: /tmp/uploads
-  PLAYGROUND: true
-  INTROSPECTION: true
+  PLAYGROUND: 'true'
+  HELMET: 'false'
+  CORS: 'false'
+  INTROSPECTION: 'true'
   AUTO_SCHEMA_FILE: /tmp/schema.gql
