@@ -6,7 +6,7 @@ import { CreateImovelInput } from './dto/create-imovel.input';
 import { UpdateImovelInput } from './dto/update-imovel.input';
 import { SearchImovelInput } from './dto/search-imovel.input';
 import { renameKey } from '@shared';
-import { SearchImovelCondInput } from './dto/search-cond-imovel.input';
+import { SearchImovelCondInput } from './dto/search-filter-imovel.input';
 
 @Injectable()
 export class ImoveisService {

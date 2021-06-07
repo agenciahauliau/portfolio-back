@@ -189,8 +189,35 @@ type Lead {
 }
 
 type Post {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """ID do post"""
+  _id: ID!
+
+  """Status do lead: [publicado|rascunho]"""
+  status: String!
+
+  """Título do post"""
+  titulo: String!
+
+  """Breve descrição do post"""
+  descricao: String!
+
+  """Conteúdo do post"""
+  conteudo: String!
+
+  """Imagem principal do post"""
+  imagemPrincipal: String!
+
+  """Categoria do post"""
+  categoria: [String!]!
+
+  """Tags do post"""
+  tags: [String!]!
+
+  """Quando foi criado"""
+  createdAt: Float!
+
+  """Quando foi atualizado"""
+  updatedAt: Float!
 }
 
 input GaleriaInput {
@@ -219,8 +246,8 @@ type Query {
   listarUploads: [String!]!
   leads(filtros: SearchLeadInput, quantidade: Float): [Lead!]!
   lead(dados: SearchLeadInput!): Lead!
-  posts: [Post!]!
-  post(id: Int!): Post!
+  posts(quantidade: Float, filtros: SearchPostCondInput): [Post!]!
+  post(id: String!): Post!
 }
 
 input SearchUserInput {
@@ -354,6 +381,30 @@ input SearchLeadInput {
   preferenciaDeContato: String
 }
 
+input SearchPostCondInput {
+  _id: ID
+
+  """Status do lead: [publicado|rascunho]"""
+  status: String
+
+  """Categoria do post"""
+  categoria: FiltroInput
+
+  """Tags do post"""
+  tags: FiltroInput
+
+  """Quando foi criado"""
+  createdAt: FiltroInput
+
+  """Quando foi atualizado"""
+  updatedAt: FiltroInput
+
+  """
+  Opção para "OU". Exemplo: $or: [{ createAt: 1623095714 }, { createdAt: 1823095714 }]
+  """
+  or: JSON
+}
+
 type Mutation {
   createUser(dados: CreateUserInput!): User!
   updateUser(dados: UpdateUserInput!, username: String!): User!
@@ -366,9 +417,9 @@ type Mutation {
   createLead(dados: CreateLeadInput!): Boolean!
   updateLead(dados: UpdateLeadInput!, id: String!): Lead!
   removeLead(id: String!): Boolean!
-  createPost(createPostInput: CreatePostInput!): Post!
-  updatePost(updatePostInput: UpdatePostInput!): Post!
-  removePost(id: Int!): Post!
+  createPost(dados: CreatePostInput!): Post!
+  updatePost(dados: UpdatePostInput!, id: String!): Post!
+  removePost(id: String!): Boolean!
 }
 
 input CreateUserInput {
@@ -592,14 +643,36 @@ input UpdateLeadInput {
 }
 
 input CreatePostInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Status do lead: [publicado|rascunho]"""
+  status: String!
+
+  """Título do Post"""
+  titulo: String
+
+  """Breve descrição do post"""
+  descricao: String
+
+  """Conteúdo do post"""
+  conteudo: String
+
+  """Imagem principal do post"""
+  imagemPrincipal: String
+
+  """Categorias do post"""
+  categoria: [String!]
+
+  """Tags do post"""
+  tags: [String!]
 }
 
 input UpdatePostInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  status: String
+  titulo: String
+  descricao: String
+  conteudo: String
+  imagemPrincipal: String
+  categoria: [String!]
+  tags: [String!]
 }
 
 type Subscription {

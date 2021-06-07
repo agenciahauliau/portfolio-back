@@ -3,12 +3,13 @@ import { response } from 'express';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
+import { MulterModule } from '@nestjs/platform-express';
 import { UsersModule } from './users/users.module';
 import { ImoveisModule } from './imoveis/imoveis.module';
 import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
-import { MulterModule } from '@nestjs/platform-express';
 import { LeadsModule } from './leads/leads.module';
+import { PostsModule } from './posts/posts.module';
 import env from '@environments';
 
 @Module({
@@ -65,6 +66,7 @@ import env from '@environments';
       dest: env().FILE_UPLOAD_DIR,
     }),
     LeadsModule,
+    PostsModule,
   ],
 })
 export class AppModule {}

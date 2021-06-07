@@ -2,7 +2,7 @@ import { InputType, Field, ID } from '@nestjs/graphql';
 import { IsOptional } from 'class-validator';
 import { Tipologia } from '../entities/tipologia.entity';
 import { Galeria } from '../entities/galeria.entity';
-import { Filtro } from '../entities/filtros.entity';
+import { Filtro } from '@shared';
 @InputType()
 export class SearchImovelInput {
   @Field(() => ID, { nullable: true })
