@@ -41,6 +41,11 @@ type Imovel {
   """ID do imóvel"""
   _id: ID!
 
+  """
+  ID numérico do imóvel, mais fácil para utilizar apesar de ser apenas um contador
+  """
+  imovelId: Int
+
   """Nome do imóvel"""
   nomeImovel: String!
 
@@ -162,6 +167,11 @@ type Lead {
   """ID do lead"""
   _id: ID!
 
+  """
+  ID numérico do lead, mais fácil para utilizar apesar de ser apenas um contador
+  """
+  leadId: Int
+
   """Tipo do lead"""
   tipoLead: String!
 
@@ -191,6 +201,11 @@ type Lead {
 type Post {
   """ID do post"""
   _id: ID!
+
+  """
+  ID numérico do imóvel, mais fácil para utilizar apesar de ser apenas um contador
+  """
+  postId: Int
 
   """Status do lead: [publicado|rascunho]"""
   status: String!

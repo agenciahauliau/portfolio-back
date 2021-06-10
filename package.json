@@ -47,6 +47,7 @@
     "graphql-type-json": "^0.3.2",
     "helmet": "^4.6.0",
     "mongoose": "^5.12.12",
+    "mongoose-sequence": "^5.3.1",
     "mongoose-unique-validator": "^2.0.3",
     "mongoose-update-versioning": "^0.1.1",
     "passport": "^0.4.1",

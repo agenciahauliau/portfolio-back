@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
@@ -7,6 +7,12 @@ import { Document } from 'mongoose';
 export class Post {
   @Field(() => ID, { description: 'ID do post' })
   readonly _id: string;
+
+  @Field(() => Int, {
+    description: 'ID numérico do imóvel, mais fácil para utilizar apesar de ser apenas um contador',
+    nullable: true,
+  })
+  readonly postId?: number;
 
   @Field(() => String, { description: 'Status do lead: [publicado|rascunho]' })
   @Prop()

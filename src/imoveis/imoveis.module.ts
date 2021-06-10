@@ -2,19 +2,27 @@ import { Module } from '@nestjs/common';
 import { ImoveisService } from './imoveis.service';
 import { ImoveisResolver } from './imoveis.resolver';
 import { Imovel, ImovelSchema } from './entities/imovel.entity';
-import { MongooseModule } from '@nestjs/mongoose';
+import { MongooseModule, getConnectionToken } from '@nestjs/mongoose';
+import { Connection } from 'mongoose';
+import * as AutoIncrementFactory from 'mongoose-sequence';
 
 @Module({
   imports: [
     MongooseModule.forFeatureAsync([
       {
         name: Imovel.name,
-        useFactory: () => {
+        useFactory: (connection: Connection) => {
           const schema = ImovelSchema;
+          const AutoIncrement = AutoIncrementFactory(connection);
           schema.plugin(require('mongoose-unique-validator'));
           schema.plugin(require('mongoose-update-versioning'));
+          schema.plugin(AutoIncrement, {
+            inc_field: 'imovelId',
+            start_seq: 1,
+          });
           return schema;
         },
+        inject: [getConnectionToken()],
       },
     ]),
   ],

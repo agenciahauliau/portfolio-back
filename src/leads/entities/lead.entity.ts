@@ -10,6 +10,12 @@ export class Lead {
   @Field(() => ID, { description: 'ID do lead' })
   readonly _id: string;
 
+  @Field(() => Int, {
+    description: 'ID numérico do lead, mais fácil para utilizar apesar de ser apenas um contador',
+    nullable: true,
+  })
+  readonly leadId?: number;
+
   @Field(() => String, { description: 'Tipo do lead' })
   @Prop()
   tipoLead: string;

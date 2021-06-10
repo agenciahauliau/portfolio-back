@@ -10,6 +10,12 @@ export class Imovel {
   @Field(() => ID, { description: 'ID do imóvel' })
   readonly _id: string;
 
+  @Field(() => Int, {
+    description: 'ID numérico do imóvel, mais fácil para utilizar apesar de ser apenas um contador',
+    nullable: true,
+  })
+  readonly imovelId?: number;
+
   @Field(() => String, { description: 'Nome do imóvel' })
   @Prop()
   readonly nomeImovel: string;
