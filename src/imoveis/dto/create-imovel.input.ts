@@ -134,6 +134,14 @@ export class CreateImovelInput {
   @IsString({ message: '$property têm que ser do tipo string' })
   nomeConstrutora: string;
 
+  @Field(() => String, { description: 'Nome do(a) proprietário(a)' })
+  @IsString({ message: '$property têm que ser do tipo string' })
+  nomeProprietario?: string;
+
+  @Field(() => String, { description: 'Telefone do(a) proprietário(a)' })
+  @IsString({ message: '$property têm que ser do tipo string' })
+  telefoneProprietario?: string;
+
   @Field(() => String, { description: 'Bairro do imóvel' })
   @IsString({ message: '$property têm que ser do tipo string' })
   bairro: string;

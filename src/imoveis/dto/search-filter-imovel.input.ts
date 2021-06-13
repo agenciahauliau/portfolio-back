@@ -103,6 +103,14 @@ export class SearchImovelCondInput {
 
   @Field(() => Filtro, { nullable: true })
   @IsOptional()
+  nomeProprietario?: object;
+
+  @Field(() => Filtro, { nullable: true })
+  @IsOptional()
+  telefoneProprietario?: object;
+
+  @Field(() => Filtro, { nullable: true })
+  @IsOptional()
   bairro?: object;
 
   @Field(() => Filtro, { nullable: true })

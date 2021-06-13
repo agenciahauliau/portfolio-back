@@ -117,6 +117,12 @@ type Imovel {
   """Nome da Construtora"""
   nomeConstrutora: String!
 
+  """Nome do(a) proprietário(a)"""
+  nomeProprietario: String!
+
+  """Telefone do(a) proprietário(a)"""
+  telefoneProprietario: String!
+
   """Bairro do imóvel"""
   bairro: String!
 
@@ -296,6 +302,8 @@ input SearchImovelInput {
   qtdeSuites: Float
   qtdeVagas: Float
   nomeConstrutora: String
+  nomeProprietario: String
+  telefoneProprietario: String
   bairro: String
   logradouro: String
   numeroLogradouro: String
@@ -363,6 +371,8 @@ input SearchImovelCondInput {
   qtdeSuites: FiltroInput
   qtdeVagas: FiltroInput
   nomeConstrutora: FiltroInput
+  nomeProprietario: FiltroInput
+  telefoneProprietario: FiltroInput
   bairro: FiltroInput
   logradouro: FiltroInput
   numeroLogradouro: FiltroInput
@@ -530,6 +540,12 @@ input CreateImovelInput {
   """Nome da Construtora"""
   nomeConstrutora: String!
 
+  """Nome do(a) proprietário(a)"""
+  nomeProprietario: String!
+
+  """Telefone do(a) proprietário(a)"""
+  telefoneProprietario: String!
+
   """Bairro do imóvel"""
   bairro: String!
 
@@ -594,6 +610,8 @@ input UpdateImovelInput {
   qtdeSuites: Float
   qtdeVagas: Float
   nomeConstrutora: String
+  nomeProprietario: String
+  telefoneProprietario: String
   bairro: String
   logradouro: String
   numeroLogradouro: String

@@ -42,6 +42,8 @@ export class LeadsService {
         qtdeSuites: 0,
         qtdeVagas: 0,
         nomeConstrutora: '',
+        nomeProprietario: createLeadInput?.nome,
+        telefoneProprietario: createLeadInput?.telefone.toString(),
         cep: '',
         logradouro: '',
         numeroLogradouro: '',

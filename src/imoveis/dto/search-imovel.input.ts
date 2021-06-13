@@ -103,6 +103,14 @@ export class SearchImovelInput {
 
   @Field({ nullable: true })
   @IsOptional()
+  nomeProprietario?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  telefoneProprietario?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
   bairro?: string;
 
   @Field({ nullable: true })

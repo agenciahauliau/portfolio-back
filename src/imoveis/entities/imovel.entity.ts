@@ -117,6 +117,14 @@ export class Imovel {
   @Prop()
   readonly nomeConstrutora: string;
 
+  @Field(() => String, { description: 'Nome do(a) proprietário(a)' })
+  @Prop()
+  readonly nomeProprietario: string;
+
+  @Field(() => String, { description: 'Telefone do(a) proprietário(a)' })
+  @Prop()
+  readonly telefoneProprietario: string;
+
   @Field(() => String, { description: 'Bairro do imóvel' })
   @Prop()
   readonly bairro: string;
