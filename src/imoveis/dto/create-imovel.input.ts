@@ -181,7 +181,7 @@ export class CreateImovelInput {
   @Field(() => [String], { description: 'Imagem da planta do condomínio', nullable: true })
   @IsOptional()
   @IsArray()
-  imgPlantaCondominio?: [string];
+  imgPlantaCondominio?: string[];
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
@@ -189,7 +189,7 @@ export class CreateImovelInput {
   })
   @IsOptional()
   @IsArray()
-  comodidadesImovel?: [string];
+  comodidadesImovel?: string[];
 
   @Field(() => [String], {
     description: 'Detalhes a mais do imóvel. Ex: Jardim, Espaço Gourmet, Piscina',
@@ -197,7 +197,7 @@ export class CreateImovelInput {
   })
   @IsOptional()
   @IsArray()
-  comodidadesCondominio?: [string];
+  comodidadesCondominio?: string[];
 
   @Field(() => Float, { description: 'Data provavel do lançamento' })
   @IsNumber({ allowNaN: false, allowInfinity: false, maxDecimalPlaces: 0 })
