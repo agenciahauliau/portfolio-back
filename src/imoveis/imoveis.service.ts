@@ -7,7 +7,7 @@ import { UpdateImovelInput } from './dto/update-imovel.input';
 import { SearchImovelInput } from './dto/search-imovel.input';
 import { renameKey } from '@shared';
 import { SearchImovelCondInput } from './dto/search-filter-imovel.input';
-import { imoveis, imoveisId } from '../../imoveis';
+import { imoveis, imoveisId } from '../imoveis';
 
 @Injectable()
 export class ImoveisService {
