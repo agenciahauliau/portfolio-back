@@ -160,4 +160,12 @@ export class SearchImovelInput {
   @Field(() => [Tipologia], { nullable: true })
   @IsOptional()
   tipologias?: Tipologia[];
+
+  @Field(() => Filtro, { nullable: true })
+  @IsOptional()
+  createdAt?: object | string[];
+
+  @Field(() => Filtro, { nullable: true })
+  @IsOptional()
+  updatedAt?: object | string[];
 }

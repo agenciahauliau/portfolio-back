@@ -159,4 +159,12 @@ export class SearchImovelCondInput {
     nullable: true,
   })
   or?: object;
+
+  @Field(() => Filtro, { nullable: true })
+  @IsOptional()
+  createdAt?: object | string[];
+
+  @Field(() => Filtro, { nullable: true })
+  @IsOptional()
+  updatedAt?: object | string[];
 }
