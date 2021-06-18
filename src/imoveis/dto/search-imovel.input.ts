@@ -163,9 +163,9 @@ export class SearchImovelInput {
 
   @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  createdAt?: object | string[];
+  createdAt?: object | number;
 
   @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  updatedAt?: object | string[];
+  updatedAt?: object | number;
 }
