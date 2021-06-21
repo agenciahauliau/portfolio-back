@@ -1,41 +1,41 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.183.0/containers/typescript-node
 {
-	"name": "Node.js & TypeScript",
-	"build": {
-		"dockerfile": "Dockerfile",
-		// Update 'VARIANT' to pick a Node version: 12, 14, 16
-		"args": {
-			"VARIANT": "14"
-		}
-	},
+  "name": "Node.js & TypeScript",
+  "build": {
+    "dockerfile": "Dockerfile",
+    // Update 'VARIANT' to pick a Node version: 12, 14, 16
+    "args": {
+      "VARIANT": "14"
+    }
+  },
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": {
-	"workbench.iconTheme": "material-icon-theme",
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "workbench.iconTheme": "material-icon-theme",
     "git.autofetch": true,
-	  "editor.tabSize": 2,
-	  "[html]": {
-		  "editor.defaultFormatter": "esbenp.prettier-vscode"
-	  },
-	  "prettier.endOfLine": "auto",
-	  "prettier.singleQuote": true,
-	  "prettier.useTabs": true,
-	  "git.confirmSync": false,
-	  "[javascript]": {
-	  	"editor.defaultFormatter": "esbenp.prettier-vscode"
-	  },
-	  "[json]": {
-	  	"editor.defaultFormatter": "esbenp.prettier-vscode"
-	  },
-	  "editor.minimap.enabled": false,
-	  "editor.formatOnSave": true,
-	  "liveServer.settings.donotShowInfoMsg": true,
-	  "liveServer.settings.fullReload": true,
+    "editor.tabSize": 2,
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.endOfLine": "auto",
+    "prettier.singleQuote": true,
+    "prettier.useTabs": true,
+    "git.confirmSync": false,
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.minimap.enabled": false,
+    "editor.formatOnSave": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.fullReload": true,
     "editor.linkedEditing": true,
-	  "files.trimTrailingWhitespace": true,
-	  "editor.detectIndentation": false,
-	  "editor.wordWrap": "on",
+    "files.trimTrailingWhitespace": true,
+    "editor.detectIndentation": false,
+    "editor.wordWrap": "on",
     "[typescript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -43,7 +43,7 @@
     "javascript.updateImportsOnFileMove.enabled": "always",
     "debug.javascript.autoAttachFilter": "onlyWithFlag",
     "liveServer.settings.useLocalIp": true,
-	  "prettier.printWidth": 120,
+    "prettier.printWidth": 120,
     "[scss]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -53,13 +53,12 @@
     "prettier.jsxSingleQuote": true,
     "typescript.preferences.quoteStyle": "single",
     "eslint.format.enable": true,
-    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.ignoreTrimWhitespace": false
   },
 
-
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"dbaeumer.vscode-eslint",
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
     "christian-kohler.path-intellisense",
     "esbenp.prettier-vscode",
@@ -69,14 +68,16 @@
     "ms-vsliveshare.vsliveshare",
     "ms-vsliveshare.vsliveshare-audio",
     "ms-vsliveshare.vsliveshare-pack"
-	],
+  ],
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	//"postCreateCommand": "npm install",
+  "runArgs": ["--network=portfolio_back"],
 
-	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "node"
+  // Use 'postCreateCommand' to run commands after the container is created.
+  //"postCreateCommand": "npm install",
+
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "node"
 }

@@ -1,5 +1,5 @@
-import { NotFoundException, UseGuards } from '@nestjs/common';
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Logger, NotFoundException, UseGuards } from '@nestjs/common';
+import { Resolver, Query, Mutation, Args, Context } from '@nestjs/graphql';
 import { ImoveisService } from './imoveis.service';
 import { Imovel } from './entities/imovel.entity';
 import { CreateImovelInput } from './dto/create-imovel.input';
@@ -37,7 +37,11 @@ export class ImoveisResolver {
   }
 
   @Query(() => Imovel, { name: 'imovel' })
-  async findOne(@Args('dados') searchImovel: SearchImovelInput): Promise<Imovel> {
+  async findOne(
+    @Args('dados') searchImovel: SearchImovelInput,
+    @Context() ctx: any,
+  ): Promise<Imovel> {
+    console.log(ctx);
     const resultado = await this.imoveisService.findOne(searchImovel);
     if (!resultado) {
       throw new NotFoundException(`${this.respostaDeErro}: ${JSON.stringify(searchImovel)}`);

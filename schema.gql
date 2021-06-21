@@ -317,6 +317,8 @@ input SearchImovelInput {
   comodidadesImovel: FiltroInput
   comodidadesCondominio: FiltroInput
   tipologias: [TipologiaInput!]
+  createdAt: FiltroInput
+  updatedAt: FiltroInput
 }
 
 input FiltroInput {
@@ -389,6 +391,8 @@ input SearchImovelCondInput {
   Opção para "OU". Exemplo: $or: [{ bairro: "Alphaville" }, { bairro: "Bela Vista" }]
   """
   or: JSON
+  createdAt: FiltroInput
+  updatedAt: FiltroInput
 }
 
 """

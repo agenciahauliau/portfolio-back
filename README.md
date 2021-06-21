@@ -8,6 +8,12 @@ Começo do projeto backend para o portfolio.imb.br
 $ npm install
 ```
 
+## Remote Container
+Antes de executar o remote container no VSCode você vai precisar criar uma rede. Utilize o comando:
+```bash
+$ docker network create portfolio_back
+```
+
 ## Running the app
 
 ```bash
@@ -20,7 +26,6 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
-
 ## Test
 
 ```bash
