@@ -15,6 +15,6 @@ env_variables:
   FILE_UPLOAD_DIR: /tmp/uploads
   PLAYGROUND: 'true'
   HELMET: 'false'
-  CORS: 'false'
+  CORS: 'true'
   INTROSPECTION: 'true'
   AUTO_SCHEMA_FILE: /tmp/schema.gql

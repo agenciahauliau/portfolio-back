@@ -41,7 +41,7 @@ export class ImoveisResolver {
     @Args('dados') searchImovel: SearchImovelInput,
     @Context() ctx: any,
   ): Promise<Imovel> {
-    console.log(ctx);
+    console.log(ctx.req.headers.origin);
     const resultado = await this.imoveisService.findOne(searchImovel);
     if (!resultado) {
       throw new NotFoundException(`${this.respostaDeErro}: ${JSON.stringify(searchImovel)}`);
