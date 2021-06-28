@@ -30,8 +30,6 @@
     },
     "editor.minimap.enabled": false,
     "editor.formatOnSave": true,
-    "liveServer.settings.donotShowInfoMsg": true,
-    "liveServer.settings.fullReload": true,
     "editor.linkedEditing": true,
     "files.trimTrailingWhitespace": true,
     "editor.detectIndentation": false,
@@ -42,7 +40,6 @@
     "typescript.updateImportsOnFileMove.enabled": "always",
     "javascript.updateImportsOnFileMove.enabled": "always",
     "debug.javascript.autoAttachFilter": "onlyWithFlag",
-    "liveServer.settings.useLocalIp": true,
     "prettier.printWidth": 120,
     "[scss]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -63,11 +60,7 @@
     "christian-kohler.path-intellisense",
     "esbenp.prettier-vscode",
     "pkief.material-icon-theme",
-    "eamodio.gitlens",
-    "ritwickdey.liveserver",
-    "ms-vsliveshare.vsliveshare",
-    "ms-vsliveshare.vsliveshare-audio",
-    "ms-vsliveshare.vsliveshare-pack"
+    "eamodio.gitlens"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
