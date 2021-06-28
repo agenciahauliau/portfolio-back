@@ -28,14 +28,14 @@
     "docker:build": "docker build -t portfolio-back . && docker save -o portfolio-back.tar portfolio-back"
   },
   "dependencies": {
-    "@nestjs/common": "^7.6.17",
+    "@nestjs/common": "^7.6.18",
     "@nestjs/config": "^0.6.3",
-    "@nestjs/core": "^7.6.17",
-    "@nestjs/graphql": "^7.10.6",
+    "@nestjs/core": "^7.6.18",
+    "@nestjs/graphql": "^7.11.0",
     "@nestjs/jwt": "^7.2.0",
     "@nestjs/mongoose": "^7.2.4",
     "@nestjs/passport": "^7.1.5",
-    "@nestjs/platform-express": "^7.6.17",
+    "@nestjs/platform-express": "^7.6.18",
     "apollo-server-express": "^2.25.0",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.4.0",
