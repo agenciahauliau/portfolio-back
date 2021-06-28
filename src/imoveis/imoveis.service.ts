@@ -80,6 +80,7 @@ export class ImoveisService {
       if (!!filters[item]['lte']) filters[item] = await renameKey(filters[item], 'lte', '$lte');
       if (!!filters[item]['lt']) filters[item] = await renameKey(filters[item], 'lt', '$lt');
       if (!!filters[item]['gt']) filters[item] = await renameKey(filters[item], 'gt', '$gt');
+      if (!!filters[item]['eq']) filters[item] = await renameKey(filters[item], 'eq', '$eq');
     }
     if (filters?.or != undefined && Object.keys(filters?.or)?.length === 0) filters.or = [{}];
     if (filters?.or != undefined) filters = await renameKey(filters, 'or', '$or');

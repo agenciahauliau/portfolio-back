@@ -241,6 +241,11 @@ type Post {
   updatedAt: Float!
 }
 
+type Analytics {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 input GaleriaInput {
   tipoGaleria: String!
   nomeGaleria: String!
@@ -262,13 +267,13 @@ type Query {
   users(quantidade: Float): [User!]!
   user(dados: SearchUserInput!): User!
   imoveis(quantidade: Float, filtros: SearchImovelInput): [Imovel!]!
-  imoveis_condicional(quantidade: Float, filtros: SearchImovelCondInput): [Imovel!]!
   imovel(dados: SearchImovelInput!): Imovel!
   listarUploads: [String!]!
   leads(filtros: SearchLeadInput, quantidade: Float): [Lead!]!
   lead(dados: SearchLeadInput!): Lead!
   posts(quantidade: Float, filtros: SearchPostCondInput): [Post!]!
   post(id: String!): Post!
+  analytics(id: Int!): Analytics!
 }
 
 input SearchUserInput {
@@ -278,77 +283,6 @@ input SearchUserInput {
 }
 
 input SearchImovelInput {
-  _id: ID
-  nomeImovel: String
-  imagemPrincipal: String
-  categoriaImovel: String
-  jardins: Boolean
-  descricaoImovel: String
-  tipoNegociacao: String
-  statusLancamento: String
-  statusImovel: String
-  aceitaPermuta: Boolean
-  mobiliado: Boolean
-  valorImovel: Float
-  valorEntrada: Float
-  valorParcela: Float
-  valorIPTU: Float
-  valorCondominio: Float
-  areaTotal: Float
-  areaConstruida: Float
-  andarImovel: Float
-  qtdeQuarto: Float
-  qtdeBanheiro: Float
-  qtdeSuites: Float
-  qtdeVagas: Float
-  nomeConstrutora: String
-  nomeProprietario: String
-  telefoneProprietario: String
-  bairro: String
-  logradouro: String
-  numeroLogradouro: String
-  complemento: String
-  cep: String
-  cidade: String
-  uf: String
-  previsaoLancamento: Float
-  imgPlantaCondominio: [String!]
-  galerias: [GaleriaInput!]
-  comodidadesImovel: FiltroInput
-  comodidadesCondominio: FiltroInput
-  tipologias: [TipologiaInput!]
-  createdAt: FiltroInput
-  updatedAt: FiltroInput
-}
-
-input FiltroInput {
-  """
-  Opção para ENTRE ou BETWEEN. Exemplo: $in: ["Academia", "Segurança 24hs"]
-  """
-  in: [String!]
-
-  """
-  (Utilizar apenas em campos numéricos!) Opção para MAIOR OU IGUAL QUE. Exemplo: gte: 80000
-  """
-  gte: Float
-
-  """
-  (Utilizar apenas em campos numéricos!) Opção para MENOR OU IGUAL QUE. Exemplo: gte: 10000.67
-  """
-  lte: Float
-
-  """
-  (Utilizar apenas em campos numéricos!) Opção para MAIOR QUE. Exemplo: gte: 50.99
-  """
-  gt: Float
-
-  """
-  (Utilizar apenas em campos numéricos!) Opção para MENOR QUE. Exemplo: gte: 4.20
-  """
-  lt: Float
-}
-
-input SearchImovelCondInput {
   _id: ID
   nomeImovel: FiltroInput
   imagemPrincipal: FiltroInput
@@ -393,6 +327,38 @@ input SearchImovelCondInput {
   or: JSON
   createdAt: FiltroInput
   updatedAt: FiltroInput
+}
+
+input FiltroInput {
+  """
+  Opção para ENTRE ou BETWEEN. Exemplo: $in: ["Academia", "Segurança 24hs"]
+  """
+  in: [String!]
+
+  """
+  (Utilizar apenas em campos numéricos!) Opção para MAIOR OU IGUAL QUE. Exemplo: gte: 80000
+  """
+  gte: Float
+
+  """
+  (Utilizar apenas em campos numéricos!) Opção para MENOR OU IGUAL QUE. Exemplo: gte: 10000.67
+  """
+  lte: Float
+
+  """
+  (Utilizar apenas em campos numéricos!) Opção para MAIOR QUE. Exemplo: gte: 50.99
+  """
+  gt: Float
+
+  """
+  (Utilizar apenas em campos numéricos!) Opção para MENOR QUE. Exemplo: gte: 4.20
+  """
+  lt: Float
+
+  """
+  (Utilizar apenas em campos numéricos!) Opção para IGUAL QUE. Exemplo: valorImovel: { eq: 28000 }
+  """
+  eq: Float
 }
 
 """
@@ -449,6 +415,9 @@ type Mutation {
   createPost(dados: CreatePostInput!): Post!
   updatePost(dados: UpdatePostInput!, id: String!): Post!
   removePost(id: String!): Boolean!
+  createAnalytics(createAnalyticsInput: CreateAnalyticsInput!): Analytics!
+  updateAnalytics(updateAnalyticsInput: UpdateAnalyticsInput!): Analytics!
+  removeAnalytics(id: Int!): Analytics!
 }
 
 input CreateUserInput {
@@ -710,6 +679,17 @@ input UpdatePostInput {
   imagemPrincipal: String
   categoria: [String!]
   tags: [String!]
+}
+
+input CreateAnalyticsInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateAnalyticsInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
 
 type Subscription {

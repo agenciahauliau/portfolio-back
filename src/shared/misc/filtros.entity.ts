@@ -34,4 +34,11 @@ export class Filtro {
     nullable: true,
   })
   lt?: number;
+
+  @Field(() => Float, {
+    description:
+      '(Utilizar apenas em campos numéricos!) Opção para IGUAL QUE. Exemplo: valorImovel: { eq: 28000 }',
+    nullable: true,
+  })
+  eq?: number;
 }
