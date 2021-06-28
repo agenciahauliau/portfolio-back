@@ -6,7 +6,6 @@ import { CreateImovelInput } from './dto/create-imovel.input';
 import { UpdateImovelInput } from './dto/update-imovel.input';
 import { SearchImovelInput } from './dto/search-imovel.input';
 import { renameKey } from '@shared';
-import { SearchImovelCondInput } from './dto/search-filter-imovel.input';
 import { imoveis, imoveisId } from '../imoveis';
 
 @Injectable()
@@ -74,23 +73,7 @@ export class ImoveisService {
   }
 
   /* Listar mais de um imóvel */
-  async listarTudo(filters?: SearchImovelInput, qtde?: any) {
-    return await this.imovelModel
-      .find({ ...filters })
-      .limit(qtde)
-      .exec()
-      .then((res) => {
-        res.forEach((el) => Logger.log(`findAll: ${el._id}`));
-        return res;
-      })
-      .catch((err) => {
-        Logger.log(`findAll: ${err}`);
-        return err;
-      });
-  }
-
-  /* Listar mais de um imóvel */
-  async listarTudoComFiltros(filters?: SearchImovelCondInput, qtde?: any) {
+  async listarTodosImoveis(filters?: SearchImovelInput, qtde?: any) {
     for (let item in filters) {
       if (!!filters[item]['in']) filters[item] = await renameKey(filters[item], 'in', '$in');
       if (!!filters[item]['gte']) filters[item] = await renameKey(filters[item], 'gte', '$gte');

@@ -1,25 +1,25 @@
 import { InputType, Field, ID } from '@nestjs/graphql';
 import { IsOptional } from 'class-validator';
 import { Tipologia } from '../entities/tipologia.entity';
-import { Galeria } from '../entities/galeria.entity';
 import { Filtro } from '@shared';
+import GraphQLJSON from 'graphql-type-json';
 @InputType()
 export class SearchImovelInput {
   @Field(() => ID, { nullable: true })
   @IsOptional()
   _id?: string;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  nomeImovel?: string;
+  nomeImovel?: object;
 
-  @Field(() => String, { nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  imagemPrincipal?: string;
+  imagemPrincipal?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  categoriaImovel?: string;
+  categoriaImovel?: object;
 
   @Field({ nullable: true })
   @IsOptional()
@@ -29,17 +29,17 @@ export class SearchImovelInput {
   @IsOptional()
   descricaoImovel?: string;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  tipoNegociacao?: string;
+  tipoNegociacao?: object;
 
   @Field({ nullable: true })
   @IsOptional()
   statusLancamento?: string;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  statusImovel?: string;
+  statusImovel?: object;
 
   @Field({ nullable: true })
   @IsOptional()
@@ -49,77 +49,77 @@ export class SearchImovelInput {
   @IsOptional()
   mobiliado?: boolean;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  valorImovel?: number;
+  valorImovel?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  valorEntrada?: number;
+  valorEntrada?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  valorParcela?: number;
+  valorParcela?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  valorIPTU?: number;
+  valorIPTU?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  valorCondominio?: number;
+  valorCondominio?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  areaTotal?: number;
+  areaTotal?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  areaConstruida?: number;
+  areaConstruida?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  andarImovel?: number;
+  andarImovel?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  qtdeQuarto?: number;
+  qtdeQuarto?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  qtdeBanheiro?: number;
+  qtdeBanheiro?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  qtdeSuites?: number;
+  qtdeSuites?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  qtdeVagas?: number;
+  qtdeVagas?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  nomeConstrutora?: string;
+  nomeConstrutora?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  nomeProprietario?: string;
+  nomeProprietario?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  telefoneProprietario?: string;
+  telefoneProprietario?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  bairro?: string;
+  bairro?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  logradouro?: string;
+  logradouro?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  numeroLogradouro?: string;
+  numeroLogradouro?: object;
 
   @Field({ nullable: true })
   @IsOptional()
@@ -129,25 +129,17 @@ export class SearchImovelInput {
   @IsOptional()
   cep?: string;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  cidade?: string;
+  cidade?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  uf?: string;
+  uf?: object;
 
-  @Field({ nullable: true })
+  @Field(() => Filtro, { nullable: true })
   @IsOptional()
-  previsaoLancamento?: number;
-
-  @Field(() => [String], { nullable: true })
-  @IsOptional()
-  imgPlantaCondominio?: string[];
-
-  @Field(() => [Galeria], { nullable: true })
-  @IsOptional()
-  galerias?: Galeria[];
+  previsaoLancamento?: object;
 
   @Field(() => Filtro, { nullable: true })
   @IsOptional()
@@ -160,6 +152,13 @@ export class SearchImovelInput {
   @Field(() => [Tipologia], { nullable: true })
   @IsOptional()
   tipologias?: Tipologia[];
+
+  @Field(() => GraphQLJSON, {
+    description:
+      'Opção para "OU". Exemplo: $or: [{ bairro: "Alphaville" }, { bairro: "Bela Vista" }]',
+    nullable: true,
+  })
+  or?: object;
 
   @Field(() => Filtro, { nullable: true })
   @IsOptional()
