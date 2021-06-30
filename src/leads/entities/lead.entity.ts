@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
+import { ObjectType, Field, ID, Int, Float } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 
@@ -28,7 +28,7 @@ export class Lead {
   @Prop()
   email: string;
 
-  @Field(() => Int, { description: 'Campo telefone do lead' })
+  @Field(() => Float, { description: 'Campo telefone do lead' })
   @Prop()
   telefone: number;
 
