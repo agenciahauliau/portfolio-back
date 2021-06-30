@@ -1,5 +1,5 @@
 import { CreateLeadInput } from './create-lead.input';
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
+import { InputType, Field, Float, PartialType } from '@nestjs/graphql';
 import { IsOptional } from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
 import { Imovel } from '../../imoveis/entities/imovel.entity';
@@ -18,7 +18,7 @@ export class UpdateLeadInput extends PartialType(CreateLeadInput) {
   @IsOptional()
   nome: string;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Float, { nullable: true })
   @IsOptional()
   telefone: number;
 

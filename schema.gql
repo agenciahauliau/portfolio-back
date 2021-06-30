@@ -636,7 +636,7 @@ input UpdateLeadInput {
   tipoLead: String
   email: String
   nome: String
-  telefone: Int
+  telefone: Float
   comentarios: String
   preferenciaDeContato: String
 

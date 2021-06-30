@@ -22,7 +22,7 @@ export class CreateLeadInput {
   @Field(() => Float, { description: 'Campo telefone do lead', nullable: true })
   @IsInt({ message: '$property têm que ser do tipo integer' })
   @Min(0, { message: '$property não pode ser menor que 0' })
-  @Max(999999999999, { message: '$property não pode ser maior que 13 dígitos' })
+  @Max(9999999999999, { message: '$property não pode ser maior que 13 dígitos' })
   @IsOptional()
   telefone: number;
 
