@@ -610,7 +610,7 @@ input CreateLeadInput {
   tipoLead: String!
 
   """Campo email do lead"""
-  email: String!
+  email: String
 
   """Campo nome do lead"""
   nome: String

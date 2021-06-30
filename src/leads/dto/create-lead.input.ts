@@ -9,7 +9,7 @@ export class CreateLeadInput {
   @IsString({ message: '$property têm que ser do tipo string' })
   tipoLead: string;
 
-  @Field(() => String, { description: 'Campo email do lead' })
+  @Field(() => String, { description: 'Campo email do lead', nullable: true })
   @IsString({ message: '$property têm que ser do tipo string' })
   @IsEmail()
   email: string;
