@@ -1,5 +1,5 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { IsEmail, IsInt, IsOptional, IsString, Min } from 'class-validator';
+import { InputType, Field, Float } from '@nestjs/graphql';
+import { IsEmail, IsInt, IsOptional, IsString, Min, Max } from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
 import { Imovel } from '../../imoveis/entities/imovel.entity';
 
@@ -19,9 +19,10 @@ export class CreateLeadInput {
   @IsOptional()
   nome: string;
 
-  @Field(() => Int, { description: 'Campo telefone do lead', nullable: true })
+  @Field(() => Float, { description: 'Campo telefone do lead', nullable: true })
   @IsInt({ message: '$property têm que ser do tipo integer' })
   @Min(0, { message: '$property não pode ser menor que 0' })
+  @Max(999999999999, { message: '$property não pode ser maior que 13 dígitos' })
   @IsOptional()
   telefone: number;
 

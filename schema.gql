@@ -616,7 +616,7 @@ input CreateLeadInput {
   nome: String
 
   """Campo telefone do lead"""
-  telefone: Int
+  telefone: Float
 
   """Campo de comentário"""
   comentarios: String
