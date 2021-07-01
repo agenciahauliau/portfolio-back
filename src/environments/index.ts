@@ -24,6 +24,9 @@ export default () => ({
   // CORS
   CORS: process.env.CORS === 'false' ? false : true,
 
+  // Analytics URL
+  ANALYTICS_URL: process.env.ANALYTICS_URL || 'nada',
+
   // file uploads
   FILE_UPLOAD_DIR: process.env.FILE_UPLOAD_DIR || './uploads',
   MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE) || 20000000,
