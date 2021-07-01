@@ -16,39 +16,39 @@ export class Lead {
   })
   readonly leadId?: number;
 
-  @Field(() => String, { description: 'Tipo do lead' })
+  @Field(() => String, { description: 'Tipo do lead', nullable: true })
   @Prop()
   tipoLead: string;
 
-  @Field(() => String, { description: 'Campo nome do lead' })
+  @Field(() => String, { description: 'Campo nome do lead', nullable: true })
   @Prop()
   nome: string;
 
-  @Field(() => String, { description: 'Campo email do lead' })
+  @Field(() => String, { description: 'Campo email do lead', nullable: true })
   @Prop()
   email: string;
 
-  @Field(() => Float, { description: 'Campo telefone do lead' })
+  @Field(() => Float, { description: 'Campo telefone do lead', nullable: true })
   @Prop()
   telefone: number;
 
-  @Field(() => String, { description: 'Campo de comentário' })
+  @Field(() => String, { description: 'Campo de comentário', nullable: true })
   @Prop()
   comentarios: string;
 
-  @Field(() => String, { description: 'Campo de preferência de contato' })
+  @Field(() => String, { description: 'Campo de preferência de contato', nullable: true })
   @Prop()
   preferenciaDeContato: string;
 
-  @Field(() => [Imovel])
+  @Field(() => [Imovel], { nullable: true })
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Imovel.name })
   imoveis: MongooseSchema.Types.ObjectId[] | Imovel[];
 
-  @Field({ description: 'Quando foi criado' })
+  @Field({ description: 'Quando foi criado', nullable: true })
   @Prop({ default: Date.now })
   readonly createdAt: number;
 
-  @Field({ description: 'Quando foi atualizado' })
+  @Field({ description: 'Quando foi atualizado', nullable: true })
   @Prop()
   readonly updatedAt: number;
 }
