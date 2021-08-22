@@ -179,29 +179,29 @@ type Lead {
   leadId: Int
 
   """Tipo do lead"""
-  tipoLead: String!
+  tipoLead: String
 
   """Campo nome do lead"""
-  nome: String!
+  nome: String
 
   """Campo email do lead"""
-  email: String!
+  email: String
 
   """Campo telefone do lead"""
-  telefone: Float!
+  telefone: Float
 
   """Campo de comentário"""
-  comentarios: String!
+  comentarios: String
 
   """Campo de preferência de contato"""
-  preferenciaDeContato: String!
-  imoveis(populate: Boolean!): [Imovel!]!
+  preferenciaDeContato: String
+  imoveis(populate: Boolean!): [Imovel!]
 
   """Quando foi criado"""
-  createdAt: Float!
+  createdAt: Float
 
   """Quando foi atualizado"""
-  updatedAt: Float!
+  updatedAt: Float
 }
 
 type Post {
