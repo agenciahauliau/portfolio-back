@@ -6,49 +6,13 @@ import { CreateImovelInput } from './dto/create-imovel.input';
 import { UpdateImovelInput } from './dto/update-imovel.input';
 import { SearchImovelInput } from './dto/search-imovel.input';
 import { renameKey } from '@shared';
-import { imoveis, imoveisId } from '../imoveis';
 
 @Injectable()
 export class ImoveisService {
   constructor(
     @InjectModel(Imovel.name)
     private readonly imovelModel: Model<ImovelDocument>,
-  ) {
-    /* for (let imov of imoveis) {
-      this.create(imov);
-    } */
-    /* for (const id of imoveisId) {
-      this.temp(id);
-    } */
-  }
-
-  async temp(id: string) {
-    let imovel = await this.findOne({ _id: id });
-    let comodImovel, comodCondominio;
-    imovel.comodidadesImovel[0]
-      ? (comodImovel = imovel.comodidadesImovel[0].split(','))
-      : (comodImovel = []);
-    imovel.comodidadesCondominio[0]
-      ? (comodCondominio = imovel.comodidadesCondominio[0].split(','))
-      : (comodCondominio = []);
-
-    await this.imovelModel
-      .findByIdAndUpdate(
-        id,
-        { comodidadesCondominio: comodCondominio, comodidadesImovel: comodImovel },
-        {
-          useFindAndModify: true,
-        },
-      )
-      .then((res) => {
-        Logger.log(`update: ${res}`);
-        return res;
-      })
-      .catch((err) => {
-        Logger.log(`update: ${err}`);
-        return err;
-      });
-  }
+  ) {}
 
   async create(createImovelInput: CreateImovelInput): Promise<Imovel> {
     createImovelInput.valorEntrada = await this.menorValor(
@@ -133,39 +97,9 @@ export class ImoveisService {
       });
   }
 
-  /* Função interna para inserir muitos ao mesmo tempo */
-  private async insertMany() {
-    await this.imovelModel
-      .insertMany(imoveis)
-      .then((res) => {
-        Logger.log(`insert many: ${res}`);
-        console.log('insert many: ', res);
-        return res;
-      })
-      .catch((err) => {
-        Logger.log(`insert many: ${err}`);
-        return err;
-      });
-  }
-
-  /* Função interna para atualizar muitos ao mesmo tempo */
-  private async updateMany() {
-    await this.imovelModel
-      .updateMany(
-        { _id: { $in: imoveisId } },
-        { $set: { telefoneProprietario: '', nomeProprietario: '' } },
-      )
-      .then((res) => {
-        Logger.log(`update many: ${res}`);
-        console.log('update many: ', res);
-        return res;
-      })
-      .catch((err) => {
-        Logger.log(`update many: ${err}`);
-        return err;
-      });
-  }
-
+  /**
+   * @Param id: id do imóvel
+   */
   async remove(id: string): Promise<boolean> {
     return await this.imovelModel
       .findByIdAndDelete(id)
