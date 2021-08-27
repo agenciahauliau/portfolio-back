@@ -29,8 +29,6 @@ import env from '@environments';
       sortSchema: env().SORT_SCHEMA,
       //Fazendo o GraphQL disponível na endpoint /v1
       useGlobalPrefix: env().USE_GLOBAL_PREFIX,
-      //Permitindo upload
-      uploads: { maxFileSize: env().MAX_FILE_SIZE, maxFiles: env().MAX_FILES },
       //Adicionando opção para reconhecer a autenticação no cabeçalho
       context: ({ req }) => ({ headers: req.headers }),
       //Formatando o erro
