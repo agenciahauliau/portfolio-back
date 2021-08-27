@@ -1,6 +1,6 @@
 import { NotFoundException, UseGuards } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args, Subscription } from '@nestjs/graphql';
-import { PubSub } from 'apollo-server-express';
+//import { PubSub } from 'apollo-server-express';
 
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
@@ -10,7 +10,7 @@ import { SearchUserInput } from './dto/search-user.input';
 import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
 import { CurrentUser } from 'src/auth/current-user.decorator';
 
-const pubSub = new PubSub();
+//const pubSub = new PubSub();
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -24,7 +24,7 @@ export class UsersResolver {
     createUserInput: CreateUserInput,
   ): Promise<User> {
     const result = await this.usersService.create(createUserInput);
-    pubSub.publish('userAdded', { userAdded: result });
+    //pubSub.publish('userAdded', { userAdded: result });
     return result;
   }
 
@@ -86,9 +86,11 @@ export class UsersResolver {
   /*
   Subscription para receber mensagens sem necessidade de enviar solicitação
   AINDA A SER IMPLEMENTADO
-  */
+  * ATUALIZAÇÃO 27 DE AGOSTO: Com a chegada do apollo-server 3, a subscription não é
+  * mais contemplada dentro do mesmo.
+  * TODO: Implementar a subscription nova
   @Subscription(() => User)
   userAdded() {
     return pubSub.asyncIterator('userAdded');
-  }
+  }*/
 }
