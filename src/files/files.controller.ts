@@ -15,15 +15,16 @@ export class FilesController {
   }
 
   @Get(':nome')
-  busca(@Param('nome') nome, @Res() res) {
+  busca(@Param('nome') nome: any, @Res() res: any) {
     return res.sendFile(nome, { root: 'uploads' });
   }
 
   @Post('upload')
   @UseInterceptors(FilesInterceptor('files', env().MAX_FILES, multerOptions))
-  async upload(@UploadedFiles() files) {
+  async upload(@UploadedFiles() files: any) {
     let dados = [];
     for (let file of files) {
+      await this.filesService.create({ name: file.filename, tipo: file.mimetype, altText: '' });
       dados.push(file.filename);
     }
     return dados;

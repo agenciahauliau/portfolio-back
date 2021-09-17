@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 @ObjectType()
@@ -7,21 +7,32 @@ export class File {
   @Field(() => ID, { description: 'ID do arquivo' })
   readonly _id: string;
 
+  @Field(() => Int, {
+    description:
+      'ID numérico do documento do arquivo, mais fácil para utilizar apesar de ser apenas um contador',
+    nullable: true,
+  })
+  readonly fileId?: number;
+
   @Field(() => String, { description: 'Nome do arquivo', nullable: true })
   @Prop()
-  name?: string;
+  readonly name?: string;
 
   @Field(() => String, { description: 'Tipo do arquivo', nullable: true })
   @Prop()
-  tipo?: string;
+  readonly tipo?: string;
 
   @Field(() => String, { description: 'Texto alternativo', nullable: true })
   @Prop()
   readonly altText?: string;
 
-  @Field({ description: 'Secure URL', nullable: true })
+  @Field({ description: 'Quando foi criado' })
+  @Prop({ default: Date.now })
+  readonly createdAt: number;
+
+  @Field({ description: 'Quando foi atualizado' })
   @Prop()
-  secure_url?: string;
+  readonly updatedAt: number;
 }
 
 export type FileDocumnet = File & Document;
