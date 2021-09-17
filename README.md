@@ -9,7 +9,9 @@ $ npm install
 ```
 
 ## Remote Container
+
 Antes de executar o remote container no VSCode você vai precisar criar uma rede. Utilize o comando:
+
 ```bash
 $ docker network create portfolio_back
 ```
@@ -26,6 +28,7 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
 ## Test
 
 ```bash
@@ -79,3 +82,15 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Pequenas informações para a equipe interna de desenvolvimento
+
+Comando para exportar e importar o banco de dados:
+
+```shell
+mongodump --uri "mongodb+srv://hi4ume:y82n61di4uDokmLz@cluster0.ehwfw.mongodb.net/portfolio?authSource=admin&replicaSet=atlas-1203z4-shard-0&w=majority&readPreference=primary&retryWrites=true&ssl=true" --out ~/Desktop/mongo_RJ_BKP
+```
+
+```shell
+mongorestore ~/Desktop/mongo_RJ_BKP/portfolio --uri="mongodb://portfolio:y82n61di4uDokmLz@localhost:27017/portfolio?authSource=admin"
+```
