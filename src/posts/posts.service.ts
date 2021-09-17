@@ -67,7 +67,7 @@ export class PostsService {
   async update(id: string, updatePostInput: UpdatePostInput): Promise<Post> {
     return await this.postModel
       .findByIdAndUpdate(id, updatePostInput, {
-        useFindAndModify: true,
+        useFindAndModify: false,
       })
       .then((res) => {
         Logger.log(`update: ${res}`);

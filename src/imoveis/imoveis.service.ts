@@ -84,9 +84,7 @@ export class ImoveisService {
       'valorParcela',
     );
     return await this.imovelModel
-      .findByIdAndUpdate(id, updateImovelInput, {
-        useFindAndModify: true,
-      })
+      .findByIdAndUpdate(id, updateImovelInput, { useFindAndModify: false })
       .then((res) => {
         Logger.log(`update: ${res}`);
         return res;
@@ -96,6 +94,39 @@ export class ImoveisService {
         return err;
       });
   }
+
+  /* Função interna para inserir muitos ao mesmo tempo */
+  /*private async insertMany() {
+    await this.imovelModel
+      .insertMany(imoveis)
+      .then((res) => {
+        Logger.log(`insert many: ${res}`);
+        console.log('insert many: ', res);
+        return res;
+      })
+      .catch((err) => {
+        Logger.log(`insert many: ${err}`);
+        return err;
+      });
+  }*/
+
+  /* Função interna para atualizar muitos ao mesmo tempo */
+  /*private async updateMany() {
+    await this.imovelModel
+      .updateMany(
+        { _id: { $in: imoveisId } },
+        { $set: { telefoneProprietario: '', nomeProprietario: '' } },
+      )
+      .then((res) => {
+        Logger.log(`update many: ${res}`);
+        console.log('update many: ', res);
+        return res;
+      })
+      .catch((err) => {
+        Logger.log(`update many: ${err}`);
+        return err;
+      });
+  }*/
 
   /**
    * @Param id: id do imóvel

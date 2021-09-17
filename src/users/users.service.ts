@@ -82,7 +82,7 @@ export class UsersService {
     return await this.userModel
       .findOneAndUpdate({ username: param }, updateUserInput, {
         new: true,
-        useFindAndModify: true,
+        useFindAndModify: false,
       })
       .then((res) => {
         Logger.log(`update: ${res}`);

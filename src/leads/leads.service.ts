@@ -112,7 +112,7 @@ export class LeadsService {
     return await this.leadModel
       .findByIdAndUpdate(id, updateLeadInput, {
         new: true,
-        useFindAndModify: true,
+        useFindAndModify: false,
       })
       .then((res) => {
         Logger.log(`lead update: ${res}`);
