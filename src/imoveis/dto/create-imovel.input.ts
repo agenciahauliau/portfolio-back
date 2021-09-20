@@ -21,8 +21,16 @@ export class CreateImovelInput {
   @IsString({ message: '$property têm que ser do tipo string' })
   nomeImovel: string;
 
+  @Field(() => String, {
+    description: 'True ou False para definir o imóvel como Destaque',
+    nullable: true,
+  })
+  @IsBoolean({ message: '$property têm que ser do tipo boolean' })
+  @IsOptional()
+  destaque?: boolean;
+
   @Field(() => [String], { description: 'URL da imagem principal do imovel' })
-  @IsString({ message: '$property têm que ser do tipo string' })
+  @IsArray({ message: '$property têm que ser do tipo array' })
   imagemPrincipal: MongooseSchema.Types.ObjectId[] | File[];
 
   @Field(() => String, { description: 'Categoria do imóvel' })
@@ -181,9 +189,9 @@ export class CreateImovelInput {
   uf: string;
 
   @Field(() => [String], { description: 'Imagem da planta do condomínio', nullable: true })
+  @IsArray({ message: '$property tem que ser um array' })
   @IsOptional()
-  @IsArray()
-  imgPlantaCondominio?: string[];
+  imgPlantaCondominio?: MongooseSchema.Types.ObjectId[] | File[];
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',

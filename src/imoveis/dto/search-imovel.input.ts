@@ -13,6 +13,10 @@ export class SearchImovelInput {
   @IsOptional()
   nomeImovel?: object;
 
+  @Field({ nullable: true })
+  @IsOptional()
+  destaque?: boolean;
+
   @Field(() => Filtro, { nullable: true })
   @IsOptional()
   imagemPrincipal?: object;

@@ -21,6 +21,13 @@ export class Imovel {
   @Prop()
   readonly nomeImovel: string;
 
+  @Field(() => Boolean, {
+    description: 'Se o imóvel é um destaque ou não',
+    nullable: true,
+  })
+  @Prop()
+  readonly destaque?: boolean;
+
   @Field(() => [File], { description: 'Foto principal' })
   @Prop({ type: [MongooseSchema.Types.ObjectId], ref: File.name })
   readonly imagemPrincipal: MongooseSchema.Types.ObjectId[] | File[];
