@@ -56,7 +56,7 @@ export class LeadsService {
         statusLancamento: 'pendente',
         previsaoLancamento: 0,
         galerias: [],
-        imgPlantaCondominio: [''],
+        imgPlantaCondominio: [],
         tipologias: [],
       };
       const result = await this.imoveisService.create(imovelInput);

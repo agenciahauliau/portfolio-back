@@ -84,7 +84,7 @@ export class ImoveisService {
       'valorParcela',
     );
     return await this.imovelModel
-      .findByIdAndUpdate(id, updateImovelInput, { useFindAndModify: false })
+      .findByIdAndUpdate(id, updateImovelInput, { new: true, useFindAndModify: false })
       .then((res) => {
         Logger.log(`update: ${res}`);
         return res;
