@@ -65,15 +65,22 @@ export class ImoveisResolver {
   }
 
   @ResolveField()
-  async imagemPrincipal(@Parent() file: ImovelDocument, @Args('populate') populate: boolean) {
-    if (populate) await file.populate({ path: 'imagemPrincipal', model: File.name }).execPopulate();
-    return file.imagemPrincipal;
+  async imagemPrincipal(
+    @Parent() imovel: ImovelDocument,
+    @Args('populateImgPrincipal') populateImgPrincipal: boolean,
+  ) {
+    if (populateImgPrincipal)
+      await imovel.populate({ path: 'imagemPrincipal', model: File.name }).execPopulate();
+    return imovel.imagemPrincipal;
   }
 
   @ResolveField()
-  async imagemCondominio(@Parent() file: ImovelDocument, @Args('populate') populate: boolean) {
-    if (populate)
-      await file.populate({ path: 'imgPlantaCondominio', model: File.name }).execPopulate();
-    return file.imgPlantaCondominio;
+  async imgPlantaCondominio(
+    @Parent() imovel: ImovelDocument,
+    @Args('populateImgCondominio') populateImgCondominio: boolean,
+  ) {
+    if (populateImgCondominio)
+      await imovel.populate({ path: 'imgPlantaCondominio', model: File.name }).execPopulate();
+    return imovel.imgPlantaCondominio;
   }
 }
