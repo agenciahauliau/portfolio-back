@@ -74,8 +74,11 @@ type Imovel {
   """Nome do imóvel"""
   nomeImovel: String!
 
+  """Se o imóvel é um destaque ou não"""
+  destaque: Boolean
+
   """Foto principal"""
-  imagemPrincipal(populate: Boolean!): [File!]!
+  imagemPrincipal(populateImgPrincipal: Boolean!): [File!]!
 
   """Categoria do imóvel"""
   categoriaImovel: String!
@@ -170,7 +173,7 @@ type Imovel {
   uf: String!
 
   """Imagem da planta do condomínio"""
-  imgPlantaCondominio: [String!]!
+  imgPlantaCondominio(populateImgCondominio: Boolean!): [File!]!
 
   """Detalhes do condomínio. Segurança 24hs, Academia,"""
   comodidadesImovel: [String!]!
@@ -220,7 +223,7 @@ type Lead {
 
   """Campo de preferência de contato"""
   preferenciaDeContato: String
-  imoveis(populate: Boolean!): [Imovel!]
+  imoveis(populateImoveis: Boolean!): [Imovel!]
 
   """Quando foi criado"""
   createdAt: Float
@@ -251,7 +254,7 @@ type Post {
   conteudo: String!
 
   """Imagem principal do post"""
-  imagemPrincipal: String!
+  imagemPrincipal: [File!]!
 
   """Categoria do post"""
   categoria: [String!]!
@@ -269,6 +272,47 @@ type Post {
 type Analytics {
   """Example field (placeholder)"""
   exampleField: Int!
+}
+
+type Configuracao {
+  """ID da configuração"""
+  _id: ID!
+
+  """ID numérico da configuração, mais fácil para identificar"""
+  configId: Int
+
+  """Tipo da configuração"""
+  tipo: String
+
+  """Título"""
+  titulo: String
+
+  """Link do instagram"""
+  instagram: String
+
+  """Link do facebook"""
+  facebook: String
+
+  """Link do linkedin"""
+  linkedin: String
+
+  """Link do whatsapp"""
+  whatsapp: String
+
+  """Número de telefone"""
+  telefone: String
+
+  """Campo de endereço"""
+  endereco: String
+
+  """Arquivo"""
+  arquivo(populateArquivo: Boolean!): [File!]
+
+  """Quando foi criado"""
+  createdAt: Float!
+
+  """Quando foi atualizado"""
+  updatedAt: Float!
 }
 
 input GaleriaInput {
@@ -301,6 +345,8 @@ type Query {
   posts(quantidade: Float, filtros: SearchPostCondInput): [Post!]!
   post(id: String!): Post!
   analytics(id: Int!): Analytics!
+  configuracoes(filtros: SearchConfiguracaoInput): [Configuracao!]!
+  configuracao(dados: SearchConfiguracaoInput!): Configuracao!
 }
 
 input SearchUserInput {
@@ -312,6 +358,7 @@ input SearchUserInput {
 input SearchImovelInput {
   _id: ID
   nomeImovel: FiltroInput
+  destaque: Boolean
   imagemPrincipal: FiltroInput
   categoriaImovel: FiltroInput
   jardins: Boolean
@@ -436,6 +483,12 @@ input SearchPostCondInput {
   or: JSON
 }
 
+input SearchConfiguracaoInput {
+  _id: ID
+  configId: Float
+  tipo: String
+}
+
 type Mutation {
   createUser(dados: CreateUserInput!): User!
   updateUser(dados: UpdateUserInput!, username: String!): User!
@@ -455,6 +508,9 @@ type Mutation {
   createAnalytics(createAnalyticsInput: CreateAnalyticsInput!): Analytics!
   updateAnalytics(updateAnalyticsInput: UpdateAnalyticsInput!): Analytics!
   removeAnalytics(id: Int!): Analytics!
+  createConfiguracao(dados: CreateConfiguracaoInput!): Configuracao!
+  updateConfiguracao(dados: UpdateConfiguracaoInput!, id: String!): Configuracao!
+  removeConfiguracao(id: String!): Configuracao!
 }
 
 input CreateUserInput {
@@ -481,6 +537,9 @@ input UpdateUserInput {
 input CreateImovelInput {
   """Nome do imóvel"""
   nomeImovel: String!
+
+  """True ou False para definir o imóvel como Destaque"""
+  destaque: String
 
   """URL da imagem principal do imovel"""
   imagemPrincipal: [String!]!
@@ -598,6 +657,7 @@ input CreateImovelInput {
 
 input UpdateImovelInput {
   nomeImovel: String
+  destaque: String
   imagemPrincipal: [String!]
   categoriaImovel: String
   jardins: Boolean
@@ -705,7 +765,7 @@ input CreatePostInput {
   conteudo: String
 
   """Imagem principal do post"""
-  imagemPrincipal: String
+  imagemPrincipal: [String!]
 
   """Categorias do post"""
   categoria: [String!]
@@ -719,7 +779,7 @@ input UpdatePostInput {
   titulo: String
   descricao: String
   conteudo: String
-  imagemPrincipal: String
+  imagemPrincipal: [String!]
   categoria: [String!]
   tags: [String!]
 }
@@ -733,4 +793,45 @@ input UpdateAnalyticsInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
+}
+
+input CreateConfiguracaoInput {
+  """Tipo da configuração: [rodapé|banner|slider|etc]"""
+  tipo: String!
+
+  """Título, se for necessário"""
+  titulo: String
+
+  """Link do Instagram"""
+  instagram: String
+
+  """Campo para link do facebook"""
+  facebook: String
+
+  """Campo para link do LinkedIn"""
+  linkedin: String
+
+  """Campo para link do Whatsapp"""
+  whatsapp: String
+
+  """Campo para número de telefone"""
+  telefone: String
+
+  """Campo para endereço"""
+  endereco: String
+
+  """Campo para arquivo"""
+  arquivos: [String!]
+}
+
+input UpdateConfiguracaoInput {
+  tipo: String
+  titulo: String
+  instagram: String
+  facebook: String
+  linkedin: String
+  whatsapp: String
+  telefone: String
+  endereco: String
+  arquivos: [String!]
 }

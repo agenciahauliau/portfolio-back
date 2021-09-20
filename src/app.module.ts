@@ -11,6 +11,7 @@ import { FilesModule } from './files/files.module';
 import { LeadsModule } from './leads/leads.module';
 import { PostsModule } from './posts/posts.module';
 import { AnalyticsModule } from './analytics/analytics.module';
+import { ConfiguracaoModule } from './configuracao/configuracao.module';
 import env from '@environments';
 
 @Module({
@@ -67,6 +68,7 @@ import env from '@environments';
     LeadsModule,
     PostsModule,
     AnalyticsModule,
+    ConfiguracaoModule,
   ],
 })
 export class AppModule {}
