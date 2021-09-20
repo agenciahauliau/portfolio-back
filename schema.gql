@@ -37,6 +37,31 @@ type Tipologia {
   valorParcela: Float!
 }
 
+type File {
+  """ID do arquivo"""
+  _id: ID!
+
+  """
+  ID numérico do documento do arquivo, mais fácil para utilizar apesar de ser apenas um contador
+  """
+  fileId: Int
+
+  """Nome do arquivo"""
+  name: String
+
+  """Tipo do arquivo"""
+  tipo: String
+
+  """Texto alternativo"""
+  altText: String
+
+  """Quando foi criado"""
+  createdAt: Float!
+
+  """Quando foi atualizado"""
+  updatedAt: Float!
+}
+
 type Imovel {
   """ID do imóvel"""
   _id: ID!
@@ -50,7 +75,7 @@ type Imovel {
   nomeImovel: String!
 
   """Foto principal"""
-  imagemPrincipal: String!
+  imagemPrincipal(populate: Boolean!): [File!]!
 
   """Categoria do imóvel"""
   categoriaImovel: String!
@@ -161,31 +186,6 @@ type Imovel {
 
   """Tipologias"""
   tipologias: [Tipologia!]!
-
-  """Quando foi criado"""
-  createdAt: Float!
-
-  """Quando foi atualizado"""
-  updatedAt: Float!
-}
-
-type File {
-  """ID do arquivo"""
-  _id: ID!
-
-  """
-  ID numérico do documento do arquivo, mais fácil para utilizar apesar de ser apenas um contador
-  """
-  fileId: Int
-
-  """Nome do arquivo"""
-  name: String
-
-  """Tipo do arquivo"""
-  tipo: String
-
-  """Texto alternativo"""
-  altText: String
 
   """Quando foi criado"""
   createdAt: Float!
@@ -443,9 +443,9 @@ type Mutation {
   createImovel(dados: CreateImovelInput!): Imovel!
   updateImovel(dados: UpdateImovelInput!, id: String!): Imovel!
   removeImovel(id: String!): Boolean!
-  login(data: AuthInput!): String!
   updateFile(dados: UpdateFileInput!, id: String!): File!
   deletaArquivo(filename: String!): String!
+  login(data: AuthInput!): String!
   createLead(dados: CreateLeadInput!): Boolean!
   updateLead(dados: UpdateLeadInput!, id: String!): Lead!
   removeLead(id: String!): Boolean!
@@ -483,7 +483,7 @@ input CreateImovelInput {
   nomeImovel: String!
 
   """URL da imagem principal do imovel"""
-  imagemPrincipal: String!
+  imagemPrincipal: [String!]!
 
   """Categoria do imóvel"""
   categoriaImovel: String!
@@ -598,7 +598,7 @@ input CreateImovelInput {
 
 input UpdateImovelInput {
   nomeImovel: String
-  imagemPrincipal: String
+  imagemPrincipal: [String!]
   categoriaImovel: String
   jardins: Boolean
   descricaoImovel: String
@@ -637,15 +637,15 @@ input UpdateImovelInput {
   galerias: [GaleriaInput!]
 }
 
-input AuthInput {
-  email: String!
-  senha: String!
-}
-
 input UpdateFileInput {
   name: String
   tipo: String
   altText: String
+}
+
+input AuthInput {
+  email: String!
+  senha: String!
 }
 
 input CreateLeadInput {

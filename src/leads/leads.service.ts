@@ -21,7 +21,7 @@ export class LeadsService {
     if (createLeadInput.tipoLead === 'Anunciar meu Imóvel') {
       const imovelInput: CreateImovelInput = {
         nomeImovel: '',
-        imagemPrincipal: '',
+        imagemPrincipal: [],
         categoriaImovel: createLeadInput?.categoriaImovel,
         jardins: false,
         descricaoImovel: '',

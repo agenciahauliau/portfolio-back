@@ -1,11 +1,12 @@
-import { Logger, NotFoundException, UseGuards } from '@nestjs/common';
-import { Resolver, Query, Mutation, Args, Context } from '@nestjs/graphql';
+import { NotFoundException, UseGuards } from '@nestjs/common';
+import { Resolver, Query, Mutation, Args, Context, ResolveField, Parent } from '@nestjs/graphql';
 import { ImoveisService } from './imoveis.service';
-import { Imovel } from './entities/imovel.entity';
+import { Imovel, ImovelDocument } from './entities/imovel.entity';
 import { CreateImovelInput } from './dto/create-imovel.input';
 import { UpdateImovelInput } from './dto/update-imovel.input';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { SearchImovelInput } from './dto/search-imovel.input';
+import { File } from '../files/entities/file.entity';
 
 @Resolver(() => Imovel)
 export class ImoveisResolver {
@@ -61,5 +62,18 @@ export class ImoveisResolver {
       throw new NotFoundException(`${this.respostaDeErro}: ${id}`);
     }
     return resultado;
+  }
+
+  @ResolveField()
+  async imagemPrincipal(@Parent() file: ImovelDocument, @Args('populate') populate: boolean) {
+    if (populate) await file.populate({ path: 'imagemPrincipal', model: File.name }).execPopulate();
+    return file.imagemPrincipal;
+  }
+
+  @ResolveField()
+  async imagemCondominio(@Parent() file: ImovelDocument, @Args('populate') populate: boolean) {
+    if (populate)
+      await file.populate({ path: 'imgPlantaCondominio', model: File.name }).execPopulate();
+    return file.imgPlantaCondominio;
   }
 }

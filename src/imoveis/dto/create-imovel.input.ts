@@ -12,6 +12,8 @@ import {
 } from 'class-validator';
 import { Tipologia } from '../entities/tipologia.entity';
 import { Galeria } from '../entities/galeria.entity';
+import { Schema as MongooseSchema } from 'mongoose';
+import { File } from '../../files/entities/file.entity';
 
 @InputType()
 export class CreateImovelInput {
@@ -19,9 +21,9 @@ export class CreateImovelInput {
   @IsString({ message: '$property têm que ser do tipo string' })
   nomeImovel: string;
 
-  @Field(() => String, { description: 'URL da imagem principal do imovel' })
+  @Field(() => [String], { description: 'URL da imagem principal do imovel' })
   @IsString({ message: '$property têm que ser do tipo string' })
-  imagemPrincipal: string;
+  imagemPrincipal: MongooseSchema.Types.ObjectId[] | File[];
 
   @Field(() => String, { description: 'Categoria do imóvel' })
   @IsString({ message: '$property têm que ser do tipo string' })

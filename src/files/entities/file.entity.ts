@@ -35,5 +35,5 @@ export class File {
   readonly updatedAt: number;
 }
 
-export type FileDocumnet = File & Document;
+export type FileDocument = File & Document;
 export const FileSchema = SchemaFactory.createForClass(File);

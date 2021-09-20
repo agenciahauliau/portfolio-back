@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import * as fs from 'fs';
 import env from '@environments';
 import { renameKey } from '@shared';
-import { File, FileDocumnet } from './entities/file.entity';
+import { File, FileDocument } from './entities/file.entity';
 import { CreateFileInput } from './dto/create-file.input';
 import { UpdateFileInput } from './dto/update-file.input';
 import { SearchFileInput } from './dto/search-file.input';
@@ -12,7 +12,7 @@ import { SearchFileInput } from './dto/search-file.input';
 @Injectable()
 export class FilesService implements OnModuleInit {
   listaTodasImgs = [];
-  constructor(@InjectModel(File.name) private readonly fileModel: Model<FileDocumnet>) {}
+  constructor(@InjectModel(File.name) private readonly fileModel: Model<FileDocument>) {}
 
   async create(createFileInput: CreateFileInput): Promise<File> {
     const file = new this.fileModel(createFileInput);

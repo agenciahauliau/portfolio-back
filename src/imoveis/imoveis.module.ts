@@ -5,9 +5,11 @@ import { Imovel, ImovelSchema } from './entities/imovel.entity';
 import { MongooseModule, getConnectionToken } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
 import * as AutoIncrementFactory from 'mongoose-sequence';
+import { FilesModule } from '../files/files.module';
 
 @Module({
   imports: [
+    FilesModule,
     MongooseModule.forFeatureAsync([
       {
         name: Imovel.name,

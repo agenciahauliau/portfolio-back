@@ -1,8 +1,9 @@
 import { ObjectType, Field, ID, Int, Float } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
 import { Galeria } from './galeria.entity';
 import { Tipologia } from './tipologia.entity';
+import { File } from '../../files/entities/file.entity';
 
 @ObjectType()
 @Schema({ timestamps: true })
@@ -20,9 +21,9 @@ export class Imovel {
   @Prop()
   readonly nomeImovel: string;
 
-  @Field(() => String, { description: 'Foto principal' })
-  @Prop()
-  readonly imagemPrincipal: string;
+  @Field(() => [File], { description: 'Foto principal' })
+  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: File.name })
+  readonly imagemPrincipal: MongooseSchema.Types.ObjectId[] | File[];
 
   @Field(() => String, { description: 'Categoria do imóvel' })
   @Prop({ trim: true })
@@ -157,9 +158,9 @@ export class Imovel {
   @Prop({ uppercase: true })
   readonly uf: string;
 
-  @Field(() => [String], { description: 'Imagem da planta do condomínio' })
-  @Prop()
-  readonly imgPlantaCondominio?: string[];
+  @Field(() => [File], { description: 'Imagem da planta do condomínio' })
+  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: File.name })
+  readonly imgPlantaCondominio?: MongooseSchema.Types.ObjectId[] | File[];
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
