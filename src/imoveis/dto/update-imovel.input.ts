@@ -12,7 +12,7 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
   @IsOptional()
   nomeImovel: string;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   @IsOptional()
   destaque?: boolean;
 

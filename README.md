@@ -58,7 +58,7 @@ Caso queira, você pode definir algumas variáveis antes de iniciar o sistema. V
 |  `FILE_UPLOAD_DIR`  |                     './uploads'                     |                                                                                      |
 |   `MAX_FILE_SIZE`   |                      20000000                       |                     O valor máximo deve ser espicifado em Bytes                      |
 |     `MAX_FILES`     |                         10                          |                       Quantidade máxima de arquivos multiplos                        |
-| `ALLOWED_FILETYPES` |      jpg\|jpeg\|png\|gif\|mp4\|m4v\|avif\|webp      |                                                                                      |
+| `ALLOWED_FILETYPES` |   jpg\|jpeg\|png\|gif\|mp4\|m4v\|avif\|webp\|webm   |                                                                                      |
 |     `MONGO_URL`     | mongodb://{username}:{password}@127.0.0.1/portfolio |                                                                                      |
 |    `PLAYGROUND`     |                        false                        |  Se habilitar playground, certifique-se de que `CSURF` e `HELMET` estão em `false`   |
 |   `INTROSPECTION`   |                        false                        |                                                                                      |

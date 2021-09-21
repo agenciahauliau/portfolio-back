@@ -75,7 +75,7 @@ type Imovel {
   nomeImovel: String!
 
   """Se o imóvel é um destaque ou não"""
-  destaque: Boolean
+  destaque: Boolean!
 
   """Foto principal"""
   imagemPrincipal(populateImgPrincipal: Boolean!): [File!]!
@@ -539,7 +539,7 @@ input CreateImovelInput {
   nomeImovel: String!
 
   """True ou False para definir o imóvel como Destaque"""
-  destaque: String
+  destaque: Boolean
 
   """URL da imagem principal do imovel"""
   imagemPrincipal: [String!]!
@@ -657,7 +657,7 @@ input CreateImovelInput {
 
 input UpdateImovelInput {
   nomeImovel: String
-  destaque: String
+  destaque: Boolean
   imagemPrincipal: [String!]
   categoriaImovel: String
   jardins: Boolean

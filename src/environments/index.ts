@@ -31,7 +31,7 @@ export default () => ({
   FILE_UPLOAD_DIR: process.env.FILE_UPLOAD_DIR || './uploads',
   MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE) || 20000000,
   MAX_FILES: parseInt(process.env.MAX_FILES) || 10,
-  ALLOWED_FILETYPES: process.env.ALLOWED_FILETYPES || 'jpg|jpeg|png|gif|mp4|m4v|avif|webp',
+  ALLOWED_FILETYPES: process.env.ALLOWED_FILETYPES || 'jpg|jpeg|png|gif|mp4|m4v|avif|webp|webm',
 
   // MongoDB
   MONGO_URL: process.env.MONGO_URL || 'mongodb://{username}:{password}@127.0.0.1/portfolio',

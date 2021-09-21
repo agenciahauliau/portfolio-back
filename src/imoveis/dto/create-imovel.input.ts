@@ -21,7 +21,7 @@ export class CreateImovelInput {
   @IsString({ message: '$property têm que ser do tipo string' })
   nomeImovel: string;
 
-  @Field(() => String, {
+  @Field(() => Boolean, {
     description: 'True ou False para definir o imóvel como Destaque',
     nullable: true,
   })
