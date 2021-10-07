@@ -24,6 +24,7 @@ export class LeadsService {
         imagemPrincipal: [],
         categoriaImovel: createLeadInput?.categoriaImovel,
         jardins: false,
+        destaque: false,
         descricaoImovel: '',
         tipoNegociacao: createLeadInput?.tipoNegociacao,
         statusImovel: '',
