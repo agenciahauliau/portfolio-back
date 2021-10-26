@@ -52,11 +52,14 @@ import env from '@environments';
         }
       },
     }),
-    MongooseModule.forRoot(env().MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      authSource: 'admin',
+    MongooseModule.forRootAsync({
+      useFactory: () => ({
+        uri: env().MONGO_URL,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        autoIndex: true,
+        authSource: 'admin',
+      }),
     }),
     UsersModule,
     ImoveisModule,
