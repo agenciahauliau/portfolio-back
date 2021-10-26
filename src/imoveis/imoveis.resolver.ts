@@ -69,8 +69,7 @@ export class ImoveisResolver {
     @Parent() imovel: ImovelDocument,
     @Args('populateImgPrincipal') populateImgPrincipal: boolean,
   ) {
-    if (populateImgPrincipal)
-      await imovel.populate({ path: 'imagemPrincipal', model: File.name }).execPopulate();
+    if (populateImgPrincipal) await imovel.populate({ path: 'imagemPrincipal', model: File.name });
     return imovel.imagemPrincipal;
   }
 
@@ -80,7 +79,7 @@ export class ImoveisResolver {
     @Args('populateImgCondominio') populateImgCondominio: boolean,
   ) {
     if (populateImgCondominio)
-      await imovel.populate({ path: 'imgPlantaCondominio', model: File.name }).execPopulate();
+      await imovel.populate({ path: 'imgPlantaCondominio', model: File.name });
     return imovel.imgPlantaCondominio;
   }
 }

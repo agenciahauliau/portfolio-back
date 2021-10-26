@@ -64,8 +64,7 @@ export class PostsResolver {
     @Parent() post: PostDocument,
     @Args('populateImgPrincipal') populateImgPrincipal: boolean,
   ) {
-    if (populateImgPrincipal)
-      await post.populate({ path: 'imagemPrincipal', model: File.name }).execPopulate();
+    if (populateImgPrincipal) await post.populate({ path: 'imagemPrincipal', model: File.name });
     return post.imagemPrincipal;
   }
 }

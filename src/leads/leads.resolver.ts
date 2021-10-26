@@ -63,7 +63,7 @@ export class LeadsResolver {
 
   @ResolveField()
   async imoveis(@Parent() lead: LeadDocument, @Args('populateImoveis') populate: boolean) {
-    if (populate) await lead.populate({ path: 'imoveis', model: Imovel.name }).execPopulate();
+    if (populate) await lead.populate({ path: 'imoveis', model: Imovel.name });
     return lead.imoveis;
   }
 }

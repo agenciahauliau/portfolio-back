@@ -64,7 +64,7 @@ export class ConfiguracaoResolver {
 
   @ResolveField()
   async arquivo(@Parent() file: ConfiguracaoDocument, @Args('populateArquivo') populate: boolean) {
-    if (populate) await file.populate({ path: 'arquivo', model: File.name }).execPopulate();
+    if (populate) await file.populate({ path: 'arquivo', model: File.name });
     return file.arquivo;
   }
 }
