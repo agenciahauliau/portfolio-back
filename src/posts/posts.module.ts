@@ -14,7 +14,6 @@ import { Post, PostSchema } from './entities/post.entity';
           const schema = PostSchema;
           const AutoIncrement = AutoIncrementFactory(connection);
           schema.plugin(require('mongoose-unique-validator'));
-          schema.plugin(require('mongoose-update-versioning'));
           schema.plugin(AutoIncrement, {
             inc_field: 'postId',
             start_seq: 1,

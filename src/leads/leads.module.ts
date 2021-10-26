@@ -17,7 +17,6 @@ import { ImoveisModule } from 'src/imoveis/imoveis.module';
           const schema = LeadSchema;
           const AutoIncrement = AutoIncrementFactory(connection);
           schema.plugin(require('mongoose-unique-validator'));
-          schema.plugin(require('mongoose-update-versioning'));
           schema.plugin(AutoIncrement, {
             inc_field: 'leadId',
             start_seq: 1,

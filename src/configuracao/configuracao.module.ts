@@ -15,7 +15,6 @@ import { Configuracao, ConfiguracaoSchema } from './entities/configuracao.entity
           const schema = ConfiguracaoSchema;
           const AutoIncrement = AutoIncrementFactory(connection);
           schema.plugin(require('mongoose-unique-validator'));
-          schema.plugin(require('mongoose-update-versioning'));
           schema.plugin(AutoIncrement, { inc_field: 'configId', start_seq: 1 });
           return schema;
         },

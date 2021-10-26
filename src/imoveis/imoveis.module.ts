@@ -17,7 +17,6 @@ import { FilesModule } from '../files/files.module';
           const schema = ImovelSchema;
           const AutoIncrement = AutoIncrementFactory(connection);
           schema.plugin(require('mongoose-unique-validator'));
-          schema.plugin(require('mongoose-update-versioning'));
           schema.plugin(AutoIncrement, {
             inc_field: 'imovelId',
             start_seq: 1,

@@ -16,7 +16,6 @@ import * as AutoIncrementFactory from 'mongoose-sequence';
           const schema = FileSchema;
           const AutoIncrement = AutoIncrementFactory(connection);
           schema.plugin(require('mongoose-unique-validator'));
-          schema.plugin(require('mongoose-update-versioning'));
           schema.plugin(AutoIncrement, {
             inc_field: 'fileId',
             start_seq: 1,
