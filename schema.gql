@@ -39,7 +39,7 @@ type Tipologia {
 
 type File {
   """ID do arquivo"""
-  _id: ID!
+  _id: ID
 
   """
   ID numérico do documento do arquivo, mais fácil para utilizar apesar de ser apenas um contador
@@ -254,7 +254,7 @@ type Post {
   conteudo: String!
 
   """Imagem principal do post"""
-  imagemPrincipal: [File!]!
+  imagemPrincipal(populateImgPrincipal: Boolean!): [File!]!
 
   """Categoria do post"""
   categoria: [String!]!

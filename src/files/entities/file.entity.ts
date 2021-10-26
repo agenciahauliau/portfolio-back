@@ -4,7 +4,7 @@ import { Document } from 'mongoose';
 @ObjectType()
 @Schema({ timestamps: true })
 export class File {
-  @Field(() => ID, { description: 'ID do arquivo' })
+  @Field(() => ID, { description: 'ID do arquivo', nullable: true })
   readonly _id: string;
 
   @Field(() => Int, {

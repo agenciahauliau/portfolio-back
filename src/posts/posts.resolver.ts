@@ -1,11 +1,12 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
 import { PostsService } from './posts.service';
-import { Post } from './entities/post.entity';
+import { Post, PostDocument } from './entities/post.entity';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { NotFoundException, UseGuards } from '@nestjs/common';
 import { SearchPostCondInput } from './dto/search-post.input';
+import { File } from '../files/entities/file.entity';
 
 @Resolver(() => Post)
 export class PostsResolver {
@@ -56,5 +57,15 @@ export class PostsResolver {
       throw new NotFoundException(`${this.respostaDeErro}: ${id}`);
     }
     return resultado;
+  }
+
+  @ResolveField()
+  async imagemPrincipal(
+    @Parent() post: PostDocument,
+    @Args('populateImgPrincipal') populateImgPrincipal: boolean,
+  ) {
+    if (populateImgPrincipal)
+      await post.populate({ path: 'imagemPrincipal', model: File.name }).execPopulate();
+    return post.imagemPrincipal;
   }
 }
