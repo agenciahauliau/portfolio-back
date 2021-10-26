@@ -1,7 +1,7 @@
 import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
-import { File } from '../../files/entities/file.entity';
+import { File as FileTipo } from '../../files/entities/file.entity';
 
 @ObjectType()
 @Schema({ timestamps: true })
@@ -31,9 +31,9 @@ export class Post {
   @Prop()
   readonly conteudo: string;
 
-  @Field(() => [File], { description: 'Imagem principal do post' })
-  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: File.name })
-  readonly imagemPrincipal: MongooseSchema.Types.ObjectId[] | File[];
+  @Field(() => [FileTipo], { description: 'Imagem principal do post' })
+  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: FileTipo.name })
+  readonly imagemPrincipal: MongooseSchema.Types.ObjectId[] | FileTipo[];
 
   @Field(() => [String], { description: 'Categoria do post' })
   @Prop()

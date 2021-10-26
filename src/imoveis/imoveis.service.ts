@@ -111,12 +111,9 @@ export class ImoveisService {
   }*/
 
   /* Função interna para atualizar muitos ao mesmo tempo */
-  /*private async updateMany() {
+  /* private async updateMany() {
     await this.imovelModel
-      .updateMany(
-        { _id: { $in: imoveisId } },
-        { $set: { telefoneProprietario: '', nomeProprietario: '' } },
-      )
+      .updateMany({ _id: { $in: imoveisId } }, { $set: { destaque: false } })
       .then((res) => {
         Logger.log(`update many: ${res}`);
         console.log('update many: ', res);
@@ -126,7 +123,7 @@ export class ImoveisService {
         Logger.log(`update many: ${err}`);
         return err;
       });
-  }*/
+  } */
 
   /**
    * @Param id: id do imóvel

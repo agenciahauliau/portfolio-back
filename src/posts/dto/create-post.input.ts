@@ -1,7 +1,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { IsArray, IsString } from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
-import { File } from '../../files/entities/file.entity';
+import { File as FileTipo } from '../../files/entities/file.entity';
 
 @InputType()
 export class CreatePostInput {
@@ -23,7 +23,7 @@ export class CreatePostInput {
 
   @Field(() => [String], { description: 'Imagem principal do post', nullable: true })
   @IsArray({ message: '$property têm que ser do tipo array' })
-  imagemPrincipal: MongooseSchema.Types.ObjectId[] | File[];
+  imagemPrincipal: MongooseSchema.Types.ObjectId[] | FileTipo[];
 
   @Field(() => [String], { description: 'Categorias do post', nullable: true })
   @IsArray()

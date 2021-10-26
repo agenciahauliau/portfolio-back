@@ -1,7 +1,7 @@
 import { InputType, Field, PartialType } from '@nestjs/graphql';
 import { Schema as MongooseSchema } from 'mongoose';
 import { CreatePostInput } from './create-post.input';
-import { File } from '../../files/entities/file.entity';
+import { File as FileTipo } from '../../files/entities/file.entity';
 
 @InputType()
 export class UpdatePostInput extends PartialType(CreatePostInput) {
@@ -18,7 +18,7 @@ export class UpdatePostInput extends PartialType(CreatePostInput) {
   conteudo?: string;
 
   @Field(() => [String], { nullable: true })
-  imagemPrincipal?: MongooseSchema.Types.ObjectId[] | File[];
+  imagemPrincipal?: MongooseSchema.Types.ObjectId[] | FileTipo[];
 
   @Field(() => [String], { nullable: true })
   categoria?: string[];

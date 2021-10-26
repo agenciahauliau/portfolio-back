@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 import { Galeria } from './galeria.entity';
 import { Tipologia } from './tipologia.entity';
-import { File } from '../../files/entities/file.entity';
+import { File as FileTipo } from '../../files/entities/file.entity';
 
 @ObjectType()
 @Schema({ timestamps: true })
@@ -27,9 +27,9 @@ export class Imovel {
   @Prop()
   readonly destaque: boolean;
 
-  @Field(() => [File], { description: 'Foto principal' })
-  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: File.name })
-  readonly imagemPrincipal: MongooseSchema.Types.ObjectId[] | File[];
+  @Field(() => [FileTipo], { description: 'Foto principal' })
+  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: FileTipo.name })
+  readonly imagemPrincipal: MongooseSchema.Types.ObjectId[] | FileTipo[];
 
   @Field(() => String, { description: 'Categoria do imóvel' })
   @Prop({ trim: true })
@@ -164,9 +164,9 @@ export class Imovel {
   @Prop({ uppercase: true })
   readonly uf: string;
 
-  @Field(() => [File], { description: 'Imagem da planta do condomínio' })
-  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: File.name })
-  readonly imgPlantaCondominio?: MongooseSchema.Types.ObjectId[] | File[];
+  @Field(() => [FileTipo], { description: 'Imagem da planta do condomínio' })
+  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: FileTipo.name })
+  readonly imgPlantaCondominio?: MongooseSchema.Types.ObjectId[] | FileTipo[];
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',

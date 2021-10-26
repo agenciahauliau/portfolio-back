@@ -4,7 +4,7 @@ import { IsOptional } from 'class-validator';
 import { Schema as MongooseSchema } from 'mongoose';
 import { Tipologia } from '../entities/tipologia.entity';
 import { Galeria } from '../entities/galeria.entity';
-import { File } from '../../files/entities/file.entity';
+import { File as FileTipo } from '../../files/entities/file.entity';
 
 @InputType()
 export class UpdateImovelInput extends PartialType(CreateImovelInput) {
@@ -18,7 +18,7 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
-  imagemPrincipal: MongooseSchema.Types.ObjectId[] | File[];
+  imagemPrincipal: MongooseSchema.Types.ObjectId[] | FileTipo[];
 
   @Field({ nullable: true })
   @IsOptional()
@@ -152,7 +152,7 @@ export class UpdateImovelInput extends PartialType(CreateImovelInput) {
 
   @Field(() => [String], { nullable: true })
   @IsOptional()
-  imgPlantaCondominio?: MongooseSchema.Types.ObjectId[] | File[];
+  imgPlantaCondominio?: MongooseSchema.Types.ObjectId[] | FileTipo[];
 
   @Field(() => [String], { nullable: true })
   @IsOptional()

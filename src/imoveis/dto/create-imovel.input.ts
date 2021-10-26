@@ -13,7 +13,7 @@ import {
 import { Tipologia } from '../entities/tipologia.entity';
 import { Galeria } from '../entities/galeria.entity';
 import { Schema as MongooseSchema } from 'mongoose';
-import { File } from '../../files/entities/file.entity';
+import { File as FileTipo } from '../../files/entities/file.entity';
 
 @InputType()
 export class CreateImovelInput {
@@ -31,7 +31,7 @@ export class CreateImovelInput {
 
   @Field(() => [String], { description: 'URL da imagem principal do imovel' })
   @IsArray({ message: '$property têm que ser do tipo array' })
-  imagemPrincipal: MongooseSchema.Types.ObjectId[] | File[];
+  imagemPrincipal: MongooseSchema.Types.ObjectId[] | FileTipo[];
 
   @Field(() => String, { description: 'Categoria do imóvel' })
   @IsString({ message: '$property têm que ser do tipo string' })
@@ -191,7 +191,7 @@ export class CreateImovelInput {
   @Field(() => [String], { description: 'Imagem da planta do condomínio', nullable: true })
   @IsArray({ message: '$property tem que ser um array' })
   @IsOptional()
-  imgPlantaCondominio?: MongooseSchema.Types.ObjectId[] | File[];
+  imgPlantaCondominio?: MongooseSchema.Types.ObjectId[] | FileTipo[];
 
   @Field(() => [String], {
     description: 'Detalhes do condomínio. Segurança 24hs, Academia,',
